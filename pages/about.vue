@@ -23,6 +23,41 @@
       ※
       推奨環境以外で利用された場合や、推奨環境下でもご利用のブラウザの設定等によっては、正しく表示されない場合がありますのでご了承ください。
     </TextCard>
+    <a id="data" name="data" />
+    <TextCard title="データについて">
+      当サイトのデータは、北海道および札幌市のオープンデータをAPIで取得することで情報を更新しています。<br />
+      当取り組みに北海道および札幌市が協力し、オープンデータ化にご尽力してくださっていることから、現在、「HTMLのスクレイピング」から「オープンデータサイトからの取得」にデータソースの切り替えを進めております。<br />
+      現在利用しているデータは以下の通りです。<br />
+      <ul>
+        <li>
+          <a href="https://www.harp.lg.jp/opendata/dataset/1369.html" target="_blank" rel="noopener">
+            新型コロナウイルス感染症に関するデータ
+          </a>
+          <ul>
+            <li>陽性患者の属性 (patients)</li>
+            <li>陽性患者数（日別） (patients_summary)</li>
+            <li>日別患者増減数 (current_patients)</li>
+            <li>治療修了者数 (discharges_summary)</li>
+            <li>日別検査数 (inspections)</li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan" target="_blank" rel="noopener">
+            札幌市窓口における新型コロナウイルス（COVID-19）に関する電話相談件数
+          </a>
+          <ul>
+            <li>日別窓口相談件数（札幌市保健所） (contacts)</li>
+            <li>日別電話相談件数 （札幌市保健所） (querents)</li>
+          </ul>
+        </li>
+      </ul>
+      行政の皆さまのご協力に感謝します。<br />
+      <br />
+      <a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener">
+      <img src="/cc-by.svg" alt="CC BY 4.0" /><br />
+      All data on this site under the CC Attribution license.<br />
+      このサイトのすべてのデータは「クリエイティブ・コモンズ 表示 4.0 国際」にて提供されています。</a>
+    </TextCard>
     <TextCard title="当サイトへのリンクについて">
       当サイトへのリンクは自由です。
     </TextCard>
