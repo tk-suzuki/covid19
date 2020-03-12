@@ -53,7 +53,12 @@
             target="_blank"
             rel="noopener"
           >
-            <img src="/twitter.png" width="90px" height="90px" alt="Twitter" />
+            <img
+              src="/twitter.png"
+              width="90px"
+              height="90px"
+              alt="Twitter"
+            />
           </a>
           <a
             href="https://www.facebook.com/Justdouit19/"
@@ -67,11 +72,33 @@
               alt="Facebook"
             />
           </a>
+          <a
+            href="https://github.com/codeforsapporo/covid19"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="/github.png"
+              width="90px"
+              height="90px"
+              alt="GitHub"
+            />
+          </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
+          Operations by:<br />
+          <span class="image-title">JUST道IT</span>
+          <img
+            src="/justdouit.png"
+            width="172px"
+            height="42px"
+            alt="JUST道IT"
+          /><br />
           Powered by:<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
+            <span class="image-title">さくらインターネット</span>
             <img
+              class="sakura-internet"
               src="/sakura.svg"
               width="172px"
               height="46.5px"
@@ -294,10 +321,15 @@ export default {
     color: $gray-1;
     & img {
       width: 172px;
+    }
+    & img.sakura-internet {
       margin: -6px -10px;
-      &:first-of-type {
-        margin-right: 10px;
-      }
+    }
+    & .image-title {
+      display: inline-block;
+      width: 0;
+      height: 1.5rem;
+      overflow: hidden;
     }
   }
   &-Copyright {
