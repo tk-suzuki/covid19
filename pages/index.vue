@@ -115,11 +115,9 @@ import formatTable from '@/utils/formatTable'
 import SvgCard from '@/components/SvgCard.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import DataView from "../components/DataView";
-import ConfiremCasesTable from "@/components/ConfiremCasesTable"
 
 export default {
   components: {
-    ConfiremCasesTable,
     DataView,
     PageHeader,
     TimeBarChart,
