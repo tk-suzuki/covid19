@@ -14,23 +14,6 @@
 
     <v-row class="DataBlock">
       <v-col cols="12" md="6" class="DataCard">
-          <DataView
-            title="検査陽性者の状況"
-            source-from="北海道 オープンデータポータル"
-            source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
-            date="2020/03/12"
-          >
-            <ConfiremCasesTable
-              :inspections="1250"
-              :nowpatients="71"
-              :currentpatients="128"
-              :milds="65"
-              :serious="6"
-              :losts="4"
-              :discharges="53" />
-          </DataView>
-      </v-col>
-      <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
