@@ -6,9 +6,14 @@
     <TextCard>
       当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。<br />
       <br />
-      複製・改変が許されたオープンソースライセンスで公開されている、<a target="_blank" href="https://stopcovid19.metro.tokyo.lg.jp/">東京都公式新型コロナウイルス対策サイト</a>の<a target="_blank" href="https://github.com/tokyo-metropolitan-gov/covid19" rel="noopener">仕組み</a>を利用しています。<br />
+      複製・改変が許されたオープンソースライセンスで公開されている、<a target="_blank" rel="noopener" href="https://stopcovid19.metro.tokyo.lg.jp/">東京都公式新型コロナウイルス対策サイト</a>の<a target="_blank" href="https://github.com/tokyo-metropolitan-gov/covid19" rel="noopener">仕組み</a>を利用しています。<br />
       <br />
       北海道による公式情報と客観的な数値をわかりやすく伝えることで、北海道にお住まいの方や、北海道内に拠点を持つ企業の方、北海道を訪れる方が、現状を把握して適切な対策を取れるようにすることを目的としています。
+      <br />
+      <br />
+      紹介などに<a target="_blank" rel="noopener" href="https://stopcovid19.hokkaido.dev/print/info">こちら</a>のページをぜひご利用ください。
+      <br />
+      複製・配布は自由です。ご自由にコピーまたはプリントアウトしてご利用ください。
 
     </TextCard>
     <TextCard title="ブラウザ環境について">
