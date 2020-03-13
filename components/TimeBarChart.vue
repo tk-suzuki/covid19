@@ -5,7 +5,7 @@
     :source-from="sourceFrom"
     :source-link="sourceLink"
   >
-    <template v-slot:button>
+    <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
     <bar :chart-data="displayData" :options="displayOption" :height="240" />
@@ -100,6 +100,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    showButton: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data() {

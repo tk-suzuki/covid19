@@ -17,8 +17,8 @@
           title="現在患者数"
           :chart-data="currentPatientsGraph"
           :date="convertToDateFromData(currentPatients.last_update)"
-          sourceFrom="北海道庁webサイト"
-          sourceLink="http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm"
+          sourceFrom="北海道 オープンデータポータル"
+          sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
         />
@@ -28,8 +28,8 @@
           title="治療終了者数"
           :chart-data="dischargesGraph"
           :date="convertToDateFromData(dischargesSummary.last_update)"
-          sourceFrom="北海道庁webサイト"
-          sourceLink="http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm"
+          sourceFrom="北海道 オープンデータポータル"
+          sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :supplement="'治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）'"
@@ -40,8 +40,8 @@
           title="陽性患者数"
           :chart-data="patientsGraph"
           :date="convertToDateFromData(patients.last_update)"
-          sourceFrom="北海道庁webサイト"
-          sourceLink="http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm"
+          sourceFrom="北海道 オープンデータポータル"
+          sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
         />
@@ -52,9 +52,22 @@
           :chart-data="patientsTable"
           :chart-option="{}"
           :date="convertToDateFromData(patients.last_update)"
-          sourceFrom="北海道庁webサイト"
-          sourceLink="http://www.pref.hokkaido.lg.jp/hf/kth/kak/hasseijoukyou.htm"
+          sourceFrom="北海道 オープンデータポータル"
+          sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :info="sumInfoOfPatients"
+        />
+      </v-col>
+      <v-col cols="12" md="6" class="DataCard">
+        <time-bar-chart
+          title="検査数"
+          :chart-data="inspectionsGraph"
+          :date="convertToDateFromData(inspections.last_update)"
+          sourceFrom="北海道 オープンデータポータル"
+          sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :unit="'人'"
+          :defaultDataKind="'cumulative'"
+          :showButton="false"
+          :supplement="'3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
@@ -94,6 +107,7 @@ import contacts from '@/data/contacts.json'
 import querents from '@/data/querents.json'
 import currentPatients from '@/data/current_patients.json'
 import dischargesSummary from '@/data/discharges_summary.json'
+import inspections from '@/data/inspections.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
@@ -119,6 +133,8 @@ export default {
     const patientsTable = formatTable(patients.data)
     // 陰性確認数グラフ
     const dischargesGraph = formatGraph(dischargesSummary.data)
+    // 検査数グラフ
+    const inspectionsGraph = formatGraph(inspections.data)
     // 相談件数
     const contactsGraph = formatGraph(contacts.data)
     // 帰国者・接触者電話相談センター相談件数
@@ -139,12 +155,14 @@ export default {
       contacts,
       currentPatients,
       dischargesSummary,
+      inspections,
       patientsTable,
       patientsGraph,
       contactsGraph,
       querentsGraph,
       currentPatientsGraph,
       dischargesGraph,
+      inspectionsGraph,
       sumInfoOfPatients,
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
