@@ -38,6 +38,10 @@
   content: "\F3CC";
 }
 
+.mdi-menu::before {
+  content: "\F35C";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;

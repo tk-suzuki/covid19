@@ -18,5 +18,9 @@
   {
     "name": "open-in-new",
     "codepoint": "F3CC"
+  },
+  {
+    "name": "menu",
+    "codepoint": "F35C"
   }
 ]
