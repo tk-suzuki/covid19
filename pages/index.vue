@@ -22,6 +22,7 @@
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
+          :supplement="'現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
