@@ -1,66 +1,72 @@
 <template>
   <div>
-    <img src="/ogp.png" alt="北海道アイキャッチ画像" />
+    <img src="/ogp.png" alt="{{ $t('北海道アイキャッチ画像')" />
     <br />
     <br />
-    <h1 class="sitename">北海道 新型コロナウイルス感染症まとめサイト</h1>
+    <h1 class="sitename">{{ $t('北海道 新型コロナウイルス感染症まとめサイト') }}</h1>
     <br />
     <span>
-      道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するサイトです。<br />
-      北海道による公式情報と客観的な数値をわかりやすく伝えることで、北海道にお住まいの方や北海道内に拠点を持つ企業の方、北海道を訪れる方が現状を把握して適切な対策を取れるようにすることを目的としています。<br />
-      開発・運営は、エンジニアやデザイナーなどによって結成された「JUST 道 IT」が行っています。<br />
+      {{ $t('道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するサイトです。') }}<br />
+      {{ $t('北海道による公式情報と客観的な数値をわかりやすく伝えることで、北海道にお住まいの方や北海道内に拠点を持つ企業の方、北海道を訪れる方が現状を把握して適切な対策を取れるようにすることを目的としています。') }}<br />
+      {{ $t('開発・運営は、エンジニアやデザイナーなどによって結成された「JUST 道 IT」が行っています。') }}<br />
       <v-icon class="icon" size="18">mdi-twitter</v-icon> : https://twitter.com/Just_douit<br />
       <v-icon class="icon" size="18">mdi-facebook</v-icon> : https://www.facebook.com/Justdouit19<br />
-
     </span>
     <br />
     <ul class="SponsorLinkContainer supplementHeaders">
       <li class="supplementHeader">
-        Data by:<br />
-          <span class="no-image-title">北海道・札幌市</span>
+        {{ $t('Data by:') }}<br />
+        <span class="no-image-title">{{ $t('北海道・札幌市') }}</span>
         <br />
-        Under
-        <span class="image-title">CC BY 4.0</span>
-        <img
-          class="cc-by-logo"
-          src="/cc-by-mini.svg"
-          width="85.3px"
-          height="16px"
-          alt="CC BY 4.0"
-        />
+        <i18n path="Under" tag="p" for="CC BY 4.0">
+          <template #ccByImageTitle>
+            <span class="image-title">{{ $t('CC BY 4.0') }}</span>
+          </template>
+          <template #ccByImage>
+            <img
+              class="cc-by-logo"
+              src="/cc-by-mini.svg"
+              width="85.3px"
+              height="16px"
+              alt="$t('CC BY 4.0')"
+            />
+          </template>
+        </i18n>
       </li>
       <li class="supplementHeader2">
-        Operations by:<br />
-        <span class="image-title">JUST道IT</span>
+        {{ $t('Operations by:') }}<br />
+        <span class="image-title">{{ $t('JUST道IT') }}</span>
         <img
           class="justdoit-logo"
           src="/justdouit.png"
           width="132px"
           height="46.6px"
-          alt="JUST道IT"
+          alt="$t('JUST道IT')"
         />
       </li>
       <li class="supplementHeader3">
-        Powered by:<br />
-        <span class="image-title">さくらインターネット</span>
+        {{ $t('Powered by:') }}<br />
+        <span class="image-title">{{ $t('さくらインターネット') }}</span>
         <img
           class="sakura-internet-logo"
           src="/sakura.svg"
           width="176px"
           height="62px"
-          alt="さくらインターネット"
+          alt="$t('さくらインターネット')"
         />
       </li>
     </ul>
   </div>
 </template>
 
+<i18n src="./info.i18n.json"></i18n>
+
 <script>
   export default {
     layout: 'print',
     head() {
       return {
-        title: '新型コロナウイルス感染症まとめサイト'
+        title: this.$t('新型コロナウイルス感染症まとめサイト')
       }
     }
   }
