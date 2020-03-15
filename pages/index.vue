@@ -17,7 +17,7 @@
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
-          :date="convertToDateFromData(currentPatients.last_update)"
+          :date="convertToDateFromData(current_patients.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -29,7 +29,7 @@
         <time-bar-chart
           title="治療終了者数"
           :chart-data="dischargesGraph"
-          :date="convertToDateFromData(dischargesSummary.last_update)"
+          :date="convertToDateFromData(discharges_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -102,6 +102,7 @@ import TimeBarChart from '@/components/TimeBarChart.vue'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
+/*
 import lastUpdate from '@/data/last_update.json'
 import patientsSummary from '@/data/patients_summary.json'
 import patients from '@/data/patients.json'
@@ -110,6 +111,7 @@ import querents from '@/data/querents.json'
 import currentPatients from '@/data/current_patients.json'
 import dischargesSummary from '@/data/discharges_summary.json'
 import inspections from '@/data/inspections.json'
+ */
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
@@ -117,6 +119,11 @@ import SvgCard from '@/components/SvgCard.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import DataView from "../components/DataView";
 import ConfiremCasesTable from "@/components/ConfiremCasesTable"
+import axios from "axios";
+import formatCurrentPatientsGraph from "@/utils/formatCurrentPatientsGraph";
+import formatDischargesSummaryGraph from "@/utils/formatDischargesSummaryGraph";
+import formatInspectionsGraph from "@/utils/formatInspectionsGraph";
+import formatPatientsSummaryGraph from "@/utils/formatPatientsSummaryGraph";
 
 export default {
   components: {
@@ -131,49 +138,23 @@ export default {
     SvgCard
   },
   data() {
-    // 現在患者数グラフ
-    const currentPatientsGraph = formatGraph(currentPatients.data)
-    // 感染者数グラフ
-    const patientsGraph = formatGraph(patientsSummary.data)
-    // 感染者数
-    const patientsTable = formatTable(patients.data)
-    // 陰性確認数グラフ
-    const dischargesGraph = formatGraph(dischargesSummary.data)
-    // 検査数グラフ
-    const inspectionsGraph = formatGraph(inspections.data)
-    // 相談件数
-    const contactsGraph = formatGraph(contacts.data)
-    // 帰国者・接触者電話相談センター相談件数
-    const querentsGraph = formatGraph(querents.data)
-
-    const sumInfoOfPatients = {
-      lText: patientsGraph[
-        patientsGraph.length - 1
-      ].cumulative.toLocaleString(),
-      sText: patientsGraph[patientsGraph.length - 1].label + 'の累計',
-      unit: '人'
-    }
-
     const data = {
-      patientsSummary,
-      patients,
-      querents,
-      contacts,
-      currentPatients,
-      dischargesSummary,
-      inspections,
-      patientsTable,
-      patientsGraph,
-      contactsGraph,
-      querentsGraph,
-      currentPatientsGraph,
-      dischargesGraph,
-      inspectionsGraph,
-      sumInfoOfPatients,
+      patientsTable: {},
+      patientsGraph: [],
+      contactsGraph: [],
+      querentsGraph: [],
+      currentPatientsGraph: [],
+      dischargesGraph: [],
+      inspectionsGraph: [],
+      sumInfoOfPatients: {
+        lText: 0,
+        sText: ' の累計',
+        unit: '人'
+      },
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
         title: '道内の最新感染動向',
-        date: lastUpdate
+        date: ''
       },
       option: {
         tooltips: {
@@ -228,6 +209,65 @@ export default {
     return {
       title: '道内の最新感染動向'
     }
+  },
+  methods: {
+    getDataFromAPIData() {
+      console.log(this)
+      // 現在患者数グラフ
+      this.currentPatientsGraph= formatCurrentPatientsGraph(this.current_patients.data)
+      // 感染者数グラフ
+      this.patientsGraph = formatPatientsSummaryGraph(this.patients_summary.data)
+      // 感染者数
+      this.patientsTable = formatTable(this.patients.data)
+      // 陰性確認数グラフ
+      this.dischargesGraph = formatDischargesSummaryGraph(this.discharges_summary.data)
+      // 検査数グラフ
+      this.inspectionsGraph = formatInspectionsGraph(this.inspections.data)
+      // 相談件数
+      this.contactsGraph = formatGraph(this.contacts.data)
+      // 帰国者・接触者電話相談センター相談件数
+      this.querentsGraph = formatGraph(this.querents.data)
+
+      this.sumInfoOfPatients = {
+        lText: this.patientsGraph[
+        this.patientsGraph.length - 1
+          ].cumulative.toLocaleString(),
+        sText: this.patientsGraph[this.patientsGraph.length - 1].label + 'の累計',
+        unit: '人'
+      }
+
+      this.headerItem= {
+          icon: 'mdi-chart-timeline-variant',
+          title: '道内の最新感染動向',
+          date: this.last_update
+      }
+    }
+  },
+  mounted() {
+    this.getDataFromAPIData()
+  },
+  asyncData({ params, error}) {
+    return Promise.all([
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/contacts.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/current_patients.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/discharges_summary.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/inspections.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/last_update.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/patients.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/patients_summary.json'),
+      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/querents.json')
+    ]).then(result => {
+      return {
+        contacts: result[0].data,
+        current_patients: result[1].data,
+        discharges_summary: result[2].data,
+        inspections: result[3].data,
+        last_update: result[4].data,
+        patients: result[5].data,
+        patients_summary: result[6].data,
+        querents: result[7].data
+      }
+    })
   }
 }
 </script>
