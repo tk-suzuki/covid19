@@ -42,6 +42,10 @@
   content: "\F35C";
 }
 
+.mdi-close::before {
+  content: "\F156";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;
