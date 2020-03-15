@@ -91,43 +91,29 @@
 </template>
 
 <script>
+  import convertToMainSummary from "@/utils/convertToMainSummary";
   export default {
-    props: {
-      inspections: {
-        type: String,
-        default: '',
-        require: true
-      },
-      nowpatients: {
-        type: String,
-        default: '',
-        require: true
-      },
-      currentpatients: {
-        type: String,
-        default: '',
-        require: true
-      },
-      milds: {
-        type: String,
-        default: '',
-        require: true
-      },
-      serious: {
-        type: String,
-        default: '',
-        require: true
-      },
-      losts: {
-        type: String,
-        default: '',
-        require: true
-      },
-      discharges: {
-        type: String,
-        default: '',
-        require: true
-      },
+    mounted() {
+      const main_summary = convertToMainSummary();
+      this.nowpatients = main_summary["nowpatients"];
+      this.discharges = main_summary["discharges"];
+      this.losts = main_summary["losts"];
+      this.serious = main_summary["serious"];
+      this.milds = main_summary["milds"];
+      this.currentpatients = main_summary["currentpatients"];
+      this.inspections = main_summary["inspections"];
+    },
+    data() {
+      return {
+        nowpatients: 0,
+        discharges: 0,
+        losts: 0,
+        serious: 0,
+        milds: 0,
+        currentpatients: 0,
+        inspections: 0
+
+      }
     },
     methods: {
       /** 桁数に応じて位置の調整をする */
