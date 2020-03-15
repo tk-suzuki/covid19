@@ -3,22 +3,24 @@
     <div class="SideNavigation-HeadingContainer sp-flex">
       <v-icon
         class="SideNavigation-HeadingIcon sp-inline-block"
-        :aria-label="$t('Navi Open')"
+        :aria-label="$t('サイドメニュー項目を開く')"
         @click="openNavi"
       >
         mdi-menu
       </v-icon>
       <nuxt-link to="/" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
-          <img src="/logo.svg" :alt="$t('Hokkaido')" />
+          <img src="/logo.svg" :alt="$t('北海道')" />
         </div>
         <h1 class="SideNavigation-Heading">
           <span class="SideNavigation-HeadingTitle">
-            {{ $t('Hokkaido') }}<br />
+            {{ $t('北海道') }}<br />
           </span>
-          {{ $t('COVID-19') }}<br class="SideNavigation-HeadingMobileBreak" />{{
-            $t('Measures site')
-          }}
+          <i18n path="新型コロナウイルス{mobileBreak}まとめサイト" tag="span">
+            <template #mobileBreak>
+              <br class="SideNavigation-HeadingMobileBreak" />
+            </template>
+          </i18n>
         </h1>
       </nuxt-link>
     </div>
@@ -26,7 +28,7 @@
     <div class="sp-none" :class="{ open: isNaviOpen }">
       <v-icon
         class="SideNavigation-ListContainerIcon sp-inline-block"
-        :aria-label="$t('Navi Close')"
+        :aria-label="$t('サイドメニュー項目を閉じる')"
         @click="closeNavi"
       >
         mdi-close
@@ -86,42 +88,47 @@
           </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
-          Data by:<br />
+          {{ $t('Data by:') }}<br />
           <a href="/about/#data" target="_blank" rel="noopener">
-            <span class="no-image-title">北海道</span><br />
-            <span class="no-image-title">札幌市</span>
+            <span class="no-image-title">{{ $t('北海道（政府）') }}</span><br />
+            <span class="no-image-title">{{ $t('札幌市') }}</span>
           </a><br />
           <a class="license" href="//creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener">
-            Under
-            <span class="image-title">CC BY 4.0</span>
-            <img
-              class="cc-by-logo"
-              src="/cc-by-mini.svg"
-              width="85.3px"
-              height="16px"
-              alt="CC BY 4.0"
-            />
+            <i18n path="Under {ccByImageTitle}{ccByImage}" tag="span">
+              <template #ccByImageTitle>
+                <span class="image-title">{{ $t('CC BY 4.0') }}</span>
+              </template>
+              <template #ccByImage>
+                <img
+                  class="cc-by-logo"
+                  src="/cc-by-mini.svg"
+                  width="85.3px"
+                  height="16px"
+                  :alt="$t('CC BY 4.0')"
+                />
+              </template>
+            </i18n>
           </a><br />
-          Operations by:<br />
+          {{ $t('Operations by:') }}<br />
           <a href="/about/" target="_blank" rel="noopener">
-            <span class="image-title">JUST道IT</span>
+            <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
               src="/justdouit.png"
               width="132px"
               height="46.6px"
-              alt="JUST道IT"
+              :alt="$t('JUST道IT')"
             />
           </a><br />
-          Powered by:<br />
+          {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
-            <span class="image-title">さくらインターネット</span>
+            <span class="image-title">{{ $t('さくらインターネット') }}</span>
             <img
               class="sakura-internet-logo"
               src="/sakura.svg"
               width="176px"
               height="62px"
-              alt="さくらインターネット"
+              :alt="$t('さくらインターネット')"
             />
           </a>
         </div>
@@ -130,30 +137,8 @@
   </div>
 </template>
 
-<i18n>
-{
-  "ja": {
-    "Navi Open": "サイドメニュー項目を開く",
-    "Navi Close": "サイドメニュー項目を閉じる",
-    "Hokkaido": "北海道",
-    "COVID-19": "新型コロナウイルス",
-    "Measures site": "まとめサイト",
-    "Hokkaido Metropolitan Government": "北海道",
-    "Hokkaido COVID-19 Task Force": "新型コロナウイルス感染症対策本部",
-    "The latest updates": "道内の最新感染動向",
-    "If you have any symptoms": "感染予防と相談窓口",
-    "for Families with children": "お子様をお持ちの皆様へ",
-    "for Citizens": "道民の皆様へ",
-    "for Enterprises and Employees": "企業の皆様・はたらく皆様へ",
-    "Official statements from Task Force": "北海道感染症危機管理対策本部会議",
-    "Government official website": "北海道公式ホームページ",
-    "Message from Governor Suzuki": "知事からのメッセージ",
-    "About us": "当サイトについて",
-    "Government official Twitter": "北海道公式Twitter",
-    "Tokyo-to Measures site": "東京都 新型コロナウイルス感染症対策サイト"
-  }
-}
-</i18n>
+<i18n src="./SideNavigation.i18n.json"></i18n>
+<i18n src="./SponsorLinks.i18n.json"></i18n>
 
 <script>
 import ListItem from '@/components/ListItem'
@@ -173,34 +158,34 @@ export default {
       return [
         {
           icon: 'mdi-chart-timeline-variant',
-          title: this.$t('The latest updates'),
+          title: this.$t('道内の最新感染動向'),
           link: '/'
         },
         {
           icon: 'covid',
-          title: this.$t('If you have any symptoms'),
+          title: this.$t('感染予防と相談窓口'),
           link:
             'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ',
           divider: true
         },
         {
           icon: 'parent',
-          title: this.$t('for Families with children'),
+          title: this.$t('お子様をお持ちの皆様へ'),
           link: '/parent'
         },
         {
           icon: 'mdi-account-multiple',
-          title: this.$t('for Citizens'),
+          title: this.$t('道民の皆様へ'),
           link: 'http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm'
         },
         {
           icon: 'mdi-domain',
-          title: this.$t('for Enterprises and Employees'),
+          title: this.$t('企業の皆様・はたらく皆様へ'),
           link: '/worker',
           divider: true
         },
         {
-          title: this.$t('Official statements from Task Force'),
+          title: this.$t('北海道感染症危機管理対策本部会議'),
           link:
             'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#対策本部'
         },
@@ -212,25 +197,25 @@ export default {
         //     'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event02.html'
         // },
         {
-          title: this.$t('Message from Governor Suzuki'),
+          title: this.$t('知事からのメッセージ'),
           link:
             'http://www.pref.hokkaido.lg.jp/ss/tkk/hodo/pressconference/r1.htm'
         },
         {
-          title: this.$t('About us'),
+          title: this.$t('当サイトについて'),
           link: '/about'
         },
         {
-          title: this.$t('Government official website'),
+          title: this.$t('北海道公式ホームページ'),
           link: 'http://www.pref.hokkaido.lg.jp/index.htm'
         },
         {
-          title: this.$t('Government official Twitter'),
+          title: this.$t('北海道公式Twitter'),
           link: 'https://twitter.com/PrefHokkaido',
           divider: true
         },
         {
-          title: this.$t('Tokyo-to Measures site'),
+          title: this.$t('東京都 新型コロナウイルス感染症対策サイト'),
           link: 'https://stopcovid19.metro.tokyo.lg.jp/',
           divider: true
         },

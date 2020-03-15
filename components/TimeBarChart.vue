@@ -12,7 +12,7 @@
     <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
       <ul class="supplementTexts">
         <li class="supplementText">
-          補足:
+          {{ $t('補足:') }}
         </li>
         <li class="supplementText2">
           {{ supplement }}
@@ -28,6 +28,8 @@
     </template>
   </data-view>
 </template>
+
+<i18n src="./TimeBarChart.i18n.json"></i18n>
 
 <style lang="scss">
 .TimeBarChart-Footer {

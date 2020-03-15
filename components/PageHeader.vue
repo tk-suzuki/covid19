@@ -7,14 +7,20 @@
       {{ title }}
     </h2>
     <div class="date">
-      <span>最終更新 </span><time>{{ date }}</time>
+      <i18n path="最終更新 {updatedDate}" tag="span">
+        <template #updatedDate>
+          <time>{{ date }}</time>
+        </template>
+      </i18n>
     </div>
   </div>
 </template>
 
+<i18n src="./PageHeader.i18n.json"></i18n>
+
 <script>
 export default {
-  props: ['title', 'icon', 'date'],
+  props: ['title', 'icon', 'date']
 }
 </script>
 
