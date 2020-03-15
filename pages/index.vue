@@ -102,16 +102,6 @@ import TimeBarChart from '@/components/TimeBarChart.vue'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
-/*
-import lastUpdate from '@/data/last_update.json'
-import patientsSummary from '@/data/patients_summary.json'
-import patients from '@/data/patients.json'
-import contacts from '@/data/contacts.json'
-import querents from '@/data/querents.json'
-import currentPatients from '@/data/current_patients.json'
-import dischargesSummary from '@/data/discharges_summary.json'
-import inspections from '@/data/inspections.json'
- */
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
@@ -212,7 +202,6 @@ export default {
   },
   methods: {
     getDataFromAPIData() {
-      console.log(this)
       // 現在患者数グラフ
       this.currentPatientsGraph= formatCurrentPatientsGraph(this.current_patients.data)
       // 感染者数グラフ
@@ -248,14 +237,14 @@ export default {
   },
   asyncData({ params, error}) {
     return Promise.all([
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/contacts.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/current_patients.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/discharges_summary.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/inspections.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/last_update.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/patients.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/patients_summary.json'),
-      axios.get('https://raw.githubusercontent.com/kanahiro/covid19hokkaido_scraping/gh-pages/querents.json')
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/contacts.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/current_patients.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/discharges_summary.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/inspections.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/last_update.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/patients.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/patients_summary.json'),
+      axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/querents.json')
     ]).then(result => {
       return {
         contacts: result[0].data,

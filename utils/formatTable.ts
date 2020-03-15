@@ -16,7 +16,7 @@ type DataType = {
 }
 
 type TableDataType = {
-  日付: string
+  リリース日: string
   居住地: DataType['居住地']
   年代: DataType['年代']
   性別: DataType['性別'] | '不明'
@@ -34,7 +34,7 @@ export default (data: DataType[]) => {
   }
   data.forEach(d => {
     const TableRow: TableDataType = {
-      日付: moment(d['リリース日']).format('MM/DD') ?? '不明',
+      リリース日: moment(d['リリース日']).format('MM/DD') ?? '不明',
       居住地: d['居住地'] ?? '不明',
       年代: d['年代'] ?? '不明',
       性別: d['性別'] ?? '不明'
