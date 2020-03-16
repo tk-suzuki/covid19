@@ -17,7 +17,7 @@
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
-          :date="convertToDateFromData(current_patients.last_update)"
+          :date="convertToDateFromData(current_patients_last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -29,7 +29,7 @@
         <time-bar-chart
           title="治療終了者数"
           :chart-data="dischargesGraph"
-          :date="convertToDateFromData(discharges_summary.last_update)"
+          :date="convertToDateFromData(discharges_summary_last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -41,7 +41,7 @@
         <time-bar-chart
           title="陽性患者数"
           :chart-data="patientsGraph"
-          :date="convertToDateFromData(patients.last_update)"
+          :date="convertToDateFromData(patients_last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -53,7 +53,7 @@
           :title="'陽性患者の属性'"
           :chart-data="patientsTable"
           :chart-option="{}"
-          :date="convertToDateFromData(patients.last_update)"
+          :date="convertToDateFromData(patients_last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :info="sumInfoOfPatients"
@@ -63,7 +63,7 @@
         <time-bar-chart
           title="検査数"
           :chart-data="inspectionsGraph"
-          :date="convertToDateFromData(inspections.last_update)"
+          :date="convertToDateFromData(inspections_last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :unit="'人'"
@@ -76,17 +76,17 @@
         <time-bar-chart
           title="新型コロナコールセンター相談件数(札幌市保健所値)"
           :chart-data="contactsGraph"
-          :date="convertToDateFromData(contacts.last_update)"
+          :date="convertToDateFromData(contacts_last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
           :unit="'件'"
         />
       </v-col>
-      <v-col cols="12" md="6" class="DataCard">
+      <v-col cols="12" md="6" class="DataCard">s
         <time-bar-chart
           title="帰国者・接触者電話相談センター相談件数(札幌市保健所値)"
           :chart-data="querentsGraph"
-          :date="convertToDateFromData(querents.last_update)"
+          :date="convertToDateFromData(querents_last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
           :unit="'件'"
@@ -127,6 +127,22 @@ export default {
   },
   data() {
     const data = {
+      contacts: null,
+      current_patients: null,
+      discharges_summary: null,
+      inspections: null,
+      last_update: "",
+      patients: null,
+      patients_summary: null,
+      querents: null,
+      contacts_last_date: "",
+      current_patients_last_date: "",
+      discharges_summary_last_date: "",
+      inspections_last_date: "",
+      patients_last_date: "",
+      patients_summary_last_date: "",
+      querents_last_date: "",
+
       patientsTable: {},
       patientsGraph: [],
       contactsGraph: [],
@@ -222,7 +238,6 @@ export default {
         sText: this.patientsGraph[this.patientsGraph.length - 1].label + 'の累計',
         unit: '人'
       }
-
       this.headerItem= {
           icon: 'mdi-chart-timeline-variant',
           title: '道内の最新感染動向',
@@ -230,11 +245,8 @@ export default {
       }
     }
   },
-  mounted() {
-    this.getDataFromAPIData()
-  },
-  asyncData({ params, error}) {
-    return Promise.all([
+  created() {
+    Promise.all([
       axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/contacts.json'),
       axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/current_patients.json'),
       axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/discharges_summary.json'),
@@ -244,16 +256,23 @@ export default {
       axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/patients_summary.json'),
       axios.get('https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages/querents.json')
     ]).then(result => {
-      return {
-        contacts: result[0].data,
-        current_patients: result[1].data,
-        discharges_summary: result[2].data,
-        inspections: result[3].data,
-        last_update: result[4].data,
-        patients: result[5].data,
-        patients_summary: result[6].data,
-        querents: result[7].data
-      }
+      this.contacts= result[0].data,
+      this.current_patients= result[1].data,
+      this.discharges_summary= result[2].data,
+      this.inspections= result[3].data,
+      this.last_update= result[4].data,
+      this.patients= result[5].data,
+      this.patients_summary= result[6].data,
+      this.querents= result[7].data
+      this.contacts_last_update= result[0].data.last_update,
+      this.current_patients_last_update= result[1].data.last_update,
+      this.discharges_summary_last_update= result[2].data.last_update,
+      this.inspections_last_update= result[3].data.last_update,
+      this.patients_last_update= result[5].data.last_update,
+      this.patients_summary_last_update= result[6].data.last_update,
+      this.querents_last_update= result[7].data.last_update
+      this.getDataFromAPIData()
+
     })
   }
 }
