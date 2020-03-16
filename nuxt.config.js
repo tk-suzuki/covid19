@@ -93,7 +93,6 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
-
     {
       src: 'plugins/axios.js', ssr: false
     },
@@ -114,6 +113,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/proxy',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['@nuxtjs/moment', ['ja']],
