@@ -4,8 +4,8 @@
       <span />
     </template>
     <v-data-table
-      :headers="chartData ? chartData.headers : []"
-      :items="chartData ? chartData.datasets : []"
+      :headers="chartData.headers"
+      :items="chartData.datasets"
       :items-per-page="-1"
       :hide-default-footer="true"
       :height="300"
@@ -15,9 +15,9 @@
     />
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
-        :l-text="info ? info.lText: ''"
-        :s-text="info ? info.sText: ''"
-        :unit="info ? info.unit: ''"
+        :l-text="info.lText"
+        :s-text="info.sText"
+        :unit="info.unit"
       />
     </template>
   </data-view>
