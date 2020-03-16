@@ -1,6 +1,6 @@
 type DataType = {
   日付: Date
-  小計: number
+  患者数: number
 }
 
 type GraphDataType = {
@@ -17,7 +17,7 @@ export default (data: DataType[]) => {
     .filter(d => new Date(d['日付']) < today)
     .forEach(d => {
       const date = new Date(d['日付'])
-      const subTotal = d['小計']
+      const subTotal = d['患者数']
       if (!isNaN(subTotal)) {
         patSum += subTotal
         graphData.push({
