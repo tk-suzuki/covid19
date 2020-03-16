@@ -1,20 +1,24 @@
 <template>
-  <data-view :title="title" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
+  <data-view :title="title" :loaded="loaded" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
     <template v-slot:button>
       <span />
     </template>
-    <scale-loader class="loading" v-if="date === 'Now Loading'" color="#1268d8"/>
-    <v-data-table
-      v-else
-      :headers="chartData ? chartData.headers : []"
-      :items="chartData ? chartData.datasets : []"
-      :items-per-page="-1"
-      :hide-default-footer="true"
-      :height="300"
-      :fixed-header="true"
-      :mobile-breakpoint="0"
-      class="cardTable"
-    />
+    <v-layout v-if="!loaded" justify-center align-center >
+      <scale-loader color="#1268d8"/>
+    </v-layout>
+
+    <v-layout column v-else>
+      <v-data-table
+        :headers="chartData ? chartData.headers : []"
+        :items="chartData ? chartData.datasets : []"
+        :items-per-page="-1"
+        :hide-default-footer="true"
+        :height="300"
+        :fixed-header="true"
+        :mobile-breakpoint="0"
+        class="cardTable"
+      />
+    </v-layout>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
         :l-text="info ? info.lText: ''"
@@ -58,13 +62,6 @@
     }
   }
 }
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 323px;
-}
 </style>
 
 <script>
@@ -101,6 +98,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    loaded: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   }
 }

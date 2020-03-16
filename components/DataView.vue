@@ -18,7 +18,7 @@
       <slot />
     </v-card-text>
 
-    <v-skeleton-loader v-if="date === 'Now Loading'" type="text"/>
+    <v-skeleton-loader v-if="!loaded" type="text"/>
     <v-footer
       v-else-if="sourceFrom === '' || sourceFrom === undefined"
       class="DataView-Footer"
@@ -43,7 +43,8 @@ export default class DataView extends Vue {
   @Prop() private date!: string
   @Prop() private info!: any
   @Prop() private sourceFrom!: string
-  @Prop() private sourceLink!: string// FIXME expect info as {lText:string, sText:string unit:string}
+  @Prop() private sourceLink!: string
+  @Prop() private loaded!: boolean// FIXME expect info as {lText:string, sText:string unit:string}
 }
 </script>
 

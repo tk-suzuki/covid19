@@ -137,7 +137,10 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages',
+    browserBaseURL: 'https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages'
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
