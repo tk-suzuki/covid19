@@ -1,28 +1,23 @@
 <template>
-  <data-view :title="title" :loaded="loaded" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
+  <data-view :title="title" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
     <template v-slot:button>
       <span />
     </template>
-    <v-overlay absolute :value="!loaded" justify-center align-center>
-      <scale-loader color="#1268d8"/>
-    </v-overlay>
-    <v-layout :class="{loading: !loaded}" column>
-      <v-data-table
-        :headers="chartData ? chartData.headers : []"
-        :items="chartData ? chartData.datasets : []"
-        :items-per-page="-1"
-        :hide-default-footer="true"
-        :height="300"
-        :fixed-header="true"
-        :mobile-breakpoint="0"
-        class="cardTable"
-      />
-    </v-layout>
+    <v-data-table
+      :headers="chartData.headers"
+      :items="chartData.datasets"
+      :items-per-page="-1"
+      :hide-default-footer="true"
+      :height="300"
+      :fixed-header="true"
+      :mobile-breakpoint="0"
+      class="cardTable"
+    />
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
-        :l-text="info ? info.lText: ''"
-        :s-text="info ? info.sText: ''"
-        :unit="info ? info.unit: ''"
+        :l-text="info.lText"
+        :s-text="info.sText"
+        :unit="info.unit"
       />
     </template>
   </data-view>
@@ -61,19 +56,14 @@
     }
   }
 }
-
-.loading {
-  visibility: hidden;
-}
 </style>
 
 <script>
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
 export default {
-  components: { DataView, DataViewBasicInfoPanel, ScaleLoader },
+  components: { DataView, DataViewBasicInfoPanel },
   props: {
     title: {
       type: String,
@@ -101,11 +91,6 @@ export default {
       type: String,
       required: false,
       default: ''
-    },
-    loaded: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   }
 }

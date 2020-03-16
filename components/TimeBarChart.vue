@@ -2,29 +2,23 @@
   <data-view
     :title="title"
     :date="date"
-    :loaded="loaded"
     :source-from="sourceFrom"
     :source-link="sourceLink"
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
-    <v-overlay absolute :value="!loaded" justify-center align-center>
-      <scale-loader color="#1268d8"/>
-    </v-overlay>
-    <v-layout column :class="{loading: !loaded}" >
-      <bar :chart-data="displayData" :options="displayOption" :height="240" />
-      <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
-        <ul class="supplementTexts">
-          <li class="supplementText">
-            補足:
-          </li>
-          <li class="supplementText2">
-            {{ supplement }}
-          </li>
-        </ul>
-      </v-footer>
-    </v-layout>
+    <bar :chart-data="displayData" :options="displayOption" :height="240" />
+    <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
+      <ul class="supplementTexts">
+        <li class="supplementText">
+          補足:
+        </li>
+        <li class="supplementText2">
+          {{ supplement }}
+        </li>
+      </ul>
+    </v-footer>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
         :l-text="displayInfo.lText"
@@ -57,19 +51,15 @@
 .supplementText2 {
   width: 100%;
 }
-.loading {
-  visibility: hidden;
-}
 </style>
 
 <script>
-import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
 
 export default {
-  components: { DataView, DataSelector, DataViewBasicInfoPanel, ScaleLoader },
+  components: { DataView, DataSelector, DataViewBasicInfoPanel },
   props: {
     title: {
       type: String,
@@ -115,11 +105,6 @@ export default {
       type: Boolean,
       required: false,
       default: true
-    },
-    loaded: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   },
   data() {
@@ -139,13 +124,6 @@ export default {
       return this.formatDayBeforeRatio(lastDay - lastDayBefore).toLocaleString()
     },
     displayInfo() {
-      if (!this.chartData || this.chartData.length === 0) {
-        return {
-          lText: '',
-          sText: '',
-          unit: ''
-        }
-      }
       if (this.dataKind === 'transition') {
         return {
           lText: `${this.chartData.slice(-1)[0].transition.toLocaleString()}`,
@@ -164,9 +142,6 @@ export default {
       }
     },
     displayData() {
-      if (!this.chartData || this.chartData.length === 0) {
-        return {}
-      }
       if (this.dataKind === 'transition') {
         return {
           labels: this.chartData.map(d => {
