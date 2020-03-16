@@ -93,6 +93,10 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
+
+    {
+      src: 'plugins/axios.js', ssr: false
+    },
     '@/plugins/datetime-formatter.js'
   ],
   /*
@@ -138,8 +142,10 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/',
-    browserBaseURL: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/'
+    proxy: true
+  },
+  proxy: {
+    '/api/': {target: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/', pathRewrite: {'^/api/': '/'}}
   },
   /*
    ** vuetify module configuration
