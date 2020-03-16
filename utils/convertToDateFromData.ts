@@ -1,5 +1,5 @@
 export default (data: any) => {
-  if(data !== "") {
+  if(data !== undefined && data !== "") {
     const dateint = Date.parse(data)
     const date = new Date(dateint)
     const month = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -22,6 +22,6 @@ export default (data: any) => {
     return datestr
   }
   else {
-    return ""
+    return "Now Loading"
   }
 }

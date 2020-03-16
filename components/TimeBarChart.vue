@@ -8,7 +8,8 @@
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
-    <bar :chart-data="displayData" :options="displayOption" :height="240" />
+    <scale-loader class="loading" v-if="date === 'Now Loading'" color="#1268d8"/>
+    <bar v-else :chart-data="displayData" :options="displayOption" :height="240" />
     <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
       <ul class="supplementTexts">
         <li class="supplementText">
@@ -51,15 +52,22 @@
 .supplementText2 {
   width: 100%;
 }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 323px;
+}
 </style>
 
 <script>
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
 export default {
-  components: { DataView, DataSelector, DataViewBasicInfoPanel },
+  components: { DataView, DataSelector, DataViewBasicInfoPanel, ScaleLoader },
   props: {
     title: {
       type: String,

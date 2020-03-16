@@ -3,7 +3,9 @@
     <template v-slot:button>
       <span />
     </template>
+    <scale-loader class="loading" v-if="date === 'Now Loading'" color="#1268d8"/>
     <v-data-table
+      v-else
       :headers="chartData ? chartData.headers : []"
       :items="chartData ? chartData.datasets : []"
       :items-per-page="-1"
@@ -56,14 +58,22 @@
     }
   }
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 323px;
+}
 </style>
 
 <script>
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
 export default {
-  components: { DataView, DataViewBasicInfoPanel },
+  components: { DataView, DataViewBasicInfoPanel, ScaleLoader },
   props: {
     title: {
       type: String,

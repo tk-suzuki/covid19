@@ -17,8 +17,10 @@
     >
       <slot />
     </v-card-text>
+
+    <v-skeleton-loader v-if="date === 'Now Loading'" type="text"/>
     <v-footer
-      v-if="sourceFrom === '' || sourceFrom === undefined"
+      v-else-if="sourceFrom === '' || sourceFrom === undefined"
       class="DataView-Footer"
     >
       {{ date }} 更新
