@@ -124,13 +124,6 @@ export default {
       return this.formatDayBeforeRatio(lastDay - lastDayBefore).toLocaleString()
     },
     displayInfo() {
-      if (!this.chartData || this.chartData.length === 0) {
-        return {
-          lText: '',
-          sText: '',
-          unit: '',
-        }
-      }
       if (this.dataKind === 'transition') {
         return {
           lText: `${this.chartData.slice(-1)[0].transition.toLocaleString()}`,
@@ -149,9 +142,6 @@ export default {
       }
     },
     displayData() {
-      if (!this.chartData || this.chartData.length === 0) {
-        return {}
-      }
       if (this.dataKind === 'transition') {
         return {
           labels: this.chartData.map(d => {
