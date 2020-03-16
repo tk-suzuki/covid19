@@ -9,10 +9,10 @@
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
-    <v-layout class="loading-overlay" justify-center align-center>
-      <scale-loader color="#1268d8"/>
+    <v-layout v-if="!loaded" justify-center align-center>
+      <scale-loader color="#1268d8" />
     </v-layout>
-    <v-layout column :class="{loading: !loaded}" >
+    <v-layout v-else column>
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
@@ -57,7 +57,7 @@
 .supplementText2 {
   width: 100%;
 }
-.loading  {
+.loading {
   visibility: hidden;
 }
 .loading-overlay {
@@ -69,10 +69,10 @@
 </style>
 
 <script>
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
 export default {
   components: { DataView, DataSelector, DataViewBasicInfoPanel, ScaleLoader },
@@ -149,7 +149,7 @@ export default {
         return {
           lText: '',
           sText: '',
-          unit: '',
+          unit: ''
         }
       }
       if (this.dataKind === 'transition') {
