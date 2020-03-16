@@ -17,7 +17,7 @@
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
-          :date="convertToDateFromData(currentPatients.last_update)"
+          :date="convertToDateFromData(current_patients.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :loaded="current_patients.loaded"
@@ -30,7 +30,7 @@
         <time-bar-chart
           title="治療終了者数"
           :chart-data="dischargesGraph"
-          :date="convertToDateFromData(dischargesSummary.last_update)"
+          :date="convertToDateFromData(discharges_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :loaded="discharges_summary.loaded"
@@ -139,29 +139,6 @@ export default {
     SvgCard
   },
   data() {
-    // 現在患者数グラフ
-    const currentPatientsGraph = formatGraph(currentPatients.data)
-    // 感染者数グラフ
-    const patientsGraph = formatGraph(patientsSummary.data)
-    // 感染者数
-    const patientsTable = formatTable(patients.data)
-    // 陰性確認数グラフ
-    const dischargesGraph = formatGraph(dischargesSummary.data)
-    // 検査数グラフ
-    const inspectionsGraph = formatGraph(inspections.data)
-    // 相談件数
-    const contactsGraph = formatGraph(contacts.data)
-    // 帰国者・接触者電話相談センター相談件数
-    const querentsGraph = formatGraph(querents.data)
-
-    const sumInfoOfPatients = {
-      lText: patientsGraph[
-        patientsGraph.length - 1
-      ].cumulative.toLocaleString(),
-      sText: patientsGraph[patientsGraph.length - 1].label + 'の累計',
-      unit: '人'
-    }
-
     const data = {
       contacts: {
         loaded: false,
@@ -215,7 +192,7 @@ export default {
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
         title: '道内の最新感染動向',
-        date: lastUpdate
+        date: ''
       },
       option: {
         tooltips: {
