@@ -83,7 +83,7 @@ module.exports = {
    */
   css: [
     '~assets/global.scss',
-    '@mdi/font/css/materialdesignicons.css'
+    '~~/font/dist/css/materialdesignicons.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -150,9 +150,9 @@ module.exports = {
   googleAnalytics: {
     id: 'UA-159982743-1'
   },
-  // /*
-  // ** Build configuration
-  // */
+   /*
+  ** Build configuration
+  */
   // build: {
   //   /*
   //   ** You can extend webpack config here
