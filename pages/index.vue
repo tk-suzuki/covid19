@@ -4,7 +4,6 @@
       :icon="headerItem.icon"
       :title="headerItem.title"
       :date="convertToDateFromData(headerItem.date)"
-      :loaded="last_update_loaded"
     />
     <whats-new
       class="mb-4"
@@ -18,10 +17,10 @@
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
-          :date="convertToDateFromData(current_patients_last_update)"
+          :date="convertToDateFromData(current_patients.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
-          :loaded="current_patients_loaded"
+          :loaded="current_patients.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :supplement="'現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。'"
@@ -31,10 +30,10 @@
         <time-bar-chart
           title="治療終了者数"
           :chart-data="dischargesGraph"
-          :date="convertToDateFromData(discharges_summary_last_update)"
+          :date="convertToDateFromData(discharges_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
-          :loaded="discharges_summary_loaded"
+          :loaded="discharges_summary.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :supplement="'治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）'"
@@ -44,10 +43,10 @@
         <time-bar-chart
           title="陽性患者数"
           :chart-data="patientsGraph"
-          :date="convertToDateFromData(patients_summary_last_update)"
+          :date="convertToDateFromData(patients_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
-          :loaded="patients_summary_loaded"
+          :loaded="patients_summary.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
         />
@@ -57,8 +56,8 @@
           :title="'陽性患者の属性'"
           :chart-data="patientsTable"
           :chart-option="{}"
-          :date="convertToDateFromData(patients_last_update)"
-          :loaded="patients_loaded"
+          :date="convertToDateFromData(patients.last_update)"
+          :loaded="patients.loaded"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :info="sumInfoOfPatients"
@@ -68,10 +67,10 @@
         <time-bar-chart
           title="検査数"
           :chart-data="inspectionsGraph"
-          :date="convertToDateFromData(inspections_last_update)"
+          :date="convertToDateFromData(inspections.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
-          :loaded="inspections_loaded"
+          :loaded="inspections.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :showButton="false"
@@ -82,10 +81,10 @@
         <time-bar-chart
           title="新型コロナコールセンター相談件数(札幌市保健所値)"
           :chart-data="contactsGraph"
-          :date="convertToDateFromData(contacts_last_update)"
+          :date="convertToDateFromData(contacts.last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
-          :loaded="contacts_loaded"
+          :loaded="contacts.loaded"
           :unit="'件'"
         />
       </v-col>
@@ -93,10 +92,10 @@
         <time-bar-chart
           title="帰国者・接触者電話相談センター相談件数(札幌市保健所値)"
           :chart-data="querentsGraph"
-          :date="convertToDateFromData(querents_last_update)"
+          :date="convertToDateFromData(querents.last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
-          :loaded="querents_loaded"
+          :loaded="querents.loaded"
           :unit="'件'"
         />
       </v-col>
@@ -141,27 +140,34 @@ export default {
   },
   data() {
     const data = {
-      /**
-       * データがロードされるとtrue、ロード前・ロード失敗だとfalse
-       */
-      contacts_loaded: false,
-      current_patients_loaded: false,
-      discharges_summary_loaded: false,
-      inspections_loaded: false,
-      last_update_loaded: false,
-      patients_loaded: false,
-      patients_summary_loaded: false,
-      querents_loaded: false,
-      /**
-       * 各項目の最終更新日が入る
-       */
-      contacts_last_update: "",
-      current_patients_last_update: "",
-      discharges_summary_last_update: "",
-      inspections_last_update: "",
-      patients_last_update: "",
-      patients_summary_last_update: "",
-      querents_last_update: "",
+      contacts: {
+        loaded: false,
+        last_update: "",
+      },
+      current_patients: {
+        loaded: false,
+        last_update: "",
+      },
+      discharges_summary: {
+        loaded: false,
+        last_update: "",
+      },
+      inspections: {
+        loaded: false,
+        last_update: "",
+      },
+      patients: {
+        loaded: false,
+        last_update: "",
+      },
+      patients_summary: {
+        loaded: false,
+        last_update: "",
+      },
+      querents: {
+        loaded: false,
+        last_update: "",
+      },
       /**
        * 全体の最終更新日
        */
@@ -247,8 +253,8 @@ export default {
     async getCurrentPatientsGraphFromAPI() {
       await this.$axios.$get('/current_patients.json').then(response => {
         this.currentPatientsGraph = formatCurrentPatientsGraph(response.data);
-        this.current_patients_last_update = response.last_update;
-        this.current_patients_loaded = true;
+        this.current_patients.last_update = response.last_update;
+        this.current_patients.loaded = true;
       }).catch(err => {
         this.failed = true;
         this.failed_datas += '現在患者数データ ';
@@ -258,8 +264,8 @@ export default {
     async getPatientsSummaryGraphFromAPI() {
       await this.$axios.$get('/patients_summary.json').then(response => {
         this.patientsGraph = formatPatientsSummaryGraph(response.data)
-        this.patients_summary_last_update = response.last_update
-        this.patients_summary_loaded = true
+        this.patients_summary.last_update = response.last_update
+        this.patients_summary.loaded = true
         this.sumInfoOfPatients = {
           lText: this.patientsGraph[
           this.patientsGraph.length - 1
@@ -276,8 +282,8 @@ export default {
     async getPatientsTableFromAPI() {
       await this.$axios.$get('/patients.json').then(response => {
         this.patientsTable = formatTable(response.data);
-        this.patients_last_update = response.last_update;
-        this.patients_loaded = true
+        this.patients.last_update = response.last_update;
+        this.patients.loaded = true
       }).catch(err => {
         this.failed = true;
         this.failed_datas += '陽性患者の属性データ ';
@@ -287,8 +293,8 @@ export default {
     async getDischargesSummaryGraphFromAPI() {
       await this.$axios.$get('/discharges_summary.json').then(response => {
         this.dischargesGraph = formatDischargesSummaryGraph(response.data)
-        this.discharges_summary_last_update = response.last_update
-        this.discharges_summary_loaded = true
+        this.discharges_summary.last_update = response.last_update
+        this.discharges_summary.loaded = true
       }).catch(err => {
         this.failed = true;
         this.failed_datas += '治療終了者数データ ';
@@ -298,8 +304,8 @@ export default {
     async getInscpectionsGraphFromAPI() {
       await this.$axios.$get('/inspections.json').then(response => {
         this.inspectionsGraph = formatInspectionsGraph(response.data)
-        this.inspections_last_update = response.last_update
-        this.inspections_loaded = true
+        this.inspections.last_update = response.last_update
+        this.inspections.loaded = true
         return true
       }).catch(err => {
         this.failed = true;
@@ -310,8 +316,8 @@ export default {
     async getContactsGraphFromAPI() {
       await this.$axios.$get('/contacts.json').then(response => {
         this.contactsGraph = formatGraph(response.data)
-        this.contacts_last_update = response.last_update
-        this.contacts_loaded = true
+        this.contacts.last_update = response.last_update
+        this.contacts.loaded = true
       }).catch(err => {
         this.failed = true;
         this.failed_datas += '新型コロナコールセンター相談件数データ ';
@@ -321,8 +327,8 @@ export default {
     async getQuerentsGraphFromAPI() {
       await this.$axios.$get('/querents.json').then(response => {
         this.querentsGraph = formatGraph(response.data)
-        this.querents_last_update = response.last_update
-        this.querents_loaded = true
+        this.querents.last_update = response.last_update
+        this.querents.loaded = true
       }).catch(err => {
         this.failed = true;
         this.failed_datas += '帰国者・接触者電話相談センター相談件数データ ';
@@ -335,9 +341,8 @@ export default {
           title: '道内の最新感染動向',
           date: response
         };
-        this.last_update_loaded = true
-        return true
       }).catch(err => {
+        console.log(err)
         this.failed = true;
         this.failed_datas += '最終更新日データ ';
       });

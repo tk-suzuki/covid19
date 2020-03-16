@@ -3,11 +3,10 @@
     <template v-slot:button>
       <span />
     </template>
-    <v-layout v-if="!loaded" justify-center align-center >
+    <v-overlay absolute :value="!loaded" justify-center align-center>
       <scale-loader color="#1268d8"/>
-    </v-layout>
-
-    <v-layout column v-else>
+    </v-overlay>
+    <v-layout :class="{loading: !loaded}" column>
       <v-data-table
         :headers="chartData ? chartData.headers : []"
         :items="chartData ? chartData.datasets : []"
@@ -61,6 +60,10 @@
       }
     }
   }
+}
+
+.loading {
+  visibility: hidden;
 }
 </style>
 

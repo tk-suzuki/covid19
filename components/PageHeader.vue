@@ -6,8 +6,7 @@
       </v-icon>
       {{ title }}
     </h2>
-
-    <div v-if="loaded" class="date">
+    <div class="date">
       <span>最終更新 </span><time>{{ date }}</time>
     </div>
   </div>
@@ -30,11 +29,6 @@ export default {
       type: String,
       required: true,
       default: ''
-    },
-    loaded: {
-      type: Boolean,
-      required: true,
-      default: false
     }
   }
 }

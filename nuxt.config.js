@@ -138,8 +138,8 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages',
-    browserBaseURL: 'https://raw.githubusercontent.com/codeforsapporo/covid19hokkaido_scraping/gh-pages'
+    baseURL: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/',
+    browserBaseURL: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/'
   },
   /*
    ** vuetify module configuration

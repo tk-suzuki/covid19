@@ -9,10 +9,10 @@
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
-    <v-layout v-if="!loaded" justify-center align-center>
-      <scale-loader color="#1268d8" />
-    </v-layout>
-    <v-layout v-else column>
+    <v-overlay absolute :value="!loaded" justify-center align-center>
+      <scale-loader color="#1268d8"/>
+    </v-overlay>
+    <v-layout column :class="{loading: !loaded}" >
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
@@ -59,12 +59,6 @@
 }
 .loading {
   visibility: hidden;
-}
-.loading-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
 }
 </style>
 
