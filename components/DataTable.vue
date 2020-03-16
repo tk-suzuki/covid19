@@ -20,9 +20,9 @@
     </v-layout>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
-        :l-text="info ? info.lText: ''"
-        :s-text="info ? info.sText: ''"
-        :unit="info ? info.unit: ''"
+        :l-text="info.lText"
+        :s-text="info.sText"
+        :unit="info.unit"
       />
     </template>
   </data-view>
