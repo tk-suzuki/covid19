@@ -164,6 +164,9 @@ export default {
       }
     },
     displayData() {
+      if (!this.chartData || this.chartData.length === 0) {
+        return {}
+      }
       if (this.dataKind === 'transition') {
         return {
           labels: this.chartData.map(d => {
