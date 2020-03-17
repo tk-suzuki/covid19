@@ -141,7 +141,8 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://codeforsapporo.github.io/covid19hokkaido_scraping/"
+//    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://stopcovid19-dev.hokkaido.dev/api/"
+    baseURL: "https://stopcovid19-dev.hokkaido.dev/api/"
   },
   /*
    ** vuetify module configuration
