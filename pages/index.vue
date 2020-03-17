@@ -253,7 +253,7 @@ export default {
     async getCurrentPatientsGraphFromAPI() {
       await this.$axios.$get('/current_patients.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -270,12 +270,13 @@ export default {
         this.failed = true;
         this.failed_datas += '現在患者数データ ';
       });
+
     },
     // 感染者数グラフ
     async getPatientsSummaryGraphFromAPI() {
       await this.$axios.$get('/patients_summary.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -304,7 +305,7 @@ export default {
     async getPatientsTableFromAPI() {
       await this.$axios.$get('/patients.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -326,7 +327,7 @@ export default {
     async getDischargesSummaryGraphFromAPI() {
       await this.$axios.$get('/discharges_summary.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -348,7 +349,7 @@ export default {
     async getInscpectionsGraphFromAPI() {
       await this.$axios.$get('/inspections.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -371,7 +372,7 @@ export default {
     async getContactsGraphFromAPI() {
       await this.$axios.$get('/contacts.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -393,7 +394,7 @@ export default {
     async getQuerentsGraphFromAPI() {
       await this.$axios.$get('/querents.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
@@ -414,7 +415,7 @@ export default {
     async getLastUpdateFromAPI() {
       await this.$axios.$get('/last_update.json', {
         method: 'HEAD',
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
