@@ -127,17 +127,7 @@ import formatDischargesSummaryGraph from "@/utils/formatDischargesSummaryGraph";
 import formatInspectionsGraph from "@/utils/formatInspectionsGraph";
 import formatPatientsSummaryGraph from "@/utils/formatPatientsSummaryGraph";
 
-const axiosOptions = {
-  method: 'HEAD',
-  mode: 'cors',
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  credentials: 'same-origin',
-  crossdomain: true,
-}
+const axiosOptions = {}
 
 export default {
   components: {
