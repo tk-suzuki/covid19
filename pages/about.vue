@@ -22,7 +22,7 @@
       <br />
       <i18n path="紹介などに{infoPrintPage}のページをぜひご利用ください。" tag="span">
         <template #infoPrintPage>
-          <a target="_blank" rel="noopener" href="https://stopcovid19.hokkaido.dev/print/info">{{ $t('こちら') }}</a>
+          <a target="_blank" rel="noopener" :href="localePath('/print/info')">{{ $t('こちら') }}</a>
         </template>
       </i18n>
       <br />

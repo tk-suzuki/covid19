@@ -164,7 +164,7 @@ export default {
         {
           icon: 'mdi-chart-timeline-variant',
           title: this.$t('道内の最新感染動向'),
-          link: '/'
+          link: this.localePath('/')
         },
         {
           icon: 'covid',
@@ -176,7 +176,7 @@ export default {
         {
           icon: 'parent',
           title: this.$t('お子様をお持ちの皆様へ'),
-          link: '/parent'
+          link: this.localePath('/parent')
         },
         {
           icon: 'mdi-account-multiple',
@@ -186,7 +186,7 @@ export default {
         {
           icon: 'mdi-domain',
           title: this.$t('企業の皆様・はたらく皆様へ'),
-          link: '/worker',
+          link: this.localePath('/worker'),
           divider: true
         },
         {
@@ -208,7 +208,7 @@ export default {
         },
         {
           title: this.$t('当サイトについて'),
-          link: '/about'
+          link: this.localePath('/about')
         },
         {
           title: this.$t('北海道公式ホームページ'),
