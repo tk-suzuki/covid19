@@ -5,5 +5,12 @@
     "トップページへ戻る": "トップページへ戻る",
     "このページはご利用いただけません": "このページはご利用いただけません",
     "現在ご利用できません": "現在ご利用できません"
+  },
+  "en": {
+    "アクセスしようとしたページが見つかりませんでした。": "The page may have been moved or deleted, or you might have typed the wrong URL.",
+    "ページが移動または削除されたか、URLの入力間違いの可能性があります。": "The page may have been moved or deleted, or you might have typed the wrong URL.",
+    "トップページへ戻る": "Return to top page",
+    "このページはご利用いただけません": "Page not found",
+    "現在ご利用できません": "Page currently unavailable"
   }
 }

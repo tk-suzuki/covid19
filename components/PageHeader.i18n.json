@@ -1,5 +1,8 @@
 {
   "ja": {
     "最終更新 {updatedDate}": "最終更新 {updatedDate}"
+  },
+  "en": {
+    "最終更新 {updatedDate}": "Updated on {updatedDate}"
   }
 }

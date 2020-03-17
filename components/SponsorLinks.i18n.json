@@ -10,5 +10,18 @@
     "JUST道IT": "JUST道IT",
     "Powered by:": "Powered by:",
     "さくらインターネット": "さくらインターネット"
+  },
+  "en": {
+    "Data by:": "Data by:",
+    "北海道（政府）": "Hokkaido Government",
+    "札幌市": "Sapporo City Government",
+    "北海道・札幌市": "Hokkaido・Sapporo City",
+    "Under": "Under {ccByImageTitle}{ccByImage}",
+    "CC BY 4.0": "CC BY 4.0",
+    "Operations by:": "Operations by:",
+    "JUST道IT": "JUST DOU IT",
+    "Powered by:": "Powered by:",
+    "さくらインターネット": "SAKURA Internet Inc.",
+    "当サイトについて": "About this site"
   }
 }

@@ -2,5 +2,9 @@
   "ja": {
     "{date} 更新": "{date} 更新",
     "出典: {sourceFrom}": "出典: {sourceFrom}"
+  },
+  "en": {
+    "{date} 更新": "Updated on {date}",
+    "出典: {sourceFrom}": "Source: {sourceFrom}"
   }
 }
