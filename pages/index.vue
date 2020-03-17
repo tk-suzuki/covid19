@@ -251,7 +251,9 @@ export default {
   methods: {
     // 現在患者数グラフ
     async getCurrentPatientsGraphFromAPI() {
-      await this.$axios.$get('/current_patients.json').then(response => {
+      await this.$axios.$get('/current_patients.json', {
+        withCredentials: true
+      }).then(response => {
         this.currentPatientsGraph = formatCurrentPatientsGraph(response.data);
         this.current_patients.last_update = response.last_update;
         this.current_patients.loaded = true;
@@ -262,7 +264,9 @@ export default {
     },
     // 感染者数グラフ
     async getPatientsSummaryGraphFromAPI() {
-      await this.$axios.$get('/patients_summary.json').then(response => {
+      await this.$axios.$get('/patients_summary.json', {
+        withCredentials: true
+      }).then(response => {
         this.patientsGraph = formatPatientsSummaryGraph(response.data)
         this.patients_summary.last_update = response.last_update
         this.patients_summary.loaded = true
@@ -280,7 +284,9 @@ export default {
     },
     // 感染者
     async getPatientsTableFromAPI() {
-      await this.$axios.$get('/patients.json').then(response => {
+      await this.$axios.$get('/patients.json', {
+        withCredentials: true
+      }).then(response => {
         this.patientsTable = formatTable(response.data);
         this.patients.last_update = response.last_update;
         this.patients.loaded = true
@@ -291,7 +297,9 @@ export default {
     },
     // 治療終了者数グラフ
     async getDischargesSummaryGraphFromAPI() {
-      await this.$axios.$get('/discharges_summary.json').then(response => {
+      await this.$axios.$get('/discharges_summary.json', {
+        withCredentials: true
+      }).then(response => {
         this.dischargesGraph = formatDischargesSummaryGraph(response.data)
         this.discharges_summary.last_update = response.last_update
         this.discharges_summary.loaded = true
@@ -302,7 +310,9 @@ export default {
     },
     // 検査数グラフ
     async getInscpectionsGraphFromAPI() {
-      await this.$axios.$get('/inspections.json').then(response => {
+      await this.$axios.$get('/inspections.json', {
+        withCredentials: true
+      }).then(response => {
         this.inspectionsGraph = formatInspectionsGraph(response.data)
         this.inspections.last_update = response.last_update
         this.inspections.loaded = true
@@ -314,7 +324,9 @@ export default {
     },
     // 相談件数グラフ
     async getContactsGraphFromAPI() {
-      await this.$axios.$get('/contacts.json').then(response => {
+      await this.$axios.$get('/contacts.json', {
+        withCredentials: true
+      }).then(response => {
         this.contactsGraph = formatGraph(response.data)
         this.contacts.last_update = response.last_update
         this.contacts.loaded = true
@@ -325,7 +337,9 @@ export default {
     },
     // 帰国者・接触者電話相談センター相談件数グラフ
     async getQuerentsGraphFromAPI() {
-      await this.$axios.$get('/querents.json').then(response => {
+      await this.$axios.$get('/querents.json', {
+        withCredentials: true
+      }).then(response => {
         this.querentsGraph = formatGraph(response.data)
         this.querents.last_update = response.last_update
         this.querents.loaded = true
@@ -335,7 +349,9 @@ export default {
       });
     },
     async getLastUpdateFromAPI() {
-      await this.$axios.$get('/last_update.json').then(response => {
+      await this.$axios.$get('/last_update.json', {
+        withCredentials: true
+      }).then(response => {
         this.headerItem= {
           icon: 'mdi-chart-timeline-variant',
           title: '道内の最新感染動向',

@@ -93,9 +93,6 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
-    {
-      src: 'plugins/axios.js', ssr: false
-    },
     '@/plugins/datetime-formatter.js'
   ],
   /*
