@@ -135,7 +135,6 @@ const axiosOptions = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
   credentials: 'same-origin',
   crossdomain: true,
 }
@@ -264,18 +263,7 @@ export default {
   methods: {
     // 現在患者数グラフ
     async getCurrentPatientsGraphFromAPI() {
-      await this.$axios.$get('/current_patients.json', {
-        method: 'HEAD',
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-        credentials: 'same-origin',
-        crossdomain: true,
-      }).then(response => {
+      await this.$axios.$get('/current_patients.json', axiosOptions).then(response => {
         this.currentPatientsGraph = formatCurrentPatientsGraph(response.data);
         this.current_patients.last_update = response.last_update;
         this.current_patients.loaded = true;
