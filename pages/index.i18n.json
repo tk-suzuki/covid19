@@ -16,8 +16,7 @@
     "DATA-SMART CITY SAPPORO": "DATA-SMART CITY SAPPORO",
     "帰国者・接触者電話相談センター相談件数(札幌市保健所値)": "帰国者・接触者電話相談センター相談件数(札幌市保健所値)",
     "件": "件",
-    "{date}の累計": "{date}の累計",
-    "{count}人": "{count}人"
+    "{date}の累計": "{date}の累計"
   },
   "en": {
     "道内の最新感染動向": "Latest updates on COVID-19 in Hokkaido",
@@ -36,7 +35,6 @@
     "新型コロナコールセンター相談件数(札幌市保健所値)": "Consultations at COVID-19 help desk (Sapporo Health Office)",
     "DATA-SMART CITY SAPPORO": "DATA-SMART CITY SAPPORO",
     "帰国者・接触者電話相談センター相談件数(札幌市保健所値)": "Consultations at returnee/contact help desk (Sapporo Health Office)",
-    "件": "cases",
-    "{count}人": "1 person | {count} people"
+    "件": "​"
   }
 }

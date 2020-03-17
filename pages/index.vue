@@ -83,7 +83,7 @@
           :date="convertToDateFromData(contacts.last_update)"
           :sourceFrom="$t('DATA-SMART CITY SAPPORO')"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
-          :unit="'件'"
+          :unit="$t('件')"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
@@ -182,15 +182,6 @@ export default {
         date: lastUpdate
       },
       option: {
-        tooltips: {
-          displayColors: false,
-          callbacks: {
-            label(tooltipItem) {
-              const labelText = this.$tc('{count}人', tooltipItem.value)
-              return labelText
-            }
-          }
-        },
         responsive: true,
         legend: {
           display: false

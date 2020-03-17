@@ -8,7 +8,7 @@
         <li>{{ $t('不特定多数の人の集まる場所等への外出を避け、基本的に自宅で過ごしてください。') }}</li>
         <i18n path="手洗い、咳エチケット等により、感染予防に努めてください。 {howToWashHands}" tag="li">
           <template #howToWashHands>
-            <a href="http://www.pref.hokkaido.lg.jp/hf/kth/tearai.pdf" target="_blank" rel="noopener">{{ $t('正しい手の洗い方 [PDF] ') }}</a>
+            <a href="http://www.pref.hokkaido.lg.jp/hf/kth/tearai.pdf" target="_blank" rel="noopener">{{ $t('正しい手の洗い方 [PDF]') }}</a>
           </template>
         </i18n>
         <li>{{ $t('規則正しい生活を心がけ、日常の健康管理に十分気を付けてください。') }}</li>
