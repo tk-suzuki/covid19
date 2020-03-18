@@ -18,7 +18,11 @@
       <slot />
     </v-card-text>
     <v-footer
-      v-if="sourceFrom === '' || sourceFrom === undefined"
+      v-if="!loaded"
+      class="DataView-Footer"
+    />
+    <v-footer
+      v-else-if="sourceFrom === '' || sourceFrom === undefined"
       class="DataView-Footer"
     >
       {{ date }} 更新
@@ -39,9 +43,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class DataView extends Vue {
   @Prop() private title!: string
   @Prop() private date!: string
-  @Prop() private info!: any
+  @Prop() private info!: any// infoは以下の形式のみを許容します {lText:string, sText:string unit:string}
   @Prop() private sourceFrom!: string
-  @Prop() private sourceLink!: string// FIXME expect info as {lText:string, sText:string unit:string}
+  @Prop() private sourceLink!: string
+  @Prop() private loaded!: boolean
 }
 </script>
 
