@@ -202,7 +202,7 @@ export default {
         {
           title: this.$t('Official statements from Task Force'),
           link:
-            'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
+            'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#対策本部'
         },
         // 【東京都主催等】中止または延期するイベント・説明会等
         // 道にまとまった情報がないので一旦コメントアウト
