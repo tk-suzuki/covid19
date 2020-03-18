@@ -93,6 +93,9 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
+    {
+      src: 'plugins/axios.js', ssr: false
+    },
     '@/plugins/datetime-formatter.js'
   ],
   /*
@@ -110,6 +113,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/proxy',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     ['@nuxtjs/moment', ['ja']],
@@ -137,7 +141,12 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': {target: 'https://codeforsapporo.github.io/covid19hokkaido_scraping/', pathRewrite: {'^/api/': '/'}}
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
