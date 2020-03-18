@@ -113,7 +113,7 @@
             </i18n>
           </a><br />
           {{ $t('Operations by:') }}<br />
-          <a href="/about/" target="_blank" rel="noopener">
+          <a :href="localePath('/about/')" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
