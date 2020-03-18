@@ -8,11 +8,13 @@
     </v-overlay>
     <v-layout :class="{loading: !loaded}" column>
       <v-data-table
-        :headers="chartData ? chartData.headers : []"
-        :items="chartData ? chartData.datasets : []"
+        :headers="chartData.headers"
+        :items="chartData.datasets"
         :items-per-page="-1"
         :hide-default-footer="true"
         :height="300"
+        :sort-by="sortBy"
+        :sort-desc="sortDesc"
         :fixed-header="true"
         :mobile-breakpoint="0"
         class="cardTable"
@@ -105,6 +107,16 @@ export default {
     loaded: {
       type: Boolean,
       required: true,
+      default: false
+    },
+    sortBy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    sortDesc: {
+      type: Boolean,
+      required: false,
       default: false
     }
   }

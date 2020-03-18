@@ -60,6 +60,8 @@
           :loaded="patients.loaded"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :sortBy="'日付'"
+          :sortDesc="true"
           :info="sumInfoOfPatients"
         />
       </v-col>
