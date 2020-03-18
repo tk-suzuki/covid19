@@ -1,5 +1,5 @@
 <template>
-  <data-view :title="title" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
+  <data-view :title="title" :loaded="loaded" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
     <template v-slot:button>
       <span />
     </template>
@@ -8,8 +8,8 @@
     </v-overlay>
     <v-layout :class="{loading: !loaded}" column>
       <v-data-table
-        :headers="chartData.headers"
-        :items="chartData.datasets"
+        :headers="chartData ? chartData.headers : []"
+        :items="chartData ? chartData.datasets : []"
         :items-per-page="-1"
         :hide-default-footer="true"
         :height="300"
@@ -22,9 +22,9 @@
     </v-layout>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
-        :l-text="info.lText"
-        :s-text="info.sText"
-        :unit="info.unit"
+        :l-text="info ? info.lText: ''"
+        :s-text="info ? info.sText: ''"
+        :unit="info ? info.unit: ''"
       />
     </template>
   </data-view>
@@ -63,14 +63,19 @@
     }
   }
 }
+
+.loading {
+  visibility: hidden;
+}
 </style>
 
 <script>
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 
 export default {
-  components: { DataView, DataViewBasicInfoPanel },
+  components: { DataView, DataViewBasicInfoPanel, ScaleLoader },
   props: {
     title: {
       type: String,

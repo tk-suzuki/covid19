@@ -17,9 +17,10 @@
         <time-bar-chart
           title="現在患者数"
           :chart-data="currentPatientsGraph"
-          :date="convertToDateFromData(currentPatients.last_update)"
+          :date="convertToDateFromData(current_patients.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :loaded="current_patients.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :supplement="'現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。'"
@@ -29,9 +30,10 @@
         <time-bar-chart
           title="治療終了者数"
           :chart-data="dischargesGraph"
-          :date="convertToDateFromData(dischargesSummary.last_update)"
+          :date="convertToDateFromData(discharges_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :loaded="discharges_summary.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :supplement="'治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）'"
@@ -41,9 +43,10 @@
         <time-bar-chart
           title="陽性患者数"
           :chart-data="patientsGraph"
-          :date="convertToDateFromData(patients.last_update)"
+          :date="convertToDateFromData(patients_summary.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :loaded="patients_summary.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
         />
@@ -54,6 +57,7 @@
           :chart-data="patientsTable"
           :chart-option="{}"
           :date="convertToDateFromData(patients.last_update)"
+          :loaded="patients.loaded"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :sortBy="'日付'"
@@ -68,6 +72,7 @@
           :date="convertToDateFromData(inspections.last_update)"
           sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :loaded="inspections.loaded"
           :unit="'人'"
           :defaultDataKind="'cumulative'"
           :showButton="false"
@@ -81,6 +86,7 @@
           :date="convertToDateFromData(contacts.last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
+          :loaded="contacts.loaded"
           :unit="'件'"
         />
       </v-col>
@@ -91,10 +97,18 @@
           :date="convertToDateFromData(querents.last_update)"
           sourceFrom="DATA-SMART CITY SAPPORO"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
+          :loaded="querents.loaded"
           :unit="'件'"
         />
       </v-col>
     </v-row>
+    <v-dialog v-model="failed" flat>
+      <v-alert type="error">
+        データの取得に失敗しました。<br>
+        後ほど再度お試しいただき、改善しない場合には「JUST 道 IT」までご連絡ください。<br>
+        取得に失敗したデータ： {{failed_datas}}
+      </v-alert>
+    </v-dialog>
   </div>
 </template>
 
@@ -104,20 +118,16 @@ import TimeBarChart from '@/components/TimeBarChart.vue'
 import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
-import lastUpdate from '@/data/last_update.json'
-import patientsSummary from '@/data/patients_summary.json'
-import patients from '@/data/patients.json'
-import contacts from '@/data/contacts.json'
-import querents from '@/data/querents.json'
-import currentPatients from '@/data/current_patients.json'
-import dischargesSummary from '@/data/discharges_summary.json'
-import inspections from '@/data/inspections.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import SvgCard from '@/components/SvgCard.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import DataView from "../components/DataView";
+import formatCurrentPatientsGraph from "@/utils/formatCurrentPatientsGraph";
+import formatDischargesSummaryGraph from "@/utils/formatDischargesSummaryGraph";
+import formatInspectionsGraph from "@/utils/formatInspectionsGraph";
+import formatPatientsSummaryGraph from "@/utils/formatPatientsSummaryGraph";
 
 const axiosOptions = {}
 
@@ -133,49 +143,60 @@ export default {
     SvgCard
   },
   data() {
-    // 現在患者数グラフ
-    const currentPatientsGraph = formatGraph(currentPatients.data)
-    // 感染者数グラフ
-    const patientsGraph = formatGraph(patientsSummary.data)
-    // 感染者数
-    const patientsTable = formatTable(patients.data)
-    // 陰性確認数グラフ
-    const dischargesGraph = formatGraph(dischargesSummary.data)
-    // 検査数グラフ
-    const inspectionsGraph = formatGraph(inspections.data)
-    // 相談件数
-    const contactsGraph = formatGraph(contacts.data)
-    // 帰国者・接触者電話相談センター相談件数
-    const querentsGraph = formatGraph(querents.data)
-
-    const sumInfoOfPatients = {
-      lText: patientsGraph[
-        patientsGraph.length - 1
-      ].cumulative.toLocaleString(),
-      sText: patientsGraph[patientsGraph.length - 1].label + 'の累計',
-      unit: '人'
-    }
-
     const data = {
-      patientsSummary,
-      patients,
-      querents,
-      contacts,
-      currentPatients,
-      dischargesSummary,
-      inspections,
-      patientsTable,
-      patientsGraph,
-      contactsGraph,
-      querentsGraph,
-      currentPatientsGraph,
-      dischargesGraph,
-      inspectionsGraph,
-      sumInfoOfPatients,
+      contacts: {
+        loaded: false,
+        last_update: "",
+      },
+      current_patients: {
+        loaded: false,
+        last_update: "",
+      },
+      discharges_summary: {
+        loaded: false,
+        last_update: "",
+      },
+      inspections: {
+        loaded: false,
+        last_update: "",
+      },
+      patients: {
+        loaded: false,
+        last_update: "",
+      },
+      patients_summary: {
+        loaded: false,
+        last_update: "",
+      },
+      querents: {
+        loaded: false,
+        last_update: "",
+      },
+      /**
+       * 全体の最終更新日
+       */
+      last_update: "",
+      /**
+       * 各グラフ系のデータ整理後のデータ
+       */
+      patientsTable: {},
+      patientsGraph: [],
+      contactsGraph: [],
+      querentsGraph: [],
+      currentPatientsGraph: [],
+      dischargesGraph: [],
+      inspectionsGraph: [],
+      failed: false,
+      failed_datas: "",
+      sumInfoOfPatients: {
+        lText: '',
+        sText: '',
+        unit: ''
+      },
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
         title: '道内の最新感染動向',
-        date: lastUpdate
+        date: ''
       },
       option: {
         tooltips: {
@@ -242,7 +263,6 @@ export default {
         this.failed = true;
         this.failed_datas += '現在患者数データ ';
       });
-
     },
     // 感染者数グラフ
     async getPatientsSummaryGraphFromAPI() {
