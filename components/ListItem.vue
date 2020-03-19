@@ -118,6 +118,7 @@ export default class ListItem extends Vue {
       color: transparent !important;
       & .ListItem-Text {
         font-weight: bold;
+        outline-width: 0;
       }
       & .ListItem-Icon {
         color: $gray-1 !important;

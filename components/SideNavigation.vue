@@ -92,7 +92,7 @@
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <a href="/about/#data" target="_blank" rel="noopener">
+          <a :href="localePath('/about/#data')" target="_blank" rel="noopener">
             <span class="no-image-title">{{ $t('北海道（政府）') }}</span><br />
             <span class="no-image-title">{{ $t('札幌市') }}</span>
           </a><br />
