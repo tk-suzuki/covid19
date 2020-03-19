@@ -46,6 +46,14 @@
   content: "\F156";
 }
 
+.mdi-menu-down::before {
+  content: "\F35D";
+}
+
+.mdi-web::before {
+  content: "\F59F";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;

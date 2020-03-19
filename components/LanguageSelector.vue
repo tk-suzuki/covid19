@@ -1,39 +1,28 @@
 <template>
-  <div class="SelectLanguage">
-    <div class="SelectLanguage-Menu">
-      <select v-model="this.currentLocaleCode" @change="navigate()">
-        <option
-          v-for="locale in $i18n.locales"
-          :key="locale.code"
-          :value="locale.code"
-        >
-          {{ locale.name }}
-        </option>
-      </select>
-    </div>
-    <div class="SelectLanguage-Background">
-      <EarthIcon class="EarthIcon" />
-      <SelectMenuIcon class="SelectMenuIcon" />
-    </div>
+  <div>
+    <v-select
+      width="100%"
+      v-model="currentLocaleCode"
+      :items="languages"
+      item-text="name"
+      item-value="code"
+      filled
+      label="Language"
+    />
   </div>
 </template>
 
 <script>
-import EarthIcon from '@/static/earth.svg'
-import SelectMenuIcon from '@/static/selectmenu.svg'
-
 export default {
-  components: {
-    EarthIcon, SelectMenuIcon
-  },
   data() {
     return {
-      currentLocaleCode: this.$i18n.locale
+      currentLocaleCode: this.$i18n.locale,
+      languages: this.$i18n.locales
     }
   },
-  methods: {
-    navigate() {
-      this.$i18n.setLocale(this.currentLocaleCode)
+  watch: {
+    currentLocaleCode: function (val) {
+      this.$i18n.setLocale(val)
     }
   }
   /*
