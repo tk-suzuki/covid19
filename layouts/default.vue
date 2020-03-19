@@ -74,7 +74,7 @@ export default {
   position: relative;
   @include largerThan($small) {
     display: grid;
-    grid-template-columns: 240px auto;
+    grid-template-columns: 268px auto;
   }
   @include largerThan($huge) {
     grid-template-columns: 325px auto;
@@ -86,7 +86,7 @@ export default {
     position: fixed;
     top: 0;
     overflow-y: auto;
-    width: 240px;
+    width: 268px;
     height: 100vh;
   }
 }
