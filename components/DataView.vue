@@ -21,16 +21,18 @@
       v-if="sourceFrom === '' || sourceFrom === undefined"
       class="DataView-Footer"
     >
-      {{ date }} 更新
+      {{ $t('{date} 更新', {date: date}) }}
     </v-footer>
     <v-footer v-else-if="sourceLink === ''" class="DataView-Footer">
-      {{ date }} 更新 <v-spacer /> 出典: {{ sourceFrom }}
+      {{ $t('{date} 更新', {date: date}) }} <v-spacer /> {{ $t('出典: {sourceFrom}', {sourceFrom: sourceFrom}) }}
     </v-footer>
     <v-footer v-else class="DataView-Footer">
-      {{ date }} 更新 <v-spacer /> <a class="DataView-Link" target="_blank" rel="noopener" :href="sourceLink">出典: {{ sourceFrom }} <v-icon size="15">mdi-open-in-new</v-icon></a>
+      {{ $t('{date} 更新', {date: date}) }} <v-spacer /> <a class="DataView-Link" target="_blank" rel="noopener" :href="sourceLink">{{ $t('出典: {sourceFrom}', {sourceFrom: sourceFrom}) }} <v-icon size="15">mdi-open-in-new</v-icon></a>
     </v-footer>
   </v-card>
 </template>
+
+<i18n src="./DataView.i18n.json"></i18n>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
