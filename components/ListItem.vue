@@ -29,10 +29,7 @@
     </v-list-item-action>
     <v-list-item-content class="ListItem-TextContainer">
       <v-list-item-title
-        :class="[
-          'ListItem-Text',
-          isActive(link)
-        ]"
+        :class="['ListItem-Text', isActive(link)]"
         v-text="title"
       />
     </v-list-item-content>
@@ -118,7 +115,6 @@ export default class ListItem extends Vue {
       color: transparent !important;
       & .ListItem-Text {
         font-weight: bold;
-        outline-width: 0;
       }
       & .ListItem-Icon {
         color: $gray-1 !important;
