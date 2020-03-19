@@ -19,7 +19,7 @@
 
 <i18n src="./error.i18n.json"></i18n>
 
-<script lang="ts">
+<script>
 export default {
   layout: 'empty',
   props: {
@@ -29,10 +29,10 @@ export default {
     }
   },
   computed: {
-    isNotFound(): boolean {
-      return (this as any).error.statusCode === 404
+    isNotFound() {
+      return this.error.statusCode === 404
     },
-    headingTitle(): string {
+    headingTitle() {
       return this.isNotFound
         ? this.$t('このページはご利用いただけません')
         : this.$t('現在ご利用できません')

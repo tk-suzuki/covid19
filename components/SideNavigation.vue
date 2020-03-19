@@ -192,7 +192,7 @@ export default {
         {
           title: this.$t('北海道感染症危機管理対策本部会議'),
           link:
-            'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#対策本部'
+            'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
         },
         // 【東京都主催等】中止または延期するイベント・説明会等
         // 道にまとまった情報がないので一旦コメントアウト

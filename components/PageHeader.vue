@@ -20,7 +20,23 @@
 
 <script>
 export default {
-  props: ['title', 'icon', 'date']
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    icon: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    date: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  }
 }
 </script>
 

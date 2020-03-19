@@ -1,7 +1,7 @@
 <template>
   <div class="SelectLanguage">
     <div class="SelectLanguage-Menu">
-      <select v-model="currentLocaleCode" @change="navigate()">
+      <select v-model="this.currentLocaleCode" @change="navigate()">
         <option
           v-for="locale in $i18n.locales"
           :key="locale.code"
@@ -18,19 +18,29 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+<script>
 import EarthIcon from '@/static/earth.svg'
 import SelectMenuIcon from '@/static/selectmenu.svg'
-@Component({
-  components: { EarthIcon, SelectMenuIcon }
-})
-export default class LanguageSelector extends Vue {
-  currentLocaleCode: string = this.$root.$i18n.locale
+
+export default {
+  components: {
+    EarthIcon, SelectMenuIcon
+  },
+  data() {
+    return {
+      currentLocaleCode: this.$i18n.locale
+    }
+  },
+  methods: {
+    navigate() {
+      this.$i18n.setLocale(this.currentLocaleCode)
+    }
+  }
+  /*
   navigate() {
     // @fixme 型が・・・
     // const langs = this.$i18n.locales.filter() ...
-    /* const langs = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
+     const langs = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
     const pathes = this.$router.currentRoute.path.split('/').filter(path => {
       return langs.includes(path) ? undefined : path
     })
@@ -42,10 +52,10 @@ export default class LanguageSelector extends Vue {
       locale === 'ja'
         ? '/' + pathes.join('/')
         : '/' + locale + '/' + pathes.join('/')
-    this.$router.push(url) */
+    this.$router.push(url)
     // TODO: 下の実装で問題なければ上のコメントを削除する
-    this.$root.$i18n.setLocale(this.currentLocaleCode)
   }
+  */
 }
 </script>
 
@@ -71,7 +81,7 @@ export default class LanguageSelector extends Vue {
       color: #333;
       font-size: 16px;
       transform: scale(0.75);
-      transform-origin: center left;
+      transform-origin: left;
       box-sizing: border-box;
       cursor: pointer;
       &:focus {
