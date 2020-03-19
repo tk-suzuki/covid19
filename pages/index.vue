@@ -9,56 +9,58 @@
       class="mb-4"
       date=""
       url="http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm"
-      text="北海道発表の新型コロナウイルス感染症に関する情報はこちら"
+      :text="$t('北海道発表の新型コロナウイルス感染症に関する情報はこちら')"
     />
 
     <v-row class="DataBlock">
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="現在患者数"
+          :title="$t('現在患者数')"
           :chart-data="currentPatientsGraph"
           :date="convertToDateFromData(current_patients.last_update)"
-          sourceFrom="北海道 オープンデータポータル"
+          :sourceFrom="$t('北海道 オープンデータポータル')"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :loaded="current_patients.loaded"
-          :unit="'人'"
+          :unit="$t('人')"
           :defaultDataKind="'cumulative'"
-          :supplement="'現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。'"
+          :supplement="$t('現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。')"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="治療終了者数"
+          :title="$t('治療終了者数')"
           :chart-data="dischargesGraph"
           :date="convertToDateFromData(discharges_summary.last_update)"
-          sourceFrom="北海道 オープンデータポータル"
+          :sourceFrom="$t('北海道 オープンデータポータル')"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :unit="$t('人')"
           :loaded="discharges_summary.loaded"
-          :unit="'人'"
           :defaultDataKind="'cumulative'"
-          :supplement="'治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）'"
+          :supplement="
+            $t('治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）')
+          "
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="陽性患者数"
+          :title="$t('陽性患者数')"
           :chart-data="patientsGraph"
           :date="convertToDateFromData(patients_summary.last_update)"
-          sourceFrom="北海道 オープンデータポータル"
+          :sourceFrom="$t('北海道 オープンデータポータル')"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :unit="$t('人')"
           :loaded="patients_summary.loaded"
-          :unit="'人'"
           :defaultDataKind="'cumulative'"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <data-table
-          :title="'陽性患者の属性'"
+          :title="$t('陽性患者の属性')"
           :chart-data="patientsTable"
           :chart-option="{}"
           :date="convertToDateFromData(patients.last_update)"
+          :sourceFrom="$t('北海道 オープンデータポータル')"
           :loaded="patients.loaded"
-          sourceFrom="北海道 オープンデータポータル"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
           :sortBy="'日付'"
           :sortDesc="true"
@@ -67,38 +69,40 @@
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="検査数"
+          :title="$t('検査数')"
           :chart-data="inspectionsGraph"
           :date="convertToDateFromData(inspections.last_update)"
-          sourceFrom="北海道 オープンデータポータル"
+          :sourceFrom="$t('北海道 オープンデータポータル')"
           sourceLink="https://www.harp.lg.jp/opendata/dataset/1369.html"
+          :unit="$t('人')"
           :loaded="inspections.loaded"
-          :unit="'人'"
           :defaultDataKind="'cumulative'"
           :showButton="false"
-          :supplement="'3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。'"
+          :supplement="
+            $t('3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。')
+          "
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="新型コロナコールセンター相談件数(札幌市保健所値)"
+          :title="$t('新型コロナコールセンター相談件数(札幌市保健所値)')"
           :chart-data="contactsGraph"
           :date="convertToDateFromData(contacts.last_update)"
-          sourceFrom="DATA-SMART CITY SAPPORO"
+          :sourceFrom="$t('DATA-SMART CITY SAPPORO')"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
           :loaded="contacts.loaded"
-          :unit="'件'"
+          :unit="$t('件')"
         />
       </v-col>
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
-          title="帰国者・接触者電話相談センター相談件数(札幌市保健所値)"
+          :title="$t('帰国者・接触者電話相談センター相談件数(札幌市保健所値)')"
           :chart-data="querentsGraph"
           :date="convertToDateFromData(querents.last_update)"
-          sourceFrom="DATA-SMART CITY SAPPORO"
+          :sourceFrom="$t('DATA-SMART CITY SAPPORO')"
           sourceLink="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
           :loaded="querents.loaded"
-          :unit="'件'"
+          :unit="$t('件')"
         />
       </v-col>
     </v-row>
@@ -112,6 +116,8 @@
   </div>
 </template>
 
+<i18n src="./index.i18n.json"></i18n>
+
 <script>
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'
@@ -123,7 +129,7 @@ import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import SvgCard from '@/components/SvgCard.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData'
-import DataView from "../components/DataView";
+import DataView from '../components/DataView'
 import formatCurrentPatientsGraph from "@/utils/formatCurrentPatientsGraph";
 import formatDischargesSummaryGraph from "@/utils/formatDischargesSummaryGraph";
 import formatInspectionsGraph from "@/utils/formatInspectionsGraph";
@@ -195,19 +201,10 @@ export default {
       },
       headerItem: {
         icon: 'mdi-chart-timeline-variant',
-        title: '道内の最新感染動向',
+        title: this.$t('道内の最新感染動向'),
         date: ''
       },
       option: {
-        tooltips: {
-          displayColors: false,
-          callbacks: {
-            label(tooltipItem) {
-              const labelText = tooltipItem.value + '人'
-              return labelText
-            }
-          }
-        },
         responsive: true,
         legend: {
           display: false
@@ -249,7 +246,7 @@ export default {
   },
   head() {
     return {
-      title: '道内の最新感染動向'
+      title: this.$t('道内の最新感染動向')
     }
   },
   methods: {
@@ -274,8 +271,8 @@ export default {
           lText: this.patientsGraph[
           this.patientsGraph.length - 1
             ].cumulative.toLocaleString(),
-          sText: this.patientsGraph[this.patientsGraph.length - 1].label + 'の累計',
-          unit: '人'
+          sText: this.$t('{date}の累計', {date: this.patientsGraph[this.patientsGraph.length - 1].label}),
+          unit: this.$t('人')
         }
       }).catch(err => {
         this.failed = true;
@@ -340,11 +337,11 @@ export default {
     },
     async getLastUpdateFromAPI() {
       await this.$axios.$get('/last_update.json', axiosOptions).then(response => {
-        this.headerItem= {
+        this.headerItem = {
           icon: 'mdi-chart-timeline-variant',
-          title: '道内の最新感染動向',
+          title: this.$t('道内の最新感染動向'),
           date: response
-        };
+        }
       }).catch(err => {
         console.log(err)
         this.failed = true;
