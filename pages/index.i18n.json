@@ -1,0 +1,40 @@
+{
+  "ja": {
+    "道内の最新感染動向": "道内の最新感染動向",
+    "北海道発表の新型コロナウイルス感染症に関する情報はこちら": "北海道発表の新型コロナウイルス感染症に関する情報はこちら",
+    "現在患者数": "現在患者数",
+    "現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。": "現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。",
+    "北海道 オープンデータポータル": "北海道 オープンデータポータル",
+    "人": "人",
+    "治療終了者数": "治療終了者数",
+    "治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）": "治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）",
+    "陽性患者数": "陽性患者数",
+    "陽性患者の属性": "陽性患者の属性",
+    "検査数": "検査数",
+    "3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。": "3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。",
+    "新型コロナコールセンター相談件数(札幌市保健所値)": "新型コロナコールセンター相談件数(札幌市保健所値)",
+    "DATA-SMART CITY SAPPORO": "DATA-SMART CITY SAPPORO",
+    "帰国者・接触者電話相談センター相談件数(札幌市保健所値)": "帰国者・接触者電話相談センター相談件数(札幌市保健所値)",
+    "件": "件",
+    "{date}の累計": "{date}の累計"
+  },
+  "en": {
+    "道内の最新感染動向": "Latest updates on COVID-19 in Hokkaido",
+    "北海道発表の新型コロナウイルス感染症に関する情報はこちら": "See here for information about COVID-19 announced by the Hokkaido Government",
+    "現在患者数": "Current cases",
+    "現在患者数とは、陽性患者数から治療終了者数と死亡者数を除いた人数です。なお、ご覧いただいている時間によっては累計されている日付が違う場合がありますのでご注意ください。死亡者数は北海道のホームページを参照してください。": "The number of current cases are calculated by subtracting the number of discharged patients and the number of deaths from the number of confirmed cases. Depending on the time you view this, the date for the cumulative total could be wrong. For numbers of deaths, please see the Hokkaido Government home page.",
+    "北海道 オープンデータポータル": "Hokkaido OpenData Portal site",
+    "人": "persons",
+    "治療終了者数": "Discharged patients",
+    "治療終了者数とは道発表の「陰性確認済累計」と同じものです。「陰性確認済累計」とは、陽性の患者が軽快してから48時間後の1回目のPCR検査で陰性が確認され、それから12時間後の2回目のPCR検査でも陰性が確認された方の累計のことです。（3/9 鈴木知事のツイートから引用）": "The number of discharged patients is the same as the Hokkaido Government's \"cumulative total of patients who have tested negative\". This refers to patients who tested negative on a PCR test 48 hours after their symptoms improved, and then tested negative again a further 12 hours after that. (Source: Governor Suzuki's March 9 tweet.)",
+    "陽性患者数": "Confirmed cases",
+    "陽性患者の属性": "Confirmed case details",
+    "{date}の累計": "Cumulative total as of {date}",
+    "検査数": "Tests conducted",
+    "3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。": "Data before March 3 is not publicly available.",
+    "新型コロナコールセンター相談件数(札幌市保健所値)": "Consultations at COVID-19 help desk (Sapporo Health Office)",
+    "DATA-SMART CITY SAPPORO": "DATA-SMART CITY SAPPORO",
+    "帰国者・接触者電話相談センター相談件数(札幌市保健所値)": "Consultations at returnee/contact help desk (Sapporo Health Office)",
+    "件": "​"
+  }
+}

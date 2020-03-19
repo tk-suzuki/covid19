@@ -1,7 +1,7 @@
 <template>
   <v-app class="app">
     <div v-if="loading" class="loader">
-      <img src="/logo.svg" alt="北海道" />
+      <img src="/logo.svg" :alt="$t('北海道')" />
       <scale-loader color="#1268d8" />
     </div>
     <div v-else class="appContainer">
@@ -21,6 +21,9 @@
     </div>
   </v-app>
 </template>
+
+<i18n src="./default.i18n.json"></i18n>
+
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
@@ -71,7 +74,7 @@ export default {
   position: relative;
   @include largerThan($small) {
     display: grid;
-    grid-template-columns: 240px auto;
+    grid-template-columns: 268px auto;
   }
   @include largerThan($huge) {
     grid-template-columns: 325px auto;
@@ -83,7 +86,7 @@ export default {
     position: fixed;
     top: 0;
     overflow-y: auto;
-    width: 240px;
+    width: 268px;
     height: 100vh;
   }
 }

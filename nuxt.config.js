@@ -116,12 +116,22 @@ module.exports = {
     [
       'nuxt-i18n',
       {
-        strategy: 'no_prefix',
+        strategy: 'prefix_except_default',
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected'
+        },
         locales: [
           {
             code: 'ja',
-            iso: 'ja_JP'
-          }
+            name: '日本語',
+            iso: 'ja-JP'
+          },
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en-US'
+          },
         ],
         defaultLocale: 'ja',
         vueI18n: {

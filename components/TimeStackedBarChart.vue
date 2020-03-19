@@ -14,6 +14,8 @@
   </data-view>
 </template>
 
+<i18n src="./TimeStackedBarChart.i18n.json"></i18n>
+
 <script>
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
@@ -103,13 +105,13 @@ export default {
       if (this.dataKind === 'transition') {
         return {
           lText: sum(pickLastNumber(this.chartData)).toLocaleString(),
-          sText: `${this.labels[this.labels.length - 1]} の合計`,
+          sText: this.$t('{date}の合計', {date: this.labels[this.labels.length - 1]}),
           unit: this.unit
         }
       }
       return {
         lText: sum(cumulativeSum(this.chartData)).toLocaleString(),
-        sText: `${this.labels[this.labels.length - 1]} の全体累計`,
+        sText: this.$t('{date}の全体累計', {date: this.labels[this.labels.length - 1]}),
         unit: this.unit
       }
     },

@@ -26,5 +26,13 @@
   {
     "name": "close",
     "codepoint": "F156"
+  },
+  {
+    "name": "menu-down",
+    "codepoint": "F35D"
+  },
+  {
+    "name": "web",
+    "codepoint": "F59F"
   }
 ]
