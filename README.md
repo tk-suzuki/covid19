@@ -94,14 +94,14 @@ $ npm run dev
 
 `master` ブランチがアップデートされると、自動的に `production` ブランチにHTML類がbuildされます。そして、本番サイト https://stopcovid19.hokkaido.dev が更新されます。
 
-`development` ブランチがアップデートされると、自動的に `dev-pages` ブランチにHTML類がbuildされます。そして、開発用サイト http://133.242.52.161:58000 が更新されます。
+`development` ブランチがアップデートされると、自動的に `dev-pages` ブランチにHTML類がbuildされます。そして、開発用サイト https://stopcovid19-dev.hokkaido.dev と http://133.242.52.161:58000 が更新されます。
 
 
 When `master` branch is updated, the HTML files will be automatically built onto `production` branch,
 and then the production site (https://stopcovid19.hokkaido.dev) will be also updated.（under construction）
 
 When `development` branch is updated, the HTML files will be automatically built onto `dev-pages` branch,
-and then the development site (http://133.242.52.161:58000) will be also updated.
+and then the development site (https://stopcovid19-dev.hokkaido.dev and http://133.242.52.161:58000) will be also updated.
 
 
 ### 東京都版との整合性についての方針
