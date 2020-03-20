@@ -296,15 +296,12 @@ export default {
           if (row['性別'] === '非公表性'){
             row['性別'] = this.$t('非公表')
           }
-          if (row['年代'] === '10歳未満') {
-            row['年代'] = this.$t('10歳未満')
-          }
-          else if (row['年代'] === '非公表'){
-            row['年代'] = this.$t('非公表')
+          const match = row['年代'].match(/^([0-9]+)代$/)
+          if (match) {
+            row['年代'] = this.$t('{age}代', { age: match[1] })
           }
           else {
-            const age = row['年代'].substring(0, 2)
-            row['年代'] = this.$t('{age}代', { age })
+            row['年代'] = this.$t(row['年代'])
           }
         }
         this.patients.last_update = response.last_update;
