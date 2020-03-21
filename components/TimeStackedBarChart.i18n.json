@@ -4,7 +4,7 @@
     "{date}の全体累計": "{date}の全体累計"
   },
   "en": {
-    "{date}の合計。{date}はグラフデータの日付。": "Total at {date}",
-    "{date}の全体累計。{date}はグラフデータの日付。": "Cumulative total at {date}"
+    "{date}の合計。": "Total at {date}",
+    "{date}の全体累計。": "Total at {date}"
   }
 }
