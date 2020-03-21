@@ -14,5 +14,9 @@
   "ko": {
     "{date} 更新": "{date} 갱신",
     "出典: {sourceFrom}": "출전: {sourceFrom}"
+  },
+  "zh-cn": {
+    "{date} 更新": "{date} 更新",
+    "出典: {sourceFrom}": "出处: {sourceFrom}"
   }
 }

@@ -46,5 +46,17 @@
     "JUST道IT": "JUST道(두) IT",
     "Powered by:": "Powered by:",
     "さくらインターネット": "SAKURA Internet Inc."
+  },
+  "zh-cn": {
+    "Data by:": "Data by:",
+    "北海道（政府）": "北海道",
+    "札幌市": "札幌市",
+    "北海道・札幌市": "北海道・札幌市",
+    "Under": "Under {ccByImageTitle}{ccByImage}",
+    "CC BY 4.0": "CC BY 4.0",
+    "Operations by:": "Operations by:",
+    "JUST道IT": "JUST道IT",
+    "Powered by:": "Powered by:",
+    "さくらインターネット": "SAKURA Internet Inc."
   }
 }

@@ -134,6 +134,11 @@ module.exports = {
             iso: 'en-US'
           },
           {
+            code: 'zh-cn',
+            name: '简体中文',
+            iso: 'zh-CN'
+          },
+          {
             code: 'zh-tw',
             name: '繁體中文',
             iso: 'zh-TW'
