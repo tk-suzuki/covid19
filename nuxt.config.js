@@ -133,6 +133,21 @@ module.exports = {
             name: 'English',
             iso: 'en-US'
           },
+          {
+            code: 'zh-cn',
+            name: '简体中文',
+            iso: 'zh-CN'
+          },
+          {
+            code: 'zh-tw',
+            name: '繁體中文',
+            iso: 'zh-TW'
+          },
+          {
+            code: 'ko',
+            name: '한국어',
+            iso: 'ko-KR'
+          },
         ],
         defaultLocale: 'ja',
         vueI18n: {
