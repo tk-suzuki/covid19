@@ -13,5 +13,10 @@
     "補足:": "備註:",
     "実績値（前日比：{change} {unit}）": "數量（增加數：{change} {unit}）",
     "{date} 累計値（前日比：{change} {unit}）": "{date} 累計（增加數：{change} {unit}）"
+  },
+  "ko": {
+    "補足:": "보족:",
+    "実績値（前日比：{change} {unit}）": "",
+    "{date} 累計値（前日比：{change} {unit}）": ""
   }
 }

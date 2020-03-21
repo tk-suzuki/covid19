@@ -10,5 +10,9 @@
   "zh-tw": {
     "{date} 更新": "{date} 更新",
     "出典: {sourceFrom}": "出處: {sourceFrom}"
+  },
+  "ko": {
+    "{date} 更新": "{date} 갱신",
+    "出典: {sourceFrom}": "출전: {sourceFrom}"
   }
 }

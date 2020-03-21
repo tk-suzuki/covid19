@@ -138,6 +138,11 @@ module.exports = {
             name: '繁體中文',
             iso: 'zh-TW'
           },
+          {
+            code: 'ko',
+            name: '한국어',
+            iso: 'ko-KR'
+          },
         ],
         defaultLocale: 'ja',
         vueI18n: {
