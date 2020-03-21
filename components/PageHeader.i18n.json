@@ -4,5 +4,8 @@
   },
   "en": {
     "最終更新 {updatedDate}": "Updated on {updatedDate}"
+  },
+  "zh-tw": {
+    "最終更新 {updatedDate}": "最後更新 {updatedDate}"
   }
 }

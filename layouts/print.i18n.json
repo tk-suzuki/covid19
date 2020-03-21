@@ -8,5 +8,10 @@
     "新型コロナウイルス感染症{break}まとめサイト": "COVID-19 {mobileBreak}Information Site",
     "QRコード": "QR Code",
     "※最新の情報はWebページをご覧ください": "For the latest updates please see the website"
+  },
+  "zh-tw": {
+    "新型コロナウイルス感染症{break}まとめサイト": "新型冠狀病毒肺炎{break}防疫中心",
+    "QRコード": "QR Code",
+    "※最新の情報はWebページをご覧ください": "※最新資訊，請於網站上閱覽"
   }
 }

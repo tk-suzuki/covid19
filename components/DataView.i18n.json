@@ -6,5 +6,9 @@
   "en": {
     "{date} 更新": "Updated on {date}",
     "出典: {sourceFrom}": "Source: {sourceFrom}"
+  },
+  "zh-tw": {
+    "{date} 更新": "{date} 更新",
+    "出典: {sourceFrom}": "出處: {sourceFrom}"
   }
 }

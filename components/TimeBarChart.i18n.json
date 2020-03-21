@@ -8,5 +8,10 @@
     "補足:": "Note:",
     "実績値（前日比：{change} {unit}）": "Change: {change} {unit}",
     "{date} 累計値（前日比：{change} {unit}）": "Total at {date} (change: {change} {unit})"
+  },
+  "zh-tw": {
+    "補足:": "備註:",
+    "実績値（前日比：{change} {unit}）": "數量（增加數：{change} {unit}）",
+    "{date} 累計値（前日比：{change} {unit}）": "{date} 累計（增加數：{change} {unit}）"
   }
 }

@@ -6,5 +6,9 @@
   "en": {
     "{date}の合計。": "Total at {date}",
     "{date}の全体累計。": "Total at {date}"
+  },
+  "zh-tw": {
+    "{date}の合計。": "{date}的合計",
+    "{date}の全体累計。": "{date}的全體累計"
   }
 }
