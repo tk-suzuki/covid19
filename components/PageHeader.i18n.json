@@ -7,5 +7,8 @@
   },
   "zh-tw": {
     "最終更新 {updatedDate}": "最後更新 {updatedDate}"
+  },
+  "ko": {
+    "最終更新 {updatedDate}": "최종갱신 {updatedDate}"
   }
 }
