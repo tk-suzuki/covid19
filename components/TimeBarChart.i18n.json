@@ -18,5 +18,10 @@
     "補足:": "보족:",
     "実績値（前日比：{change} {unit}）": "",
     "{date} 累計値（前日比：{change} {unit}）": ""
+  },
+  "zh-cn": {
+    "補足:": "备注:",
+    "実績値（前日比：{change} {unit}）": "实际值（较前一天：{change} {unit}）",
+    "{date} 累計値（前日比：{change} {unit}）": "{date} 累计（较前一天：{change} {unit}）"
   }
 }
