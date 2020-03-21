@@ -14,5 +14,13 @@
     "道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するサイトです。": "This site provides regularly updated information about COVID-19 in Hokkaido.",
     "北海道による公式情報と客観的な数値をわかりやすく伝えることで、北海道にお住まいの方や北海道内に拠点を持つ企業の方、北海道を訪れる方が現状を把握して適切な対策を取れるようにすることを目的としています。": "Its goal is to provide easy-to-understand, unbiased information on the spread of infection in Hokkaido, in order to keep residents, companies, and visitors informed about the current situation regarding the virus.",
     "開発・運営は、エンジニアやデザイナーなどによって結成された「JUST 道 IT」が行っています。": "Development and operations are carried out by \"JUST DOU IT\", a group of engineers and designers formed for this purpose."
+  },
+  "zh-tw": {
+    "新型コロナウイルス感染症まとめサイト": "新型冠狀肺炎整理網站",
+    "北海道アイキャッチ画像": "北海道 eye catch 圖像",
+    "北海道 新型コロナウイルス感染症まとめサイト": "北海道 新型冠狀病毒肺炎整理網站",
+    "道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するサイトです。": "這是提供北海道內的新型冠狀病毒肺炎 (COVID-19) 相關最新情報的網站",
+    "北海道による公式情報と客観的な数値をわかりやすく伝えることで、北海道にお住まいの方や北海道内に拠点を持つ企業の方、北海道を訪れる方が現状を把握して適切な対策を取れるようにすることを目的としています。": "本網站希望透過淺顯易懂的方式傳遞北海道官方的資訊與客觀數值，讓北海道居民、在北海道設有據點的企業、以及來訪北海道的人們可以迅速掌握目前的狀況，並採取適當的對策。",
+    "開発・運営は、エンジニアやデザイナーなどによって結成された「JUST 道 IT」が行っています。": "本站是由由工程師以及設計師等人士組成的「JUST 道 IT」負責開發營運。"
   }
 }
