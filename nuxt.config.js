@@ -71,7 +71,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
     ]
   },
   /*
@@ -116,12 +117,37 @@ module.exports = {
     [
       'nuxt-i18n',
       {
-        strategy: 'no_prefix',
+        strategy: 'prefix_except_default',
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected'
+        },
         locales: [
           {
             code: 'ja',
-            iso: 'ja_JP'
-          }
+            name: '日本語',
+            iso: 'ja-JP'
+          },
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en-US'
+          },
+          {
+            code: 'zh-cn',
+            name: '简体中文',
+            iso: 'zh-CN'
+          },
+          {
+            code: 'zh-tw',
+            name: '繁體中文',
+            iso: 'zh-TW'
+          },
+          {
+            code: 'ko',
+            name: '한국어',
+            iso: 'ko-KR'
+          },
         ],
         defaultLocale: 'ja',
         vueI18n: {
@@ -137,7 +163,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://stopcovid19-dev.hokkaido.dev/api/"
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module

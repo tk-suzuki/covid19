@@ -12,7 +12,11 @@
               <img src="/logo.svg" alt="北海道" />
             </div>
             <h1 class="PrintMeta-Heading">
-              新型コロナウイルス感染症<br />まとめサイト
+              <i18n path="新型コロナウイルス感染症{break}まとめサイト" tag="span">
+                <template #break>
+                  <br />
+                </template>
+              </i18n>
             </h1>
           </div>
         </li>
@@ -25,11 +29,11 @@
               tile
               color="transparent"
             >
-              <img src="/qrcode.svg" alt="QRコード" />
+              <img src="/qrcode.svg" :alt="$t('QRコード')" />
             </v-card>
             <v-card class="flex-shrink-0" flat tile color="transparent">
               <p class="PrintMeta-Text">
-                ※最新の情報はWebページをご覧ください
+                {{ $t('※最新の情報はWebページをご覧ください') }}
               </p>
               <p class="PrintMeta-Link">
                 https://stopcovid19.hokkadio.dev/
@@ -42,6 +46,9 @@
     </v-container>
   </v-app>
 </template>
+
+<i18n src="./print.i18n.json"></i18n>
+
 <script>
   import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
   export default {
