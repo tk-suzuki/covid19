@@ -35,8 +35,6 @@
   </data-view>
 </template>
 
-<i18n src="./TimeBarChart.i18n.json"></i18n>
-
 <style lang="scss">
 .TimeBarChart-Footer {
   background-color: $white !important;
