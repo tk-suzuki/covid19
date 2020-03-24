@@ -116,8 +116,6 @@
   </div>
 </template>
 
-<i18n src="./index.i18n.json"></i18n>
-
 <script>
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'

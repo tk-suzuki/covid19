@@ -22,8 +22,6 @@
   </v-app>
 </template>
 
-<i18n src="./default.i18n.json"></i18n>
-
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'

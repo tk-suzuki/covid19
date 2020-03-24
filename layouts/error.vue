@@ -17,8 +17,6 @@
   </div>
 </template>
 
-<i18n src="./error.i18n.json"></i18n>
-
 <script>
 export default {
   layout: 'empty',

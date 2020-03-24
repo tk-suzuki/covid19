@@ -47,8 +47,6 @@
   </v-app>
 </template>
 
-<i18n src="./print.i18n.json"></i18n>
-
 <script>
   import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
   export default {
