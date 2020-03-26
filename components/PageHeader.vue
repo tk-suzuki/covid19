@@ -15,9 +15,6 @@
     </div>
   </div>
 </template>
-
-<i18n src="./PageHeader.i18n.json"></i18n>
-
 <script>
 export default {
   props: {

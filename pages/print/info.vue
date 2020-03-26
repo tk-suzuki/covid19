@@ -59,9 +59,6 @@
   </div>
 </template>
 
-<i18n src="./info.i18n.json"></i18n>
-<i18n src="../../components/SponsorLinks.i18n.json"></i18n>
-
 <script>
   export default {
     layout: 'print',
