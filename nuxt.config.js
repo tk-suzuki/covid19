@@ -153,18 +153,6 @@ module.exports = {
             iso: 'ko-KR',
             file: 'ko.i18n.json'
           },
-		  {
-			code: 'th',
-			name: 'ไทย',
-			iso: 'th-TH',
-			file: 'th.i18n.json'
-		  },
-		  {
-			code: 'vi',
-			name: 'Tiếng Việt',
-			iso: 'vi-VN',
-			file: 'vi.i18n.json'
-		  }
         ],
         defaultLocale: 'ja',
         vueI18n: {
@@ -183,7 +171,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://raw.githubusercontent.com/Kanahiro/covid19hokkaido_scraping/gh-pages/"
+    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://stopcovid19-dev.hokkaido.dev/api/"
   },
   /*
    ** vuetify module configuration
