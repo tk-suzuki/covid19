@@ -8,7 +8,12 @@
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
+      <date-selector v-model="dateSelect" />
     </template>
+    <template v-else v-slot:button>
+      <date-selector v-model="dateSelect" />
+    </template>
+    {{ dataKind }} {{dateSelect}}
     <v-overlay absolute :value="!loaded" justify-center align-center>
       <scale-loader color="#1268d8"/>
     </v-overlay>
@@ -67,9 +72,10 @@ import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import DateSelector from "@/components/DateSelector";
 
 export default {
-  components: { DataView, DataSelector, DataViewBasicInfoPanel, ScaleLoader },
+  components: { DataView, DataSelector, DateSelector, DataViewBasicInfoPanel, ScaleLoader },
   props: {
     title: {
       type: String,
@@ -101,6 +107,11 @@ export default {
       required: false,
       default: ''
     },
+    defaultDateKind: {
+      type: String,
+      required: false,
+      default: 'all'
+    },
     defaultDataKind: {
       type: String,
       required: false,
@@ -124,7 +135,8 @@ export default {
   },
   data() {
     return {
-      dataKind: this.defaultDataKind
+      dataKind: this.defaultDataKind,
+      dateSelect: this.defaultDateKind
     }
   },
   computed: {
@@ -229,6 +241,14 @@ export default {
         scales: {
           xAxes: [
             {
+              type: 'time',
+              time: {
+                displayFormats: {
+                  day: 'M/D'
+                },
+                max: this.chartData[this.chartData.length -1].label,
+                min: this.chartData[this.chartData.length -15].label
+              },
               stacked: true,
               gridLines: {
                 display: false
