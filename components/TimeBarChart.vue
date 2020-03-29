@@ -8,16 +8,22 @@
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
-      <date-selector v-model="dateSelect" />
-    </template>
-    <template v-else v-slot:button>
-      <date-selector v-model="dateSelect" />
     </template>
     <v-overlay absolute :value="!loaded" justify-center align-center>
       <scale-loader color="#1268d8"/>
     </v-overlay>
     <v-layout column :class="{loading: !loaded}" >
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
+      {{slidervalue}}
+      <v-range-slider
+        :tick-labels="sliderLabels"
+        :value="slidervalue">
+        <template v-slot:thumb-label="props">
+          <v-icon dark>
+            {{ $moment(props.value).format("MM/DD") }}
+          </v-icon>
+        </template>
+      </v-range-slider>
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
           <li class="supplementText">
@@ -135,7 +141,7 @@ export default {
   data() {
     return {
       dataKind: this.defaultDataKind,
-      dateSelect: this.defaultDateKind
+      slidervalue: [0,30]
     }
   },
   computed: {
@@ -181,6 +187,11 @@ export default {
         ),
         unit: this.unit
       }
+    },
+    sliderLabels() {
+      this.chartData.map(d => {
+        return d.label
+      })
     },
     displayData() {
       console.log('displayData')
