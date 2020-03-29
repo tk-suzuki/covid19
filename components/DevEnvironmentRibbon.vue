@@ -17,8 +17,7 @@
             return 'preview';
           }
         }
-        // クライアントだけで判定
-        return '';
+        return process.env.NODE_ENV
       }
     }
   }
