@@ -12,7 +12,10 @@
   "感染予防と相談窓口": "Help desks & info (Japanese)",
   "お子様をお持ちの皆様へ": "For parents and guardians",
   "道民の皆様へ": "For residents (Japanese)",
-  "企業の皆様・はたらく皆様へ": "For companies/workers",
+  "企業の皆様・はたらく皆様へ": {
+    "link": "For companies/workers",
+    "title": "For companies and employees"
+  },
   "北海道感染症危機管理対策本部会議": "Hokkaido COVID-19 Task Force (Japanese)",
   "北海道公式ホームページ": "Hokkaido Government (Japanese)",
   "知事からのメッセージ": "Message from the Governor (Japanese)",

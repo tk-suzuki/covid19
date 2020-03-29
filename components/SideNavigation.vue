@@ -182,7 +182,7 @@ export default {
         },
         {
           icon: 'mdi-domain',
-          title: this.$t('企業の皆様・はたらく皆様へ'),
+          title: this.$t('企業の皆様・はたらく皆様へ.link'),
           link: this.localePath('/worker'),
           divider: true
         },

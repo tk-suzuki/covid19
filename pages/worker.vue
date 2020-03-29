@@ -1,7 +1,7 @@
 <template>
   <div class="Worker">
     <h2 class="Worker-Heading">
-      {{ $t('企業の皆様・はたらく皆様へ') }}
+      {{ $t('企業の皆様・はたらく皆様へ.title') }}
     </h2>
     <TextCard :title="$t('中小企業向け相談窓口及び融資取扱について')">
       <a href="http://www.pref.hokkaido.lg.jp/kz/csk/kny/yuushi/korona.htm" target="_blank" rel="noopener">http://www.pref.hokkaido.lg.jp/kz/csk/kny/yuushi/korona.htm</a>
@@ -24,7 +24,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('企業の皆様・はたらく皆様へ')
+      title: this.$t('企業の皆様・はたらく皆様へ.title')
     }
   }
 }

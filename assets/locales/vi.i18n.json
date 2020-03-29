@@ -12,7 +12,10 @@
   "感染予防と相談窓口": "Tư vấn thông tin và phòng chống dịch COVID-19",
   "お子様をお持ちの皆様へ": "Dành cho gia đình có trẻ em",
   "道民の皆様へ": "Dành cho người dân Hokkaido",
-  "企業の皆様・はたらく皆様へ": "Dành cho các doanh nghiệp và người đi làm",
+  "企業の皆様・はたらく皆様へ": {
+    "link": "Dành cho các doanh nghiệp và người đi làm",
+    "title": "Dành cho các doanh nghiệp và người đi làm"
+  },
   "北海道感染症危機管理対策本部会議": "Trang web ứng phó về dịch COVID-19 của Hokkaido",
   "北海道公式ホームページ": "Trang web chính thức của Chính quyền tỉnh Hokkaido ( Tiếng Nhật )",
   "知事からのメッセージ": "Thông điệp từ Chủ tịch tỉnh Hokkaido ( Tiếng Nhật )",
@@ -143,7 +146,6 @@
   "相談窓口及び帰国者・接触者相談センターについて": "Về Trung tâm tư vấn qua điện thoại và tư vấn trực tiếp về dịch COVID-19 cho người trở về từ vùng dịch và người tiếp xúc gần",
   "3 その他": "3. Thông tin khác",
   "詳細は、各学校からのお知らせ等をご確認ください。": "Để biết thêm chi tiết, vui lòng cập nhật tin tức từ các trường học",
-  "企業の皆様・はたらく皆様へ": "Dành cho các doanh nghiệp và người đi làm",
   "中小企業向け相談窓口及び融資取扱について": "Về nơi tư vấn dành cho các doanh nghiệp vừa và nhỏ kèm theo các xử lý về khoản vay",
   "新型コロナウイルス関連肺炎の流行に伴う中小企業向け相談窓口及び融資取扱について": "Về nơi tư vấn và xử lý khoản vay cho doanh nghiệp vừa và nhỏ với sự bùng phát của dịch COVID-19",
   "新型コロナ感染症の影響による特別労働相談窓口": "Nơi tư vấn dành cho lao động đặc biệt bị chịu ảnh hưởng bởi dịch COVID-19",
