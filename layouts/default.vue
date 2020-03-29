@@ -1,5 +1,7 @@
 <template>
   <v-app class="app">
+    <dev-environment-ribbon v-if="displayRibbon">
+    </dev-environment-ribbon>
     <div v-if="loading" class="loader">
       <img src="/logo.svg" :alt="$t('北海道')" />
       <scale-loader color="#1268d8" />
@@ -25,10 +27,13 @@
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
+import DevEnvironmentRibbon from "@/components/DevEnvironmentRibbon"
+
 export default {
   components: {
     ScaleLoader,
-    SideNavigation
+    SideNavigation,
+    DevEnvironmentRibbon
   },
   head() {
     return {
@@ -58,6 +63,11 @@ export default {
     const { htmlAttrs } = this.$nuxtI18nSeo()
     return {
       htmlAttrs
+    }
+  },
+  computed: {
+    displayRibbon() {
+      return process.env.NODE_ENV !== 'production'
     }
   }
 }
