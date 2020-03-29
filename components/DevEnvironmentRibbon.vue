@@ -17,7 +17,8 @@
             return 'preview';
           }
         }
-        return process.env.NODE_ENV
+        // クライアントだけで判定
+        return '';
       }
     }
   }
