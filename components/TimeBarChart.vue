@@ -13,7 +13,6 @@
     <template v-else v-slot:button>
       <date-selector v-model="dateSelect" />
     </template>
-    {{ dataKind }} {{dateSelect}}
     <v-overlay absolute :value="!loaded" justify-center align-center>
       <scale-loader color="#1268d8"/>
     </v-overlay>
@@ -184,6 +183,7 @@ export default {
       }
     },
     displayData() {
+      console.log('displayData')
       if (!this.chartData || this.chartData.length === 0) {
         return {}
       }
@@ -222,6 +222,64 @@ export default {
     },
     displayOption() {
       const unit = this.unit
+      if (this.dateSelect === '2weeks') {
+        return {
+          tooltips: {
+            displayColors: false,
+            callbacks: {
+              label(tooltipItem) {
+                const labelText = `${parseInt(
+                  tooltipItem.value
+                ).toLocaleString()} ${unit}`
+                return labelText
+              }
+            }
+          },
+          responsive: true,
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [
+              {
+                type: 'time',
+                offset: true,
+                time: {
+                  displayFormats: {
+                    day: 'M/D'
+                  },
+                  max: this.chartData[this.chartData.length -1].label,
+                  min: this.chartData[this.chartData.length -15].label
+                },
+                stacked: true,
+                gridLines: {
+                  display: false
+                },
+                ticks: {
+                  fontSize: 10,
+                  maxTicksLimit: 20,
+                  fontColor: '#808080'
+                }
+              }
+            ],
+            yAxes: [
+              {
+                location: 'bottom',
+                stacked: true,
+                gridLines: {
+                  display: true,
+                  color: '#E5E5E5'
+                },
+                ticks: {
+                  suggestedMin: 0,
+                  maxTicksLimit: 8,
+                  fontColor: '#808080'
+                }
+              }
+            ]
+          }
+        }
+      }
       return {
         tooltips: {
           displayColors: false,
@@ -241,13 +299,12 @@ export default {
         scales: {
           xAxes: [
             {
+              offset: true,
               type: 'time',
               time: {
                 displayFormats: {
                   day: 'M/D'
                 },
-                max: this.chartData[this.chartData.length -1].label,
-                min: this.chartData[this.chartData.length -15].label
               },
               stacked: true,
               gridLines: {
