@@ -164,6 +164,12 @@ module.exports = {
             name: 'Tiếng Việt',
             iso: 'vi-VN',
             file: 'vi.i18n.json'
+          },
+          {
+            code: 'ja-basic',
+            name: 'やさしい にほんご',
+            iso: 'ja-JP',
+            file: 'ja-basic.i18n.json'
           }
         ],
         defaultLocale: 'ja',
