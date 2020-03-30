@@ -62,7 +62,7 @@
         .v,
         .y,
         .z {
-          font-family: HiraginoSans-W6, Hiragino Sans;
+          font-family: HiraginoSans-W6, Hiragino Sans, sans-serif;
         }
 
         .c,
@@ -186,7 +186,7 @@
 
         .an {
           font-size: 27px;
-          font-family: Univers-Bold, Univers;
+          font-family: Univers-Bold, Univers, sans-serif;
           font-weight: 700;
         }
 
