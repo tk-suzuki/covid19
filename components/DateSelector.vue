@@ -1,14 +1,14 @@
 <template>
   <v-btn-toggle
     :value="value"
-    @change="$emit('input', $event)"
     class="DateSelector"
     mandatory
+    @change="$emit('input', $event)"
   >
-    <v-btn class="DateSelector-Button" v-ripple="false" value="all">
+    <v-btn v-ripple="false" class="DateSelector-Button" value="all">
       {{ $t('全期間') }}
     </v-btn>
-    <v-btn class="DateSelector-Button" v-ripple="false" value="2weeks">
+    <v-btn v-ripple="false" class="DateSelector-Button" value="2weeks">
       {{ $t('２週間') }}
     </v-btn>
   </v-btn-toggle>

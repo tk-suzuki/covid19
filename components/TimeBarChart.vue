@@ -72,10 +72,16 @@ import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import DateSelector from "@/components/DateSelector";
+import DateSelector from '@/components/DateSelector'
 
 export default {
-  components: { DataView, DataSelector, DateSelector, DataViewBasicInfoPanel, ScaleLoader },
+  components: {
+    DataView,
+    DataSelector,
+    DateSelector,
+    DataViewBasicInfoPanel,
+    ScaleLoader
+  },
   props: {
     title: {
       type: String,
@@ -246,8 +252,8 @@ export default {
                   displayFormats: {
                     day: 'M/D'
                   },
-                  max: this.chartData[this.chartData.length -1].label,
-                  min: this.chartData[this.chartData.length -15].label
+                  max: this.chartData[this.chartData.length - 1].label,
+                  min: this.chartData[this.chartData.length - 15].label
                 },
                 stacked: true,
                 gridLines: {
@@ -302,7 +308,7 @@ export default {
               time: {
                 displayFormats: {
                   day: 'M/D'
-                },
+                }
               },
               stacked: true,
               gridLines: {
