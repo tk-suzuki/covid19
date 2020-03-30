@@ -99,7 +99,13 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build', '@nuxtjs/google-analytics'],
+  buildModules: [
+    // まだlintエラーを解消していないので一旦はずしておく
+    // '@nuxtjs/stylelint-module',
+    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/google-analytics'
+  ],
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true
@@ -164,6 +170,12 @@ module.exports = {
             name: 'Tiếng Việt',
             iso: 'vi-VN',
             file: 'vi.i18n.json'
+          },
+          {
+            code: 'ja-basic',
+            name: 'やさしい にほんご',
+            iso: 'ja-JP',
+            file: 'ja-basic.i18n.json'
           }
         ],
         defaultLocale: 'ja',
@@ -226,5 +238,8 @@ module.exports = {
     webpack: {
       poll: true
     }
+  },
+  env: {
+    NODE_ENV: process.env.NODE_ENV
   }
 }
