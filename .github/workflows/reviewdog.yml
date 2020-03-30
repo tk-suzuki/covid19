@@ -15,7 +15,7 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-check
+          reporter: github-pr-review
           eslint_flags: './**/*.{vue,ts,js}'
   stylelint:
     name: check_stylelint_error
@@ -26,5 +26,5 @@ jobs:
         uses: reviewdog/action-stylelint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-check
+          reporter: github-pr-review
           stylelint_input: '**/*.{css,scss,vue}'
