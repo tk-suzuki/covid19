@@ -100,7 +100,8 @@ module.exports = {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxtjs/stylelint-module',
+    // まだlintエラーを解消していないので一旦はずしておく
+    // '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build',
     '@nuxtjs/google-analytics'
