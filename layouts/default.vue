@@ -48,19 +48,15 @@ export default {
     }
   },
   head() {
+    const { htmlAttrs } = this.$nuxtI18nSeo()
     return {
+      htmlAttrs,
       link: [
         {
           rel: 'canonical',
           href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
         }
       ]
-    }
-  },
-  head() {
-    const { htmlAttrs } = this.$nuxtI18nSeo()
-    return {
-      htmlAttrs
     }
   }
 }
