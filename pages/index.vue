@@ -145,7 +145,7 @@ export default {
     PageHeader,
     TimeBarChart,
     WhatsNew,
-    DataTable,
+    DataTable
   },
   data() {
     const data = {
