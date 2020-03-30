@@ -7,7 +7,6 @@
     />
     <whats-new
       class="mb-4"
-      date=""
       url="http://www.pref.hokkaido.lg.jp/ss/tkk/singatakoronahaien.htm"
       :text="$t('北海道発表の新型コロナウイルス感染症に関する情報はこちら')"
     />
