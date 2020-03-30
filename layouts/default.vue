@@ -67,11 +67,6 @@ export default {
         }
       ]
     }
-  },
-  computed: {
-    displayRibbon() {
-      return process.env.NODE_ENV !== 'production'
-    }
   }
 }
 </script>
