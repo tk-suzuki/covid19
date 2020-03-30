@@ -126,16 +126,12 @@
 </template>
 
 <script>
-import DataView from '../components/DataView'
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'
-import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
-import StaticInfo from '@/components/StaticInfo.vue'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
-import SvgCard from '@/components/SvgCard.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import formatCurrentPatientsGraph from '@/utils/formatCurrentPatientsGraph'
 import formatDischargesSummaryGraph from '@/utils/formatDischargesSummaryGraph'
@@ -146,14 +142,10 @@ const axiosOptions = {}
 
 export default {
   components: {
-    DataView,
     PageHeader,
     TimeBarChart,
-    TimeStackedBarChart,
     WhatsNew,
-    StaticInfo,
     DataTable,
-    SvgCard
   },
   data() {
     const data = {
