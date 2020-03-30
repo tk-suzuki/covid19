@@ -14,14 +14,14 @@
     </v-overlay>
     <v-layout column :class="{loading: !loaded}" >
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
-      {{slidervalue}}
+      Date Range:  {{ getSliderLabels(sliderValue[0]) }} ~ {{ getSliderLabels(sliderValue[1]) }}
       <v-range-slider
-        :tick-labels="sliderLabels"
-        :value="slidervalue">
+        :max="sliderMax"
+        :min="0"
+        v-model="sliderValue"
+      >
         <template v-slot:thumb-label="props">
-          <v-icon dark>
-            {{ $moment(props.value).format("MM/DD") }}
-          </v-icon>
+          {{ getSliderLabels(props.value) }}
         </template>
       </v-range-slider>
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
@@ -141,8 +141,13 @@ export default {
   data() {
     return {
       dataKind: this.defaultDataKind,
-      slidervalue: [0,30]
+      sliderValue: [0,this.sliderMax]
     }
+  },
+  watch: {
+    sliderMax() {
+      this.sliderValue = [0,this.sliderMax]
+    },
   },
   computed: {
     displayCumulativeRatio() {
@@ -188,13 +193,13 @@ export default {
         unit: this.unit
       }
     },
-    sliderLabels() {
-      this.chartData.map(d => {
-        return d.label
-      })
+    sliderMax() {
+      if (!this.chartData || this.chartData.length === 0) {
+        return 1
+      }
+      return (this.chartData.length -1)
     },
     displayData() {
-      console.log('displayData')
       if (!this.chartData || this.chartData.length === 0) {
         return {}
       }
@@ -233,65 +238,11 @@ export default {
     },
     displayOption() {
       const unit = this.unit
-      if (this.dateSelect === '2weeks') {
-        return {
-          tooltips: {
-            displayColors: false,
-            callbacks: {
-              label(tooltipItem) {
-                const labelText = `${parseInt(
-                  tooltipItem.value
-                ).toLocaleString()} ${unit}`
-                return labelText
-              }
-            }
-          },
-          responsive: true,
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [
-              {
-                type: 'time',
-                offset: true,
-                time: {
-                  displayFormats: {
-                    day: 'M/D'
-                  },
-                  max: this.chartData[this.chartData.length -1].label,
-                  min: this.chartData[this.chartData.length -15].label
-                },
-                stacked: true,
-                gridLines: {
-                  display: false
-                },
-                ticks: {
-                  fontSize: 10,
-                  maxTicksLimit: 20,
-                  fontColor: '#808080'
-                }
-              }
-            ],
-            yAxes: [
-              {
-                location: 'bottom',
-                stacked: true,
-                gridLines: {
-                  display: true,
-                  color: '#E5E5E5'
-                },
-                ticks: {
-                  suggestedMin: 0,
-                  maxTicksLimit: 8,
-                  fontColor: '#808080'
-                }
-              }
-            ]
-          }
-        }
+      if (!this.chartData || this.chartData.length === 0) {
+        return {}
       }
       return {
+        animation: false,
         tooltips: {
           displayColors: false,
           callbacks: {
@@ -310,12 +261,14 @@ export default {
         scales: {
           xAxes: [
             {
-              offset: true,
               type: 'time',
+              offset: true,
               time: {
                 displayFormats: {
                   day: 'M/D'
                 },
+                max: this.chartData[this.sliderValue[1]].label,
+                min: this.chartData[this.sliderValue[0]].label
               },
               stacked: true,
               gridLines: {
@@ -348,6 +301,12 @@ export default {
     }
   },
   methods: {
+    getSliderLabels(id) {
+      if (!this.chartData || this.chartData.length === 0) {
+        return 1
+      }
+      return this.$moment(this.chartData[id].label).format('MM/DD')
+    },
     formatDayBeforeRatio(dayBeforeRatio) {
       switch (Math.sign(dayBeforeRatio)) {
         case 1:
