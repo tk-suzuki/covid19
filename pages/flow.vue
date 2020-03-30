@@ -22,7 +22,7 @@
           <div class="mx-2 mb-5">
             <img
               src="/flow/sp/sp_flow_01_02@2x.png"
-              alt="流行地域への渡航・居住歴がある方　ご本人か濃厚接触をした方／呼吸器症状かつ発熱37.5℃以上"
+              alt="流行地域への渡航・居住歴がある方 ご本人か濃厚接触をした方／呼吸器症状かつ発熱37.5℃以上"
             />
           </div>
           <div>
@@ -67,7 +67,7 @@
           <div class="mx-2 mb-5">
             <img
               src="/flow/sp/sp_flow_04@2x.png"
-              alt="不安に思う方／微熱・軽い咳・感染の不安／厚生労働省電話相談窓口　午前９時から午後９時（土日祝含む）"
+              alt="不安に思う方／微熱・軽い咳・感染の不安／厚生労働省電話相談窓口 午前９時から午後９時（土日祝含む）"
             />
           </div>
           <div class="TelLink">
@@ -144,7 +144,7 @@
             </div>
           </div>
           <div id="pcr" class="mx-2 mb-5">
-            <img src="/flow/sp/sp_flow_06_02@2x.png" alt="PCR検査　保健所等" />
+            <img src="/flow/sp/sp_flow_06_02@2x.png" alt="PCR検査 保健所等" />
           </div>
           <div class="Col2Btn">
             <div class="mx-1 mb-5">
