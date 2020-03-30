@@ -99,7 +99,13 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build', '@nuxtjs/google-analytics'],
+  buildModules: [
+    // まだlintエラーを解消していないので一旦はずしておく
+    // '@nuxtjs/stylelint-module',
+    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/google-analytics'
+  ],
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true

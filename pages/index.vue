@@ -11,6 +11,9 @@
       :text="$t('北海道発表の新型コロナウイルス感染症に関する情報はこちら')"
     />
 
+
+
+    
     <v-row class="DataBlock">
       <v-col cols="12" md="6" class="DataCard">
         <time-bar-chart
