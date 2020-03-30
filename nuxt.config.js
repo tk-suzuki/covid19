@@ -153,18 +153,24 @@ module.exports = {
             iso: 'ko-KR',
             file: 'ko.i18n.json'
           },
-		  {
-			code: 'th',
-			name: 'ไทย',
-			iso: 'th-TH',
-			file: 'th.i18n.json'
-		  },
-		  {
-			code: 'vi',
-			name: 'Tiếng Việt',
-			iso: 'vi-VN',
-			file: 'vi.i18n.json'
-		  }
+          {
+            code: 'th',
+            name: 'ไทย',
+            iso: 'th-TH',
+            file: 'th.i18n.json'
+          },
+          {
+            code: 'vi',
+            name: 'Tiếng Việt',
+            iso: 'vi-VN',
+            file: 'vi.i18n.json'
+          },
+          {
+            code: 'ja-basic',
+            name: 'やさしい にほんご',
+            iso: 'ja-JP',
+            file: 'ja-basic.i18n.json'
+          }
         ],
         defaultLocale: 'ja',
         vueI18n: {
@@ -226,5 +232,8 @@ module.exports = {
     webpack: {
       poll: true
     }
+  },
+  env: {
+    NODE_ENV: process.env.NODE_ENV
   }
 }
