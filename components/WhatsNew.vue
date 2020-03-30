@@ -1,9 +1,5 @@
 <template>
   <a class="whatsNewOuter" :href="url" target="_blank" rel="noopener">
-    <v-icon size="18" class="whatsNewOuter-Icon">
-      mdi-information
-    </v-icon>
-    <time class="time px-2">{{ date }}</time>
     <span class="link">{{ text }}</span>
   </a>
 </template>
@@ -11,10 +7,6 @@
 <script>
 export default {
   props: {
-    date: {
-      type: String,
-      required: true
-    },
     text: {
       type: String,
       required: true
@@ -29,7 +21,7 @@ export default {
 
 <style lang="scss">
 .whatsNewOuter {
-  display: flex;
+  display: block;
   align-items: center;
   flex-wrap: wrap;
   background: $white;
@@ -46,10 +38,5 @@ export default {
 }
 .link {
   @include text-link();
-}
-.time {
-  flex: 0 0 auto;
-  color: $gray-1;
-  font-weight: bold;
 }
 </style>

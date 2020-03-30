@@ -238,5 +238,8 @@ module.exports = {
     webpack: {
       poll: true
     }
+  },
+  env: {
+    NODE_ENV: process.env.NODE_ENV
   }
 }
