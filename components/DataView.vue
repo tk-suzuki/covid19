@@ -99,8 +99,6 @@ export default class DataView extends Vue {
       display: inline-block;
     }
   }
-}
-.DataView {
   &-Inner {
     display: flex;
     flex-flow: column;
