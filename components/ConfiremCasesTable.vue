@@ -265,7 +265,6 @@ export default {
 }
 .item.positive > .gutter > .box::before,
 .item.in-hospital > .gutter > .box::before {
-  border-right: none;
   top: -3px;
   right: calc(-100% - 3px - 3px);
   width: calc(100% + 3px + 3px);
