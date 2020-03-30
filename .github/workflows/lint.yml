@@ -1,4 +1,4 @@
-name: development deploy
+name: lint
 
 on:
   pull_request:
