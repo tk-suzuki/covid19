@@ -54,7 +54,6 @@ export default {
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
 }
 </style>
-=======
   export default {
     computed: {
       environmentName() {
