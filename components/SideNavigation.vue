@@ -310,15 +310,6 @@ export default {
     padding: 20px;
     background-color: $white;
   }
-  &-SocialLinkContainer {
-    display: flex;
-    & img {
-      width: 30px;
-      &:first-of-type {
-        margin-right: 10px;
-      }
-    }
-  }
   &-SponsorLinkContainer {
     overflow: visible;
     padding-top: 0.8rem;
@@ -373,6 +364,15 @@ export default {
     line-height: 1.2;
     color: $gray-1;
     font-weight: bold;
+  }
+  &-SocialLinkContainer {
+    display: flex;
+    & img {
+      width: 30px;
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
   }
 }
 .open {
