@@ -14,7 +14,6 @@
     </v-overlay>
     <v-layout column :class="{loading: !loaded}" >
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
-      Date Range:  {{ getSliderLabels(sliderValue[0]) }} ~ {{ getSliderLabels(sliderValue[1]) }}
       <v-range-slider
         :max="sliderMax"
         :min="0"
