@@ -1,7 +1,6 @@
 <template>
   <v-app class="app">
-    <dev-environment-ribbon v-if="displayRibbon">
-    </dev-environment-ribbon>
+    <dev-environment-ribbon v-if="displayRibbon" />
     <div v-if="loading" class="loader">
       <img src="/logo.svg" :alt="$t('北海道')" />
       <scale-loader color="#1268d8" />
@@ -27,7 +26,7 @@
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
-import DevEnvironmentRibbon from "@/components/DevEnvironmentRibbon"
+import DevEnvironmentRibbon from '@/components/DevEnvironmentRibbon'
 
 export default {
   components: {
@@ -39,6 +38,11 @@ export default {
     return {
       isNaviOpen: false,
       loading: true
+    }
+  },
+  computed: {
+    displayRibbon() {
+      return process.env.NODE_ENV !== 'production'
     }
   },
   mounted() {
@@ -62,11 +66,6 @@ export default {
           href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
         }
       ]
-    }
-  },
-  computed: {
-    displayRibbon() {
-      return process.env.NODE_ENV !== 'production'
     }
   }
 }
