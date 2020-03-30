@@ -30,13 +30,6 @@ export default {
     ScaleLoader,
     SideNavigation
   },
-  head() {
-    return {
-      link: [
-        { rel: 'canonical', href: `https://stopcovid19.hokkaido.dev${this.$route.path}` },
-      ],
-    };
-  },
   data() {
     return {
       isNaviOpen: false,
@@ -52,6 +45,16 @@ export default {
     },
     hideNavi() {
       this.isNaviOpen = false
+    }
+  },
+  head() {
+    return {
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        }
+      ]
     }
   },
   head() {

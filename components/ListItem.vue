@@ -148,6 +148,7 @@ export default class ListItem extends Vue {
       > path:not(:first-of-type) {
         fill: $gray-2;
       }
+
       width: 20px;
       height: 20px;
     }

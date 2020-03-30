@@ -58,12 +58,7 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              src="/twitter.png"
-              width="90px"
-              height="90px"
-              alt="Twitter"
-            />
+            <img src="/twitter.png" width="90px" height="90px" alt="Twitter" />
           </a>
           <a
             href="https://www.facebook.com/Justdouit19/"
@@ -82,21 +77,22 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              src="/github.png"
-              width="90px"
-              height="90px"
-              alt="GitHub"
-            />
+            <img src="/github.png" width="90px" height="90px" alt="GitHub" />
           </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
           <a :href="localePath('/about/#data')" target="_blank" rel="noopener">
-            <span class="no-image-title">{{ $t('北海道（政府）') }}</span><br />
-            <span class="no-image-title">{{ $t('札幌市') }}</span>
-          </a><br />
-          <a class="license" href="//creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener">
+            <span class="no-image-title">{{ $t('北海道（政府）') }}</span
+            ><br />
+            <span class="no-image-title">{{ $t('札幌市') }}</span> </a
+          ><br />
+          <a
+            class="license"
+            href="//creativecommons.org/licenses/by/4.0/deed.ja"
+            target="_blank"
+            rel="noopener"
+          >
             <i18n path="Under {ccByImageTitle}{ccByImage}" tag="span">
               <template #ccByImageTitle>
                 <span class="image-title">{{ $t('CC BY 4.0') }}</span>
@@ -110,8 +106,8 @@
                   :alt="$t('CC BY 4.0')"
                 />
               </template>
-            </i18n>
-          </a><br />
+            </i18n> </a
+          ><br />
           {{ $t('Operations by:') }}<br />
           <a :href="localePath('/about/')" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
@@ -121,8 +117,8 @@
               width="132px"
               height="46.6px"
               :alt="$t('JUST道IT')"
-            />
-          </a><br />
+            /> </a
+          ><br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
@@ -188,8 +184,7 @@ export default {
         },
         {
           title: this.$t('北海道感染症危機管理対策本部会議'),
-          link:
-            'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
+          link: 'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
         },
         // 【東京都主催等】中止または延期するイベント・説明会等
         // 道にまとまった情報がないので一旦コメントアウト
@@ -220,7 +215,7 @@ export default {
           title: this.$t('東京都 新型コロナウイルス感染症対策サイト'),
           link: 'https://stopcovid19.metro.tokyo.lg.jp/',
           divider: true
-        },
+        }
       ]
     },
     isClass() {
@@ -243,7 +238,7 @@ export default {
   position: relative;
   height: 100%;
   background: $white;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
   &-HeadingContainer {
     padding: 1.25em 0 1.25em 1.25em;
     align-items: center;
@@ -260,6 +255,7 @@ export default {
       display: flex;
       align-items: center;
     }
+
     text-decoration: none;
   }
   &-ListContainerIcon {
@@ -298,7 +294,7 @@ export default {
     }
   }
   &-HeadingDivider {
-    margin: 0px 20px 4px;
+    margin: 0 20px 4px;
     @include lessThan($small) {
       display: none;
     }
@@ -325,7 +321,7 @@ export default {
   }
   &-SponsorLinkContainer {
     overflow: visible;
-    padding-top: .8rem;
+    padding-top: 0.8rem;
     white-space: normal;
     font-size: 0.82rem;
     color: $gray-1;
@@ -334,10 +330,10 @@ export default {
       text-decoration: none;
     }
     & a:hover {
-      opacity: .6;
+      opacity: 0.6;
     }
     & img {
-      padding-bottom: .9rem;
+      padding-bottom: 0.9rem;
     }
     & img.justdouit-logo {
       margin: 0 0 0 -3px;
@@ -367,7 +363,7 @@ export default {
     }
     & a.license {
       display: inline-block;
-      margin: -.7rem 0 .2rem 0;
+      margin: -0.7rem 0 0.2rem 0;
     }
   }
   &-Copyright {

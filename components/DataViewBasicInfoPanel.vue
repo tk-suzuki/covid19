@@ -34,6 +34,7 @@
         color: $gray-3;
       }
     }
+
     padding-bottom: 3px;
     &-summary {
       display: inline-block;

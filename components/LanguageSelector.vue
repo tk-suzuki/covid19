@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-select
-      width="100%"
       v-model="currentLocaleCode"
+      width="100%"
       :items="languages"
       item-text="name"
       item-value="code"
@@ -21,7 +21,7 @@ export default {
     }
   },
   watch: {
-    currentLocaleCode: function (val) {
+    currentLocaleCode(val) {
       this.$i18n.setLocale(val)
     }
   }
@@ -94,7 +94,7 @@ export default {
       right: 6px;
       height: 28px;
     }
-    &:before {
+    &::before {
       content: 'Lang:';
       display: inline-block;
       position: absolute;
