@@ -103,14 +103,14 @@ export default {
     }
   },
   mounted() {
-    const main_summary = convertToMainSummary()
-    this.nowpatients = main_summary.nowpatients
-    this.discharges = main_summary.discharges
-    this.losts = main_summary.losts
-    this.serious = main_summary.serious
-    this.milds = main_summary.milds
-    this.currentpatients = main_summary.currentpatients
-    this.inspections = main_summary.inspections
+    const mainSummary = convertToMainSummary()
+    this.nowpatients = mainSummary.nowpatients
+    this.discharges = mainSummary.discharges
+    this.losts = mainSummary.losts
+    this.serious = mainSummary.serious
+    this.milds = mainSummary.milds
+    this.currentpatients = mainSummary.currentpatients
+    this.inspections = mainSummary.inspections
   },
   methods: {
     /** 桁数に応じて位置の調整をする */
