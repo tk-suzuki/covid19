@@ -1,5 +1,10 @@
 <template>
-  <data-view :title="title" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
+  <data-view
+    :title="title"
+    :date="date"
+    :source-from="sourceFrom"
+    :source-link="sourceLink"
+  >
     <img class="CardImg" :src="srcUrl" />
   </data-view>
 </template>

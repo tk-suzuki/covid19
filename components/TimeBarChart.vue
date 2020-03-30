@@ -10,9 +10,9 @@
       <data-selector v-model="dataKind" />
     </template>
     <v-overlay absolute :value="!loaded" justify-center align-center>
-      <scale-loader color="#1268d8"/>
+      <scale-loader color="#1268d8" />
     </v-overlay>
-    <v-layout column :class="{loading: !loaded}" >
+    <v-layout column :class="{ loading: !loaded }">
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
@@ -42,6 +42,7 @@
   margin: 0;
   flex-direction: row-reverse;
   @include font-size(12);
+
   color: $gray-3 !important;
   text-decoration: none;
 }
@@ -149,10 +150,10 @@ export default {
       if (this.dataKind === 'transition') {
         return {
           lText: `${this.chartData.slice(-1)[0].transition.toLocaleString()}`,
-          sText: this.$t(
-            '実績値（前日比：{change} {unit}）',
-            {change: this.displayTransitionRatio, unit: this.unit}
-          ),
+          sText: this.$t('実績値（前日比：{change} {unit}）', {
+            change: this.displayTransitionRatio,
+            unit: this.unit
+          }),
           unit: this.unit
         }
       }
@@ -160,14 +161,11 @@ export default {
         lText: this.chartData[
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
-        sText: this.$t(
-          '{date} 累計値（前日比：{change} {unit}）',
-          {
-            date: this.chartData.slice(-1)[0].label,
-            change: this.displayCumulativeRatio,
-            unit: this.unit
-          }
-        ),
+        sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
+          date: this.chartData.slice(-1)[0].label,
+          change: this.displayCumulativeRatio,
+          unit: this.unit
+        }),
         unit: this.unit
       }
     },

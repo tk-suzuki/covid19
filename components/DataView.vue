@@ -17,22 +17,25 @@
       <div class="DataView-Footer">
         <div class="Footer-Left">
           <div>
-            <v-footer
-              v-if="!loaded"
-              class="DataView-Footer"
-            />
+            <v-footer v-if="!loaded" class="DataView-Footer" />
             <v-footer v-else class="DataView-Footer">
-              <a class="DataView-Footer" target="_blank" rel="noopener" :href="sourceLink">{{ $t('出典: {sourceFrom}', {sourceFrom: sourceFrom}) }} <v-icon size="15">mdi-open-in-new</v-icon></a>
+              <a
+                class="DataView-Footer"
+                target="_blank"
+                rel="noopener"
+                :href="sourceLink"
+                >{{ $t('出典: {sourceFrom}', { sourceFrom: sourceFrom }) }}
+                <v-icon size="15">mdi-open-in-new</v-icon></a
+              >
             </v-footer>
           </div>
           <div v-if="!loaded">
-            <a class="Permalink">
-            </a>
+            <a class="Permalink" />
           </div>
 
           <div v-else>
             <a class="Permalink">
-              {{ $t('{date} 更新', {date: date}) }}
+              {{ $t('{date} 更新', { date: date }) }}
             </a>
           </div>
         </div>
@@ -48,7 +51,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class DataView extends Vue {
   @Prop() private title!: string
   @Prop() private date!: string
-  @Prop() private info!: any// infoは以下の形式のみを許容します {lText:string, sText:string unit:string}
+  @Prop() private info!: any // infoは以下の形式のみを許容します {lText:string, sText:string unit:string}
   @Prop() private sourceFrom!: string
   @Prop() private sourceLink!: string
   @Prop() private loaded!: boolean
@@ -58,6 +61,7 @@ export default class DataView extends Vue {
 <style lang="scss">
 .DataView {
   @include card-container();
+
   height: 100%;
   &-Header {
     display: flex;
@@ -77,7 +81,7 @@ export default class DataView extends Vue {
   &-DataInfo {
     &-summary {
       color: $gray-2;
-      font-family: Hiragino Sans;
+      font-family: Hiragino Sans, sans-serif;
       font-style: normal;
       font-size: 30px;
       line-height: 30px;
@@ -95,8 +99,6 @@ export default class DataView extends Vue {
       display: inline-block;
     }
   }
-}
-.DataView {
   &-Inner {
     display: flex;
     flex-flow: column;
@@ -128,6 +130,7 @@ export default class DataView extends Vue {
   }
   &-Footer {
     @include font-size(12);
+
     padding: 0 !important;
     display: flex;
     justify-content: space-between;
@@ -171,7 +174,7 @@ export default class DataView extends Vue {
         font-size: 1rem;
         z-index: 1;
         > * {
-          padding: 4px 0px;
+          padding: 4px 0;
         }
         > .Close-Button {
           display: flex;

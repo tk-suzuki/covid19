@@ -1,5 +1,10 @@
 <template>
-  <data-view :title="title" :date="date" :source-from="sourceFrom" :source-link="sourceLink">
+  <data-view
+    :title="title"
+    :date="date"
+    :source-from="sourceFrom"
+    :source-link="sourceLink"
+  >
     <template v-slot:button>
       <data-selector v-model="dataKind" />
     </template>
@@ -103,18 +108,22 @@ export default {
       if (this.dataKind === 'transition') {
         return {
           lText: sum(pickLastNumber(this.chartData)).toLocaleString(),
-          sText: this.$t('{date}の合計', {date: this.labels[this.labels.length - 1]}),
+          sText: this.$t('{date}の合計', {
+            date: this.labels[this.labels.length - 1]
+          }),
           unit: this.unit
         }
       }
       return {
         lText: sum(cumulativeSum(this.chartData)).toLocaleString(),
-        sText: this.$t('{date}の全体累計', {date: this.labels[this.labels.length - 1]}),
+        sText: this.$t('{date}の全体累計', {
+          date: this.labels[this.labels.length - 1]
+        }),
         unit: this.unit
       }
     },
     displayData() {
-      const colorArray = ['#1268d8', '#1c8df0'];
+      const colorArray = ['#1268d8', '#1c8df0']
       if (this.dataKind === 'transition') {
         return {
           labels: this.labels,
