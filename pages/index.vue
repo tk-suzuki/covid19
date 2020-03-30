@@ -263,7 +263,7 @@ export default {
           this.current_patients.last_update = response.last_update
           this.current_patients.loaded = true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '現在患者数データ '
         })
@@ -286,7 +286,7 @@ export default {
             unit: this.$t('人')
           }
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '陽性患者数データ '
         })
@@ -320,7 +320,7 @@ export default {
           this.patients.last_update = response.last_update
           this.patients.loaded = true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '陽性患者の属性データ '
         })
@@ -334,7 +334,7 @@ export default {
           this.discharges_summary.last_update = response.last_update
           this.discharges_summary.loaded = true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '治療終了者数データ '
         })
@@ -349,7 +349,7 @@ export default {
           this.inspections.loaded = true
           return true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '検査数データ '
         })
@@ -363,7 +363,7 @@ export default {
           this.contacts.last_update = response.last_update
           this.contacts.loaded = true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '新型コロナコールセンター相談件数データ '
         })
@@ -377,7 +377,7 @@ export default {
           this.querents.last_update = response.last_update
           this.querents.loaded = true
         })
-        .catch(err => {
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '帰国者・接触者電話相談センター相談件数データ '
         })
@@ -392,8 +392,7 @@ export default {
             date: response
           }
         })
-        .catch(err => {
-          console.log(err)
+        .catch(_ => {
           this.failed = true
           this.failed_datas += '最終更新日データ '
         })
