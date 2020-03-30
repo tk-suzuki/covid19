@@ -11,7 +11,10 @@
     "generate": "cross-env NODE_ENV=development nuxt-ts generate",
     "generate:production": "cross-env NODE_ENV=production nuxt-ts generate",
     "test": "echo 'skip tests (there is no test)'",
-    "lint": "eslint './**/*.{js,ts,vue}' --fix"
+    "lint": "eslint './**/*.{js,ts,vue}'",
+    "lint:fix": "eslint './**/*.{js,ts,vue}' --fix",
+    "stylelint": "stylelint '**/*.{css,scss,vue}'",
+    "stylelint:fix": "stylelint --fix '**/*.{css,scss,vue}'"
   },
   "lint-staged": {
     "*.{js,ts,scss,css,vue}": [
