@@ -255,6 +255,8 @@ export default {
               offset: true,
               time: {
                 tooltipFormat: 'MM/DD',
+                unit: 'day',
+                unitStepSize: 1,
                 displayFormats: {
                   day: 'M/D'
                 },
