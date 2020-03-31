@@ -71,7 +71,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
     ]
   },
   /*
@@ -98,7 +99,13 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build', '@nuxtjs/google-analytics'],
+  buildModules: [
+    // まだlintエラーを解消していないので一旦はずしておく
+    // '@nuxtjs/stylelint-module',
+    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/google-analytics'
+  ],
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true
@@ -116,11 +123,59 @@ module.exports = {
     [
       'nuxt-i18n',
       {
-        strategy: 'no_prefix',
+        strategy: 'prefix_except_default',
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected'
+        },
         locales: [
           {
             code: 'ja',
-            iso: 'ja_JP'
+            name: '日本語',
+            iso: 'ja-JP',
+            file: 'ja.i18n.json'
+          },
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en-US',
+            file: 'en.i18n.json'
+          },
+          {
+            code: 'zh-cn',
+            name: '简体中文',
+            iso: 'zh-CN',
+            file: 'zh-cn.i18n.json'
+          },
+          {
+            code: 'zh-tw',
+            name: '繁體中文',
+            iso: 'zh-TW',
+            file: 'zh-tw.i18n.json'
+          },
+          {
+            code: 'ko',
+            name: '한국어',
+            iso: 'ko-KR',
+            file: 'ko.i18n.json'
+          },
+          {
+            code: 'th',
+            name: 'ไทย',
+            iso: 'th-TH',
+            file: 'th.i18n.json'
+          },
+          {
+            code: 'vi',
+            name: 'Tiếng Việt',
+            iso: 'vi-VN',
+            file: 'vi.i18n.json'
+          },
+          {
+            code: 'ja-basic',
+            name: 'やさしい にほんご',
+            iso: 'ja-JP',
+            file: 'ja-basic.i18n.json'
           }
         ],
         defaultLocale: 'ja',
@@ -128,7 +183,9 @@ module.exports = {
           fallbackLocale: 'ja',
           formatFallbackMessages: true
         },
-        vueI18nLoader: true
+        vueI18nLoader: true,
+        lazy: true,
+        langDir: './assets/locales/'
       }
     ],
     'nuxt-svg-loader'
@@ -137,7 +194,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://stopcovid19-dev.hokkaido.dev/api/"
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -179,5 +238,8 @@ module.exports = {
     webpack: {
       poll: true
     }
+  },
+  env: {
+    NODE_ENV: process.env.NODE_ENV
   }
 }

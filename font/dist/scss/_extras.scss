@@ -9,7 +9,7 @@ $mdi-sizes: 18 24 36 48;
 }
 
 .#{$mdi-css-prefix}-dark {
-    &:before {
+    &::before {
         color: rgba(0, 0, 0, 0.54);
     }
     &.#{$mdi-css-prefix}-inactive:before {
@@ -17,7 +17,7 @@ $mdi-sizes: 18 24 36 48;
     }
 }
 .#{$mdi-css-prefix}-light {
-    &:before {
+    &::before {
         color: rgba(255, 255, 255, 1);
     }
     &.#{$mdi-css-prefix}-inactive:before {
@@ -28,11 +28,12 @@ $mdi-sizes: 18 24 36 48;
 $mdi-degrees: 45 90 135 180 225 270 315;
 @each $mdi-degree in $mdi-degrees {
     .#{$mdi-css-prefix}-rotate-#{$mdi-degree}{
-        &:before {
+        &::before {
             -webkit-transform: rotate(#{$mdi-degree}deg);
             -ms-transform: rotate(#{$mdi-degree}deg);
             transform: rotate(#{$mdi-degree}deg);
         }
+
         /*
         // Not included in production
         &.#{$mdi-css-prefix}-flip-h:before {
@@ -54,12 +55,12 @@ $mdi-degrees: 45 90 135 180 225 270 315;
 .#{$mdi-css-prefix}-flip-h:before {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    filter: FlipH;
+    filter: fliph;
     -ms-filter: "FlipH";
 }
 .#{$mdi-css-prefix}-flip-v:before {
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1);
-    filter: FlipV;
+    filter: flipv;
     -ms-filter: "FlipV";
 }

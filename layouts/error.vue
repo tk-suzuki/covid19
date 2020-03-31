@@ -5,18 +5,23 @@
     </h1>
     <div class="Error-BodyContainer">
       <p class="Error-Body">
-        アクセスしようとしたページが見つかりませんでした。<br />ページが移動または削除されたか、URLの入力間違いの可能性があります。
+        {{ $t('アクセスしようとしたページが見つかりませんでした。') }}<br />
+        {{
+          $t(
+            'ページが移動または削除されたか、URLの入力間違いの可能性があります。'
+          )
+        }}
       </p>
       <div class="Error-ButtonContainer">
         <NuxtLink to="/" class="Error-Button">
-          トップページへ戻る
+          {{ $t('トップページへ戻る') }}
         </NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   layout: 'empty',
   props: {
@@ -26,13 +31,13 @@ export default {
     }
   },
   computed: {
-    isNotFound(): boolean {
-      return (this as any).error.statusCode === 404
+    isNotFound() {
+      return this.error.statusCode === 404
     },
-    headingTitle(): string {
+    headingTitle() {
       return this.isNotFound
-        ? 'このページはご利用いただけません'
-        : '現在ご利用できません'
+        ? this.$t('このページはご利用いただけません')
+        : this.$t('現在ご利用できません')
     }
   }
 }
@@ -42,6 +47,7 @@ export default {
 .Error {
   &-Heading {
     @include font-size(30);
+
     color: $gray-2;
     font-weight: normal;
     margin-top: 28px;
@@ -52,6 +58,7 @@ export default {
   &-BodyContainer {
     margin-top: 12px;
     @include card-container();
+
     padding: 20px;
   }
   &-Body {
@@ -63,6 +70,7 @@ export default {
   }
   &-Button {
     @include button-text('md');
+
     text-decoration: none;
     max-width: 300px;
     width: 100%;

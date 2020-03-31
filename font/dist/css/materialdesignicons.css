@@ -7,9 +7,11 @@
   font-style: normal;
 }
 
-.mdi:before,
+.mdi::before,
 .mdi-set {
   display: inline-block;
+
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font: normal normal normal 24px/1 "Material Design Icons";
   font-size: inherit;
   text-rendering: auto;
@@ -46,40 +48,48 @@
   content: "\F156";
 }
 
+.mdi-menu-down::before {
+  content: "\F35D";
+}
+
+.mdi-web::before {
+  content: "\F59F";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;
 }
 
-.mdi-18px.mdi-set, .mdi-18px.mdi:before {
+.mdi-18px.mdi-set, .mdi-18px.mdi::before {
   font-size: 18px;
 }
 
-.mdi-24px.mdi-set, .mdi-24px.mdi:before {
+.mdi-24px.mdi-set, .mdi-24px.mdi::before {
   font-size: 24px;
 }
 
-.mdi-36px.mdi-set, .mdi-36px.mdi:before {
+.mdi-36px.mdi-set, .mdi-36px.mdi::before {
   font-size: 36px;
 }
 
-.mdi-48px.mdi-set, .mdi-48px.mdi:before {
+.mdi-48px.mdi-set, .mdi-48px.mdi::before {
   font-size: 48px;
 }
 
-.mdi-dark:before {
+.mdi-dark::before {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.mdi-dark.mdi-inactive:before {
+.mdi-dark.mdi-inactive::before {
   color: rgba(0, 0, 0, 0.26);
 }
 
-.mdi-light:before {
+.mdi-light::before {
   color: white;
 }
 
-.mdi-light.mdi-inactive:before {
+.mdi-light.mdi-inactive::before {
   color: rgba(255, 255, 255, 0.3);
 }
 
@@ -102,7 +112,7 @@
         */
 }
 
-.mdi-rotate-45:before {
+.mdi-rotate-45::before {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -127,7 +137,7 @@
         */
 }
 
-.mdi-rotate-90:before {
+.mdi-rotate-90::before {
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
@@ -152,7 +162,7 @@
         */
 }
 
-.mdi-rotate-135:before {
+.mdi-rotate-135::before {
   -webkit-transform: rotate(135deg);
   -ms-transform: rotate(135deg);
   transform: rotate(135deg);
@@ -177,7 +187,7 @@
         */
 }
 
-.mdi-rotate-180:before {
+.mdi-rotate-180::before {
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -202,7 +212,7 @@
         */
 }
 
-.mdi-rotate-225:before {
+.mdi-rotate-225::before {
   -webkit-transform: rotate(225deg);
   -ms-transform: rotate(225deg);
   transform: rotate(225deg);
@@ -227,7 +237,7 @@
         */
 }
 
-.mdi-rotate-270:before {
+.mdi-rotate-270::before {
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   transform: rotate(270deg);
@@ -252,27 +262,27 @@
         */
 }
 
-.mdi-rotate-315:before {
+.mdi-rotate-315::before {
   -webkit-transform: rotate(315deg);
   -ms-transform: rotate(315deg);
   transform: rotate(315deg);
 }
 
-.mdi-flip-h:before {
+.mdi-flip-h::before {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-  filter: FlipH;
+  filter: fliph;
   -ms-filter: "FlipH";
 }
 
-.mdi-flip-v:before {
+.mdi-flip-v::before {
   -webkit-transform: scaleY(-1);
   transform: scaleY(-1);
-  filter: FlipV;
+  filter: flipv;
   -ms-filter: "FlipV";
 }
 
-.mdi-spin:before {
+.mdi-spin::before {
   -webkit-animation: mdi-spin 2s infinite linear;
   animation: mdi-spin 2s infinite linear;
 }
@@ -298,5 +308,3 @@
     transform: rotate(359deg);
   }
 }
-
-/*# sourceMappingURL=materialdesignicons.css.map */

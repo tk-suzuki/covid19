@@ -33,10 +33,12 @@ export default class TextCard extends Vue {
 <style lang="scss">
 .TextCard {
   @include card-container();
+
   padding: 20px;
   margin-bottom: 20px;
   &-Heading {
     @include card-h1();
+
     margin-bottom: 12px;
   }
   &-Body {
@@ -44,7 +46,7 @@ export default class TextCard extends Vue {
       @include body-text();
     }
     a {
-      word-break: break-all;
+      word-break: break-word;
       color: $link;
     }
   }

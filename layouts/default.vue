@@ -1,7 +1,8 @@
 <template>
   <v-app class="app">
+    <dev-environment-ribbon v-if="displayRibbon" />
     <div v-if="loading" class="loader">
-      <img src="/logo.svg" alt="北海道" />
+      <img src="/logo.svg" :alt="$t('北海道')" />
       <scale-loader color="#1268d8" />
     </div>
     <div v-else class="appContainer">
@@ -21,25 +22,27 @@
     </div>
   </v-app>
 </template>
+
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
+import DevEnvironmentRibbon from '@/components/DevEnvironmentRibbon'
+
 export default {
   components: {
     ScaleLoader,
-    SideNavigation
-  },
-  head() {
-    return {
-      link: [
-        { rel: 'canonical', href: `https://stopcovid19.hokkaido.dev${this.$route.path}` },
-      ],
-    };
+    SideNavigation,
+    DevEnvironmentRibbon
   },
   data() {
     return {
       isNaviOpen: false,
       loading: true
+    }
+  },
+  computed: {
+    displayRibbon() {
+      return process.env.NODE_ENV !== 'production'
     }
   },
   mounted() {
@@ -56,7 +59,13 @@ export default {
   head() {
     const { htmlAttrs } = this.$nuxtI18nSeo()
     return {
-      htmlAttrs
+      htmlAttrs,
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        }
+      ]
     }
   }
 }
@@ -71,7 +80,7 @@ export default {
   position: relative;
   @include largerThan($small) {
     display: grid;
-    grid-template-columns: 240px auto;
+    grid-template-columns: 268px auto;
   }
   @include largerThan($huge) {
     grid-template-columns: 325px auto;
@@ -83,7 +92,7 @@ export default {
     position: fixed;
     top: 0;
     overflow-y: auto;
-    width: 240px;
+    width: 268px;
     height: 100vh;
   }
 }

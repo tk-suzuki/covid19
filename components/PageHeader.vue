@@ -7,14 +7,33 @@
       {{ title }}
     </h2>
     <div class="date">
-      <span>最終更新 </span><time>{{ date }}</time>
+      <i18n path="最終更新 {updatedDate}" tag="span">
+        <template #updatedDate>
+          <time>{{ date }}</time>
+        </template>
+      </i18n>
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  props: ['title', 'icon', 'date'],
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    icon: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    date: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  }
 }
 </script>
 

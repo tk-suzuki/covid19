@@ -29,10 +29,7 @@
     </v-list-item-action>
     <v-list-item-content class="ListItem-TextContainer">
       <v-list-item-title
-        :class="[
-          'ListItem-Text',
-          isActive(link)
-        ]"
+        :class="['ListItem-Text', isActive(link)]"
         v-text="title"
       />
     </v-list-item-content>
@@ -101,7 +98,41 @@ export default class ListItem extends Vue {
 </script>
 
 <style lang="scss">
+.isActive {
+  color: $blue-1 !important;
+  font-weight: 600;
+}
+svg.isActive {
+  > path:not(:first-of-type) {
+    fill: $blue-1;
+  }
+}
 .ListItem {
+  &-Text {
+    color: $gray-1;
+  }
+  &-IconContainer {
+    margin: 8px 3px 8px 0 !important;
+    > svg {
+      > path:not(:first-of-type) {
+        fill: $gray-2;
+      }
+
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &-Icon {
+    color: $gray-2 !important;
+  }
+  &-TextContainer {
+    display: inline-block;
+    flex: none;
+  }
+  &-ExternalLinkIcon {
+    margin-left: 2px;
+    color: $gray-3 !important;
+  }
   &-Container {
     min-height: 30px;
     padding: 0;
@@ -141,39 +172,6 @@ export default class ListItem extends Vue {
         }
       }
     }
-  }
-  &-Text {
-    color: $gray-1;
-  }
-  &-IconContainer {
-    margin: 8px 3px 8px 0 !important;
-    > svg {
-      > path:not(:first-of-type) {
-        fill: $gray-2;
-      }
-      width: 20px;
-      height: 20px;
-    }
-  }
-  &-Icon {
-    color: $gray-2 !important;
-  }
-  &-TextContainer {
-    display: inline-block;
-    flex: none;
-  }
-  &-ExternalLinkIcon {
-    margin-left: 2px;
-    color: $gray-3 !important;
-  }
-}
-.isActive {
-  color: $blue-1 !important;
-  font-weight: 600;
-}
-svg.isActive {
-  > path:not(:first-of-type) {
-    fill: $blue-1;
   }
 }
 </style>
