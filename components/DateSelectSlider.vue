@@ -1,6 +1,7 @@
 <template>
   <v-range-slider
     v-model="sliderValue"
+    :value="sliderValue"
     label="表示期間"
     :max="sliderMax"
     :min="0"
@@ -41,10 +42,10 @@ export default {
       this.sliderValue = [0, this.sliderMax]
     },
     sliderValue(newValue, oldValue) {
-      if (newValue[0] !== newValue[1]) {
-        this.$emit('sliderInput', newValue)
-      } else {
+      if (Math.abs(newValue[0] - newValue[1]) <= 14) {
         this.sliderValue = oldValue
+      } else {
+        this.$emit('sliderInput', newValue)
       }
     }
   },
