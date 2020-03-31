@@ -258,14 +258,15 @@ export default {
                 displayFormats: {
                   day: 'M/D'
                 },
-                max: this.chartData[this.graphRange[1]].label,
-                min: this.chartData[this.graphRange[0]].label
+                round: 'day'
               },
               stacked: true,
               gridLines: {
                 display: false
               },
               ticks: {
+                max: this.chartData[this.graphRange[1]].label,
+                min: this.chartData[this.graphRange[0]].label,
                 fontSize: 10,
                 maxTicksLimit: 20,
                 fontColor: '#808080'
