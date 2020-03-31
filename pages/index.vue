@@ -280,7 +280,9 @@ export default {
               this.patientsGraph.length - 1
             ].cumulative.toLocaleString(),
             sText: this.$t('{date}の累計', {
-              date: this.patientsGraph[this.patientsGraph.length - 1].label
+              date: this.$moment(
+                this.patientsGraph[this.patientsGraph.length - 1].label
+              ).format('MM/DD')
             }),
             unit: this.$t('人')
           }
