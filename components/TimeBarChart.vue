@@ -20,16 +20,16 @@
         :slider-max="sliderMax"
         @sliderInput="sliderUpdate"
       />
-      <v-expansion-panels flat>
-        <v-expansion-panel v-if="supplement !== ''">
-          <v-expansion-panel-header>
-            {{ $t('補足') }}
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+      <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
+        <ul class="supplementTexts">
+          <li class="supplementText">
+            {{ $t('補足:') }}
+          </li>
+          <li class="supplementText2">
             {{ supplement }}
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
+          </li>
+        </ul>
+      </v-footer>
     </v-layout>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
@@ -139,8 +139,7 @@ export default {
   data() {
     return {
       dataKind: this.defaultDataKind,
-      graphRange: [0, 1],
-      panel: [0]
+      graphRange: [0, 1]
     }
   },
   computed: {
