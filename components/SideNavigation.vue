@@ -33,6 +33,11 @@
       >
         mdi-close
       </v-icon>
+
+      <div class="SideNavigation-LanguageMenu">
+        <LanguageSelector />
+      </div>
+
       <v-list :flat="true">
         <v-container
           v-for="(item, i) in items"
@@ -45,9 +50,7 @@
           <v-divider v-show="item.divider" class="SideNavigation-Divider" />
         </v-container>
       </v-list>
-      <div class="SideNavigation-LanguageMenu">
-        <LanguageSelector />
-      </div>
+
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <!-- <a href="https://line.me/R/ti/p/%40822sysfc" target="_blank" rel="noopener">
