@@ -24,7 +24,6 @@
         </h1>
       </nuxt-link>
     </div>
-    <v-divider class="SideNavigation-HeadingDivider" />
     <div class="sp-none" :class="{ open: isNaviOpen }">
       <v-icon
         class="SideNavigation-ListContainerIcon sp-inline-block"
@@ -33,6 +32,11 @@
       >
         mdi-close
       </v-icon>
+      <div class="SideNavigation-LanguageMenu">
+        <LanguageSelector />
+      </div>
+      <v-divider class="SideNavigation-HeadingDivider" />
+
       <v-list :flat="true">
         <v-container
           v-for="(item, i) in items"
@@ -45,9 +49,7 @@
           <v-divider v-show="item.divider" class="SideNavigation-Divider" />
         </v-container>
       </v-list>
-      <div class="SideNavigation-LanguageMenu">
-        <LanguageSelector />
-      </div>
+
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <!-- <a href="https://line.me/R/ti/p/%40822sysfc" target="_blank" rel="noopener">
@@ -260,7 +262,7 @@ export default {
   }
   &-ListContainerIcon {
     display: none;
-    margin: 24px 16px 0;
+    margin: 24px 16px 24px;
   }
   &-ListItemContainer {
     padding: 2px 20px;
@@ -294,7 +296,7 @@ export default {
     }
   }
   &-HeadingDivider {
-    margin: 0 20px 4px;
+    margin: 12px 20px 4px;
     @include lessThan($small) {
       display: none;
     }
