@@ -3,6 +3,7 @@
     v-model="sliderValue"
     :value="sliderValue"
     label="表示期間"
+    :rules="rules"
     :max="sliderMax"
     :min="0"
     thumb-label="always"
@@ -34,7 +35,12 @@ export default {
   },
   data() {
     return {
-      sliderValue: this.value
+      sliderValue: this.value,
+      rules: [
+        v =>
+          Math.abs(v[0] - v[1]) > 14 ||
+          '表示期間を2週間以下に設定することはできません'
+      ]
     }
   },
   watch: {
