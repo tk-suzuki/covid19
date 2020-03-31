@@ -82,7 +82,7 @@
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <a :href="localePath('/about/#data')" target="_blank" rel="noopener">
+          <a :href="localePath('/about/#data')">
             <span class="no-image-title">{{ $t('北海道（政府）') }}</span
             ><br />
             <span class="no-image-title">{{ $t('札幌市') }}</span> </a
@@ -109,7 +109,7 @@
             </i18n> </a
           ><br />
           {{ $t('Operations by:') }}<br />
-          <a :href="localePath('/about/')" target="_blank" rel="noopener">
+          <a :href="localePath('/about/')">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
