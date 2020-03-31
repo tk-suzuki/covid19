@@ -84,7 +84,7 @@
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <nuxt-link :to="{ path: '/about', hash: '#data' }">
+          <nuxt-link :to="{ path: localePath('/about/'), hash: '#data' }">
             <span class="no-image-title">{{ $t('北海道（政府）') }}</span
             ><br />
             <span class="no-image-title">{{ $t('札幌市') }}</span>
@@ -113,7 +113,7 @@
             </i18n> </a
           ><br />
           {{ $t('Operations by:') }}<br />
-          <nuxt-link :to="{ path: '/about' }">
+          <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
