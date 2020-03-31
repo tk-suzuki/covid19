@@ -1,4 +1,5 @@
 /* undefined */
+
 @font-face {
   font-family: "Material Design Icons";
   src: url("../fonts/materialdesignicons-webfont.eot?v=0.0.1");
@@ -10,8 +11,6 @@
 .mdi::before,
 .mdi-set {
   display: inline-block;
-
-  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font: normal normal normal 24px/1 "Material Design Icons";
   font-size: inherit;
   text-rendering: auto;
@@ -54,6 +53,10 @@
 
 .mdi-web::before {
   content: "\F59F";
+}
+
+.mdi-chevron-down::before {
+  content: "\F140";
 }
 
 .mdi-blank::before {

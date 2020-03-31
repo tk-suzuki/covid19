@@ -5,7 +5,7 @@
     :max="sliderMax"
     :min="0"
     thumb-label="always"
-    style="padding-top: 35px; margin-bottom: -30px"
+    style="padding-top: 35px;"
   >
     <template v-slot:thumb-label="props">
       {{ getSliderLabels(props.value) }}
