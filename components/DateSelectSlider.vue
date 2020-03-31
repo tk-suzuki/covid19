@@ -1,5 +1,12 @@
 <template>
-  <v-range-slider v-model="sliderValue" :max="sliderMax" :min="0">
+  <v-range-slider
+    v-model="sliderValue"
+    label="表示期間"
+    :max="sliderMax"
+    :min="0"
+    thumb-label="always"
+    style="padding-top: 35px; margin-bottom: -30px"
+  >
     <template v-slot:thumb-label="props">
       {{ getSliderLabels(props.value) }}
     </template>
@@ -33,8 +40,12 @@ export default {
     sliderMax() {
       this.sliderValue = [0, this.sliderMax]
     },
-    sliderValue() {
-      this.$emit('sliderInput', this.sliderValue)
+    sliderValue(newValue, oldValue) {
+      if (newValue[0] !== newValue[1]) {
+        this.$emit('sliderInput', newValue)
+      } else {
+        this.sliderValue = oldValue
+      }
     }
   },
   methods: {
