@@ -82,11 +82,13 @@
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <a :href="localePath('/about/#data')">
+          <nuxt-link :to="{ path: '/about', hash: '#data' }">
             <span class="no-image-title">{{ $t('北海道（政府）') }}</span
             ><br />
-            <span class="no-image-title">{{ $t('札幌市') }}</span> </a
-          ><br />
+            <span class="no-image-title">{{ $t('札幌市') }}</span>
+          </nuxt-link>
+
+          <br />
           <a
             class="license"
             href="//creativecommons.org/licenses/by/4.0/deed.ja"
@@ -109,7 +111,7 @@
             </i18n> </a
           ><br />
           {{ $t('Operations by:') }}<br />
-          <a :href="localePath('/about/')">
+          <nuxt-link :to="{ path: '/about' }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
@@ -117,8 +119,10 @@
               width="132px"
               height="46.6px"
               :alt="$t('JUST道IT')"
-            /> </a
-          ><br />
+            />
+          </nuxt-link>
+
+          <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
