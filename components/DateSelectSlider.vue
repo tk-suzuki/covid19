@@ -37,9 +37,7 @@ export default {
     return {
       sliderValue: this.value,
       rules: [
-        v =>
-          Math.abs(v[0] - v[1]) > 14 ||
-          '表示期間を2週間以下に設定することはできません'
+        v => Math.abs(v[0] - v[1]) > 14 || '表示期間の最小範囲は１４日間です'
       ]
     }
   },
