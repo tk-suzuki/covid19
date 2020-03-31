@@ -172,10 +172,10 @@ module.exports = {
             file: 'vi.i18n.json'
           },
           {
-            code: 'ja-basic',
+            code: 'ja-Hira',
             name: 'やさしい にほんご',
             iso: 'ja-JP',
-            file: 'ja-basic.i18n.json'
+            file: 'ja-Hira.i18n.json'
           }
         ],
         defaultLocale: 'ja',
