@@ -80,7 +80,7 @@ export default Vue.extend({
   &::-ms-expand {
     display: none;
   }
-  
+
   border: 1px solid $gray-4;
   // 背景に被せて位置など調整
   z-index: 1;
