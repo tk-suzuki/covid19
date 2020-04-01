@@ -151,7 +151,7 @@ module.exports = {
             file: 'vi.i18n.json'
           },
           {
-            code: 'ja-Hira',
+            code: 'ja-basic',
             name: 'やさしい にほんご',
             iso: 'ja-JP',
             file: 'ja-Hira.i18n.json'
