@@ -159,6 +159,12 @@ export default {
   },
   computed: {
     items() {
+      let covidlink =
+        'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ'
+      if (this.$i18n.locale !== 'ja') {
+        covidlink =
+          'http://www.pref.hokkaido.lg.jp/ss/tsk/promo/coronavirus.htm'
+      }
       return [
         {
           icon: 'mdi-chart-timeline-variant',
@@ -168,8 +174,7 @@ export default {
         {
           icon: 'covid',
           title: this.$t('感染予防と相談窓口'),
-          link:
-            'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ',
+          link: covidlink,
           divider: true
         },
         {
