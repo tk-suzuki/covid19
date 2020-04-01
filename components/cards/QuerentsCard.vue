@@ -7,6 +7,7 @@
       :source-from="$t('DATA-SMART CITY SAPPORO')"
       source-link="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
       :loaded="querents.loaded"
+      title-id="querents"
       :unit="$t('件')"
     />
   </v-col>
