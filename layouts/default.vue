@@ -88,14 +88,24 @@ export default {
         {
           hid: 'author',
           name: 'author',
-          content: this.$t('JUST 道 IT')
+          content: this.$t('JUST道IT')
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.$t(
-            '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。複製・改変が許されたオープンソースライセンスで公開されている、東京都公式新型コロナウイルス対策サイト（https://stopcovid19.metro.tokyo.lg.jp/）の仕組みを利用しています。'
-          )
+          content:
+            this.$t(
+              '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
+            ) +
+            this.$t(
+              '複製・改変が許されたオープンソースライセンスで公開されている、{tokyoCovid19Site}の{tokyoCovid19SiteGitHub}を利用しています。',
+              {
+                tokyoCovid19:
+                  this.$t('東京都公式新型コロナウイルス対策サイト') +
+                  ' (https://stopcovid19.metro.tokyo.lg.jp/)',
+                tokyoCovid19SiteGitHub: this.$t('仕組み')
+              }
+            )
         },
         {
           hid: 'og:site_name',
@@ -126,9 +136,19 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.$t(
-            '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。複製・改変が許されたオープンソースライセンスで公開されている、東京都公式新型コロナウイルス対策サイト（https://stopcovid19.metro.tokyo.lg.jp/）の仕組みを利用しています。'
-          )
+          content:
+            this.$t(
+              '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
+            ) +
+            this.$t(
+              '複製・改変が許されたオープンソースライセンスで公開されている、{tokyoCovid19Site}の{tokyoCovid19SiteGitHub}を利用しています。',
+              {
+                tokyoCovid19:
+                  this.$t('東京都公式新型コロナウイルス対策サイト') +
+                  ' (https://stopcovid19.metro.tokyo.lg.jp/)',
+                tokyoCovid19SiteGitHub: this.$t('仕組み')
+              }
+            )
         },
         {
           hid: 'apple-mobile-web-app-title',
