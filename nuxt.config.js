@@ -130,7 +130,7 @@ module.exports = {
             code: 'zh-tw',
             name: '繁體中文',
             iso: 'zh-TW',
-            file: 'zh-tw.i18n.json'
+            file: 'zh-TW.i18n.json'
           },
           {
             code: 'ko',
