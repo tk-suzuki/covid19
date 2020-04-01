@@ -70,7 +70,14 @@ export default {
   },
   head() {
     return {
-      title: this.$t('お子様をお持ちの皆様へ')
+      title:
+        this.$t('お子様をお持ちの皆様へ') +
+        ' | ' +
+        this.$t('北海道') +
+        ' ' +
+        this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+          mobileBreak: ''
+        })
     }
   }
 }
