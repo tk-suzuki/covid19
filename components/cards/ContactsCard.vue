@@ -14,7 +14,7 @@
 
 <script>
 import TimeBarChart from '@/components/TimeBarChart.vue'
-import formatGraph from '@/utils/formatGraph'
+import formatGraph from '@/utils/formatGraph.ts'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 
 export default {

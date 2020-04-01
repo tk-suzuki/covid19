@@ -19,6 +19,7 @@
 import DataTable from '@/components/DataTable.vue'
 import formatTable from '@/utils/formatTable'
 import convertToDateFromData from '@/utils/convertToDateFromData'
+import formatPatientsSummaryGraph from '@/utils/formatPatientsSummaryGraph'
 
 export default {
   name: 'PatientsCard',
@@ -31,12 +32,18 @@ export default {
         loaded: false,
         last_update: ''
       },
+      sumInfoOfPatients: {
+        lText: '',
+        sText: '',
+        unit: ''
+      },
       patientsTable: {},
       convertToDateFromData
     }
   },
   created() {
     this.getPatientsTableFromAPI()
+    this.getPatientsSummaryGraphFromAPI()
   },
   methods: {
     async getPatientsTableFromAPI() {
@@ -69,6 +76,27 @@ export default {
         })
         .catch(_ => {
           this.$emit('failed', '陽性患者の属性データ ')
+        })
+    },
+    async getPatientsSummaryGraphFromAPI() {
+      await this.$axios
+        .$get('/patients_summary.json')
+        .then(response => {
+          const patientsGraph = formatPatientsSummaryGraph(response.data)
+          this.sumInfoOfPatients = {
+            lText: patientsGraph[
+              patientsGraph.length - 1
+            ].cumulative.toLocaleString(),
+            sText: this.$t('{date}の累計', {
+              date: this.$moment(
+                patientsGraph[patientsGraph.length - 1].label
+              ).format('MM/DD')
+            }),
+            unit: this.$t('人')
+          }
+        })
+        .catch(_ => {
+          this.$emit('failed2', '陽性患者数データ ')
         })
     }
   }

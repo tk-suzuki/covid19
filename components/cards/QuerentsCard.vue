@@ -1,13 +1,13 @@
 <template>
-  <v-col class="DataCard" cols="12" md="6">
+  <v-col cols="12" md="6" class="DataCard">
     <time-bar-chart
-      :chart-data="contactsGraph"
-      :date="convertToDateFromData(contacts.last_update)"
-      :loaded="contacts.loaded"
+      :title="$t('帰国者・接触者電話相談センター相談件数(札幌市保健所値)')"
+      :chart-data="querentsGraph"
+      :date="convertToDateFromData(querents.last_update)"
       :source-from="$t('DATA-SMART CITY SAPPORO')"
-      :title="$t('新型コロナコールセンター相談件数(札幌市保健所値)')"
-      :unit="$t('件')"
       source-link="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
+      :loaded="querents.loaded"
+      :unit="$t('件')"
     />
   </v-col>
 </template>

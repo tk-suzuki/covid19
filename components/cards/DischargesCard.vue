@@ -22,7 +22,6 @@
 import TimeBarChart from '@/components/TimeBarChart.vue'
 import formatDischargesSummaryGraph from '@/utils/formatDischargesSummaryGraph'
 import convertToDateFromData from '@/utils/convertToDateFromData'
-import formatPatientsSummaryGraph from '@/utils/formatPatientsSummaryGraph'
 
 export default {
   name: 'DischargesCard',
@@ -34,11 +33,6 @@ export default {
       discharges_summary: {
         loaded: false,
         last_update: ''
-      },
-      sumInfoOfPatients: {
-        lText: '',
-        sText: '',
-        unit: ''
       },
       dischargesGraph: [],
       convertToDateFromData
@@ -59,27 +53,6 @@ export default {
         })
         .catch(_ => {
           this.$emit('failed', '治療終了者数データ ')
-        })
-    },
-    async getPatientsSummaryGraphFromAPI() {
-      await this.$axios
-        .$get('/patients_summary.json')
-        .then(response => {
-          const patientsGraph = formatPatientsSummaryGraph(response.data)
-          this.sumInfoOfPatients = {
-            lText: patientsGraph[
-              patientsGraph.length - 1
-            ].cumulative.toLocaleString(),
-            sText: this.$t('{date}の累計', {
-              date: this.$moment(
-                patientsGraph[patientsGraph.length - 1].label
-              ).format('MM/DD')
-            }),
-            unit: this.$t('人')
-          }
-        })
-        .catch(_ => {
-          this.$emit('failed2', '陽性患者数データ ')
         })
     }
   }
