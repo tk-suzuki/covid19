@@ -401,7 +401,14 @@ export default {
   },
   head() {
     return {
-      title: this.$t('道内の最新感染動向')
+      title:
+        this.$t('道内の最新感染動向') +
+        ' | ' +
+        this.$t('北海道') +
+        ' ' +
+        this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+          mobileBreak: ''
+        })
     }
   }
 }

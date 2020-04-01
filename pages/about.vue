@@ -296,18 +296,27 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import { MetaInfo } from 'vue-meta'
 import TextCard from '@/components/TextCard.vue'
 
-export default {
+export default Vue.extend({
   components: {
     TextCard
   },
-  head() {
+  head(): MetaInfo {
     return {
-      title: '当サイトについて'
+      title:
+        this.$t('当サイトについて') +
+        ' | ' +
+        this.$t('北海道') +
+        ' ' +
+        this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+          mobileBreak: ''
+        })
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

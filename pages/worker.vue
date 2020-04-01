@@ -42,7 +42,14 @@ export default {
   },
   head() {
     return {
-      title: this.$t('企業の皆様・はたらく皆様へ.title')
+      title:
+        this.$t('企業の皆様・はたらく皆様へ.title') +
+        ' | ' +
+        this.$t('北海道') +
+        ' ' +
+        this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+          mobileBreak: ''
+        })
     }
   }
 }

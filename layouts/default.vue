@@ -35,9 +35,19 @@ export default {
     DevEnvironmentRibbon
   },
   data() {
+    let hasNavigation = true
+    let loading = true
+    if (this.$route.query.embed === 'true') {
+      hasNavigation = false
+      loading = false
+    } else if (this.$route.query.ogp === 'true') {
+      hasNavigation = false
+      loading = false
+    }
     return {
-      isNaviOpen: false,
-      loading: true
+      hasNavigation,
+      loading,
+      isNaviOpen: false
     }
   },
   computed: {
@@ -57,13 +67,78 @@ export default {
     }
   },
   head() {
-    const { htmlAttrs } = this.$nuxtI18nSeo()
+    const { htmlAttrs, meta } = this.$nuxtI18nSeo()
+    const ogLocale =
+      meta && meta.length > 0
+        ? meta[0]
+        : {
+            hid: 'og:locale',
+            name: 'og:locale',
+            content: this.$i18n.locale
+          }
     return {
       htmlAttrs,
       link: [
         {
           rel: 'canonical',
           href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        }
+      ],
+      meta: [
+        {
+          hid: 'author',
+          name: 'author',
+          content: this.$t('JUST 道 IT')
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t(
+            '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。複製・改変が許されたオープンソースライセンスで公開されている、東京都公式新型コロナウイルス対策サイト（https://stopcovid19.metro.tokyo.lg.jp/）の仕組みを利用しています。'
+          )
+        },
+        {
+          hid: 'og:site_name',
+          property: 'og:site_name',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        },
+        ogLocale,
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.$t(
+            '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。複製・改変が許されたオープンソースライセンスで公開されている、東京都公式新型コロナウイルス対策サイト（https://stopcovid19.metro.tokyo.lg.jp/）の仕組みを利用しています。'
+          )
+        },
+        {
+          hid: 'apple-mobile-web-app-title',
+          name: 'apple-mobile-web-app-title',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
         }
       ]
     }
