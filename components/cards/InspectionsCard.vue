@@ -14,6 +14,7 @@
       "
       :title="$t('検査数')"
       :unit="$t('人')"
+      title-id="inspections"
       source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
     />
   </v-col>

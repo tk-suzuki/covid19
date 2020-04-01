@@ -8,6 +8,7 @@
       :source-from="$t('北海道 オープンデータポータル')"
       :title="$t('陽性患者数')"
       :unit="$t('人')"
+      title-id="patients-summary"
       source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
     />
   </v-col>

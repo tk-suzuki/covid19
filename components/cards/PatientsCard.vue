@@ -10,6 +10,7 @@
       :sort-desc="true"
       :source-from="$t('北海道 オープンデータポータル')"
       :title="$t('陽性患者の属性')"
+      title-id="patients"
       source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
     />
   </v-col>

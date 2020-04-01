@@ -7,6 +7,7 @@
       :source-from="$t('DATA-SMART CITY SAPPORO')"
       :title="$t('新型コロナコールセンター相談件数(札幌市保健所値)')"
       :unit="$t('件')"
+      title-id="contacts"
       source-link="https://ckan.pf-sapporo.jp/dataset/covid_19_soudan"
     />
   </v-col>

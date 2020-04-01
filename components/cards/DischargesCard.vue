@@ -12,6 +12,7 @@
         )
       "
       :title="$t('治療終了者数')"
+      title-id="discharges-summary"
       :unit="$t('人')"
       source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
     />

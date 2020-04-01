@@ -13,6 +13,7 @@
       "
       :title="$t('現在患者数')"
       :unit="$t('人')"
+      title-id="current-patients"
       source-link="https://www.harp.lg.jp/opendata/dataset/1369.html"
     />
   </v-col>
