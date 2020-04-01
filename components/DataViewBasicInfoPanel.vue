@@ -18,7 +18,7 @@
       padding-top: 10px;
       &-summary {
         display: inline-block;
-        font-family: Hiragino Sans;
+        font-family: Hiragino Sans, sans-serif;
         font-style: normal;
         font-size: 30px;
         line-height: 30px;
@@ -34,10 +34,11 @@
         color: $gray-3;
       }
     }
+
     padding-bottom: 3px;
     &-summary {
       display: inline-block;
-      font-family: Hiragino Sans;
+      font-family: Hiragino Sans, sans-serif;
       font-style: normal;
       font-size: 30px;
       line-height: 15px;

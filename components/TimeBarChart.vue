@@ -10,10 +10,16 @@
       <data-selector v-model="dataKind" />
     </template>
     <v-overlay absolute :value="!loaded" justify-center align-center>
-      <scale-loader color="#1268d8"/>
+      <scale-loader color="#1268d8" />
     </v-overlay>
-    <v-layout column :class="{loading: !loaded}" >
+    <v-layout column :class="{ loading: !loaded }">
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
+      <date-select-slider
+        :chart-data="chartData"
+        :value="[0, sliderMax]"
+        :slider-max="sliderMax"
+        @sliderInput="sliderUpdate"
+      />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
           <li class="supplementText">
@@ -42,6 +48,7 @@
   margin: 0;
   flex-direction: row-reverse;
   @include font-size(12);
+
   color: $gray-3 !important;
   text-decoration: none;
 }
@@ -67,9 +74,16 @@ import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import DateSelectSlider from '@/components/DateSelectSlider.vue'
 
 export default {
-  components: { DataView, DataSelector, DataViewBasicInfoPanel, ScaleLoader },
+  components: {
+    DataView,
+    DataSelector,
+    DataViewBasicInfoPanel,
+    DateSelectSlider,
+    ScaleLoader
+  },
   props: {
     title: {
       type: String,
@@ -124,10 +138,17 @@ export default {
   },
   data() {
     return {
-      dataKind: this.defaultDataKind
+      dataKind: this.defaultDataKind,
+      graphRange: [0, 1]
     }
   },
   computed: {
+    sliderMax() {
+      if (!this.chartData || this.chartData.length === 0) {
+        return 1
+      }
+      return this.chartData.length - 1
+    },
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
       const lastDayBefore = this.chartData.slice(-2)[0].cumulative
@@ -149,10 +170,10 @@ export default {
       if (this.dataKind === 'transition') {
         return {
           lText: `${this.chartData.slice(-1)[0].transition.toLocaleString()}`,
-          sText: this.$t(
-            '実績値（前日比：{change} {unit}）',
-            {change: this.displayTransitionRatio, unit: this.unit}
-          ),
+          sText: this.$t('実績値（前日比：{change} {unit}）', {
+            change: this.displayTransitionRatio,
+            unit: this.unit
+          }),
           unit: this.unit
         }
       }
@@ -160,14 +181,11 @@ export default {
         lText: this.chartData[
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
-        sText: this.$t(
-          '{date} 累計値（前日比：{change} {unit}）',
-          {
-            date: this.chartData.slice(-1)[0].label,
-            change: this.displayCumulativeRatio,
-            unit: this.unit
-          }
-        ),
+        sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
+          date: this.$moment(this.chartData.slice(-1)[0].label).format('MM/DD'),
+          change: this.displayCumulativeRatio,
+          unit: this.unit
+        }),
         unit: this.unit
       }
     },
@@ -210,7 +228,11 @@ export default {
     },
     displayOption() {
       const unit = this.unit
+      if (!this.chartData || this.chartData.length === 0) {
+        return {}
+      }
       return {
+        animation: false,
         tooltips: {
           displayColors: false,
           callbacks: {
@@ -229,11 +251,24 @@ export default {
         scales: {
           xAxes: [
             {
+              type: 'time',
+              offset: true,
+              time: {
+                tooltipFormat: 'MM/DD',
+                unit: 'day',
+                unitStepSize: 1,
+                displayFormats: {
+                  day: 'M/D'
+                },
+                round: 'day'
+              },
               stacked: true,
               gridLines: {
                 display: false
               },
               ticks: {
+                max: this.chartData[this.graphRange[1]].label,
+                min: this.chartData[this.graphRange[0]].label,
                 fontSize: 10,
                 maxTicksLimit: 20,
                 fontColor: '#808080'
@@ -260,6 +295,9 @@ export default {
     }
   },
   methods: {
+    sliderUpdate(sliderValue) {
+      this.graphRange = sliderValue
+    },
     formatDayBeforeRatio(dayBeforeRatio) {
       switch (Math.sign(dayBeforeRatio)) {
         case 1:
