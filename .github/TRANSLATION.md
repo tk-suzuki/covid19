@@ -9,9 +9,9 @@ https://www.transifex.com/just-dou-it/stopcovid-19-hokkaido/
 
 Please join our team from `Join team` button. You will need to make/login account before joining our team.
 
-![](/img/Join team.png)
+![](.github/img/Join team.png)
 
-![](/img/Select language.png)
+![](.github/img/Select language.png)
 
 After joining, please go to the dashboard page.
 
@@ -19,11 +19,11 @@ https://www.transifex.com/just-dou-it/stopcovid-19-hokkaido/dashboard/
 
 Press `Translate` button on the language resource that you want to contribute.
 
-![](/img/Translate Button.png)
+![](.github/img/Translate Button.png)
 
 You will see the translation editor. Search the text you want to translate from the left pane, then enter the translated text in the text area on the right pane.
 
-![](/img/Translate Editor.png)
+![](.github/img/Translate Editor.png)
 
 After editing, please press `Save Translation` button. 
 
