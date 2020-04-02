@@ -34,7 +34,7 @@ for lang in ("ja", "en", "zh-cn", "zh-tw", "ko", "ja-basic"):
       )
     )
     path = path.replace("/cards/", "").replace("/", "_")
-    time.sleep(30)
+    time.sleep(3)
     driver.save_screenshot(
       "ogp/{}.png".format(
         path if lang == "ja" else "{}/{}".format(lang, path)
