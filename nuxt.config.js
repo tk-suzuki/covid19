@@ -18,11 +18,6 @@ module.exports = {
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://stopcovid19.hokkaido.dev/ogp.png'
-      },
-      {
         hid: 'fb:app_id',
         property: 'fb:app_id',
         content: '503748220262414'
@@ -42,11 +37,6 @@ module.exports = {
         property: 'twitter:player',
         content: '@just_douit'
       },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://stopcovid19.hokkaido.dev/ogp.png'
-      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -153,6 +153,16 @@ export default {
             )
         },
         {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
+        },
+        {
           hid: 'apple-mobile-web-app-title',
           name: 'apple-mobile-web-app-title',
           content:
