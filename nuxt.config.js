@@ -141,7 +141,7 @@ module.exports = {
             file: 'vi.i18n.json'
           },
           {
-            code: 'ja-Hira',
+            code: 'ja-basic',
             name: 'やさしい にほんご',
             iso: 'ja-JP',
             file: 'ja-Hira.i18n.json'
@@ -201,18 +201,15 @@ module.exports = {
   generate: {
     fallback: true,
     routes() {
-      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'ko', 'ja-basic']
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']
       const pages = [
-        '/cards/details-of-confirmed-cases',
-        '/cards/details-of-tested-cases',
-        '/cards/number-of-confirmed-cases',
-        '/cards/attributes-of-confirmed-cases',
-        '/cards/number-of-tested',
-        '/cards/number-of-inspection-persons',
-        '/cards/number-of-reports-to-covid19-telephone-advisory-center',
-        '/cards/number-of-reports-to-covid19-consultation-desk',
-        '/cards/predicted-number-of-toei-subway-passengers',
-        '/cards/agency'
+        '/cards/contacts',
+        '/cards/current-patients',
+        '/cards/discharges-summary',
+        '/cards/inspections',
+        '/cards/patients',
+        '/cards/patients-summary',
+        '/cards/querents'
       ]
 
       const routes = []
