@@ -126,14 +126,11 @@ export default {
   },
   head() {
     const url = 'https://stopcovid19.hokkaido.dev'
-    /*
     const timestamp = new Date().getTime()
     const ogpImage =
       this.$i18n.locale === 'ja'
         ? `${url}/ogp/${this.$route.params.card}.png?t=${timestamp}`
         : `${url}/ogp/${this.$i18n.locale}/${this.$route.params.card}.png?t=${timestamp}`
-        */
-    const ogpImage = 'https://stopcovid19.hokkaido.dev/ogp.png'
     const description = `${this.updatedAt} | ${this.$t(
       '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
     )}`
