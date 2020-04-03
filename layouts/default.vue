@@ -1,11 +1,13 @@
 <template>
   <v-app class="app">
     <dev-environment-ribbon v-if="displayRibbon" />
-    <div v-if="loading" class="loader">
-      <img src="/logo.svg" :alt="$t('北海道')" />
-      <scale-loader color="#1268d8" />
-    </div>
-    <div v-else class="appContainer">
+    <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
+      <div class="loader">
+        <img :alt="$t('北海道')" src="/logo.svg" />
+        <scale-loader color="#1268d8" />
+      </div>
+    </v-overlay>
+    <div v-if="hasNavigation" class="appContainer">
       <div class="naviContainer">
         <SideNavigation
           :is-navi-open="isNaviOpen"
@@ -19,6 +21,11 @@
           <nuxt />
         </v-container>
       </div>
+    </div>
+    <div v-else class="embed">
+      <v-container>
+        <nuxt />
+      </v-container>
     </div>
   </v-app>
 </template>
@@ -37,21 +44,27 @@ export default {
   data() {
     let hasNavigation = true
     let loading = true
+    let getOGP = false
     if (this.$route.query.embed === 'true') {
       hasNavigation = false
       loading = false
     } else if (this.$route.query.ogp === 'true') {
+      getOGP = true
       hasNavigation = false
       loading = false
     }
     return {
       hasNavigation,
       loading,
+      getOGP,
       isNaviOpen: false
     }
   },
   computed: {
     displayRibbon() {
+      if (this.getOGP) {
+        return false
+      }
       return process.env.NODE_ENV !== 'production'
     }
   },
@@ -232,6 +245,15 @@ export default {
   img {
     display: block;
     margin: 0 auto 20px;
+  }
+}
+
+.embed {
+  .container {
+    padding: 0 !important;
+  }
+  .DataCard {
+    padding: 0 !important;
   }
 }
 </style>
