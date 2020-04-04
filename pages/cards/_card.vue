@@ -124,7 +124,7 @@ export default {
     }
     return data
   },
-  beforeCreate() {
+  created() {
     this.$router.push({
       path: this.localePath('/'),
       hash: this.$route.params.card

@@ -39,7 +39,7 @@ export default {
       convertToDateFromData
     }
   },
-  beforeCreate() {
+  created() {
     this.getInscpectionsGraphFromAPI()
   },
   methods: {

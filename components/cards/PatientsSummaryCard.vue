@@ -34,7 +34,7 @@ export default {
       convertToDateFromData
     }
   },
-  beforeCreate() {
+  created() {
     this.getPatientsSummaryGraphFromAPI()
   },
   methods: {

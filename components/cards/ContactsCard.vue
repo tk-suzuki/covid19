@@ -33,7 +33,7 @@ export default {
       convertToDateFromData
     }
   },
-  beforeCreate() {
+  created() {
     this.getContactsGraphFromAPI()
   },
   methods: {

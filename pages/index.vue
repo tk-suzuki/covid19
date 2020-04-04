@@ -72,7 +72,7 @@ export default {
     }
     return data
   },
-  beforeCreate() {
+  created() {
     this.getLastUpdateFromAPI()
   },
   methods: {
