@@ -48,14 +48,18 @@ jobs:
         with:
           name: ogp
       - name: Commit files
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git pull https://x-access-token:${github_token}@github.com/codeforsapporo/covid19 development
           cp -rp ogp static/
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add static
-          git commit -m "Add changes"
+          git add static/ogp
+          git commit -m "OGP Update"
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
+        env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'development'
+        run: |
+          git push https://x-access-token:${github_token}@github.com/codeforsapporo/covid19 development
+          
