@@ -1,13 +1,8 @@
 name: OGP Builder
 
 on:
-  pull_request:
-    branches:
-      - development
-  push:
-    branches:
-      - master
-      - staging
+  schedule:
+    - cron:  '0 0-17,19-23 * * *'
 
 jobs:
   build:
