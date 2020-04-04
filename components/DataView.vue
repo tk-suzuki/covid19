@@ -75,7 +75,7 @@
                 @click="copyLink"
               >
                 <picture>
-                  <img src="/link.png" alt="link" class="icon-resize line" />
+                  <img src="/link.png" alt="link" class="icon-resize link" />
                 </picture>
               </button>
 
@@ -431,6 +431,9 @@ export default Vue.extend({
             }
             &.line {
               color: #1cb127;
+            }
+            &.b-link {
+              color: #000;
             }
           }
         }
