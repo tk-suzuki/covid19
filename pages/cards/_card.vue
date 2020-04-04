@@ -141,8 +141,7 @@ export default {
     }
   },
   head() {
-    const url =
-      'https://deploy-preview-355--code-for-sappor-covid19-deploy-preview-free.netlify.com'
+    const url = 'https://stopcovid19-dev.hokkaido.dev/'
     const timestamp = new Date().getTime()
     const ogpImage =
       this.$i18n.locale === 'ja'

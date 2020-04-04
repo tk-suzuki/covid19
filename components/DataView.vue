@@ -38,7 +38,7 @@
             </a>
           </div>
         </div>
-        <div v-if="this.$route.query.embed != 'true'" class="Footer-Right">
+        <div v-if="this.$route.query.embed !== 'true'" class="Footer-Right">
           <button class="DataView-Share-Opener" @click="toggleShareMenu">
             <v-icon>
               mdi-share-variant
