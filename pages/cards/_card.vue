@@ -124,6 +124,12 @@ export default {
     }
     return data
   },
+  beforeCreate() {
+    this.$router.push({
+      path: this.localePath('/'),
+      hash: this.$route.params.card
+    })
+  },
   head() {
     const url =
       'https://deploy-preview-355--code-for-sappor-covid19-deploy-preview-free.netlify.com'

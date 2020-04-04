@@ -12,13 +12,13 @@
     />
 
     <v-row class="DataBlock">
-      <current-patients-card />
-      <discharges-card />
-      <patients-summary-card />
-      <patients-card />
-      <inspections-card />
-      <contacts-card />
-      <querents-card />
+      <current-patients-card id="current-patients" />
+      <discharges-card id="discharges" />
+      <patients-summary-card id="patients-summary" />
+      <patients-card id="patients" />
+      <inspections-card id="inspections" />
+      <contacts-card id="contacts" />
+      <querents-card id="querents" />
     </v-row>
     <v-dialog v-model="failed" flat>
       <v-alert type="error">
