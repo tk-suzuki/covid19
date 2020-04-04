@@ -131,7 +131,7 @@ export default {
   created() {
     if (
       this.$route.query.embed !== 'true' &&
-      this.$route.query.embed !== 'true'
+      this.$route.query.ogp !== 'true'
     ) {
       this.$router.push({
         path: this.localePath('/'),
