@@ -41,8 +41,7 @@ export default {
   },
   data() {
     const data = {
-      title: '',
-      updatedAt: ''
+      title: ''
     }
     return data
   },
@@ -50,82 +49,26 @@ export default {
     switch (this.$route.params.card) {
       case 'contacts':
         this.title = this.$t('新型コロナコールセンター相談件数(札幌市保健所値)')
-        this.$axios
-          .$get('/contacts.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'current-patients':
         this.title = this.$t('現在患者数')
-        this.$axios
-          .$get('/current_patients.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'discharges-summary':
         this.title = this.$t('治療終了者数')
-        this.$axios
-          .$get('/discharges_summary.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'inspections':
         this.title = this.$t('検査数')
-        this.$axios
-          .$get('/inspections.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'patients':
         this.title = this.$t('陽性患者の属性')
-        this.$axios
-          .$get('/patients.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'patients-summary':
         this.title = this.$t('陽性患者数')
-        this.$axios
-          .$get('/patients_summary.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
       case 'querents':
         this.title = this.$t(
           '帰国者・接触者電話相談センター相談件数(札幌市保健所値)'
         )
-        this.$axios
-          .$get('/querents.json')
-          .then(response => {
-            this.updatedAt = response.last_update
-          })
-          .catch(_ => {
-            this.updatedAt = ''
-          })
         break
     }
   },
@@ -147,7 +90,7 @@ export default {
       this.$i18n.locale === 'ja'
         ? `${url}/ogp/${this.$route.params.card}.png?t=${timestamp}`
         : `${url}/ogp/${this.$i18n.locale}/${this.$route.params.card}.png?t=${timestamp}`
-    const description = `${this.updatedAt} | ${this.$t(
+    const description = `${this.$t(
       '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
     )}`
     return {
