@@ -42,7 +42,7 @@ export default {
       convertToDateFromData
     }
   },
-  created() {
+  beforeCreate() {
     this.getPatientsTableFromAPI()
     this.getPatientsSummaryGraphFromAPI()
   },

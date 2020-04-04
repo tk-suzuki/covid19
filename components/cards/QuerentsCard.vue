@@ -33,7 +33,7 @@ export default {
       convertToDateFromData
     }
   },
-  created() {
+  beforeCreate() {
     this.getQuerentsGraphFromAPI()
   },
   methods: {
