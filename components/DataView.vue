@@ -40,22 +40,9 @@
         </div>
         <div v-if="this.$route.query.embed != 'true'" class="Footer-Right">
           <button class="DataView-Share-Opener" @click="toggleShareMenu">
-            <svg
-              width="14"
-              height="16"
-              viewBox="0 0 14 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              :aria-label="$t('{title}のグラフをシェア', { title })"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M7.59999 3.5H9.5L7 0.5L4.5 3.5H6.39999V11H7.59999V3.5ZM8.5 5.75H11.5C11.9142 5.75 12.25 6.08579 12.25 6.5V13.5C12.25 13.9142 11.9142 14.25 11.5 14.25H2.5C2.08579 14.25 1.75 13.9142 1.75 13.5V6.5C1.75 6.08579 2.08579 5.75 2.5 5.75H5.5V4.5H2.5C1.39543 4.5 0.5 5.39543 0.5 6.5V13.5C0.5 14.6046 1.39543 15.5 2.5 15.5H11.5C12.6046 15.5 13.5 14.6046 13.5 13.5V6.5C13.5 5.39543 12.6046 4.5 11.5 4.5H8.5V5.75Z"
-                fill="#808080"
-              />
-            </svg>
+            <v-icon>
+              mdi-share-variant
+            </v-icon>
           </button>
           <div
             v-if="displayShare"
@@ -77,12 +64,21 @@
                 :aria-label="$t('クリップボードにコピー')"
                 @click="copyEmbedCode"
               >
-                far fa-clipboard
+                mdi-content-copy
               </v-icon>
               {{ graphEmbedValue }}
             </div>
 
             <div class="Buttons">
+              <button
+                :aria-label="$t('シェアリンクをコピー', { title })"
+                @click="copyLink"
+              >
+                <picture>
+                  <img src="/link.png" alt="link" class="icon-resize line" />
+                </picture>
+              </button>
+
               <button
                 :aria-label="$t('LINEで{title}のグラフをシェア', { title })"
                 @click="line"
@@ -122,6 +118,15 @@
         </div>
       </div>
     </div>
+    <div v-if="showOverlay" class="overlay">
+      <div class="overlay-text">
+        {{ overlayContent }}
+      </div>
+      <v-footer class="DataView-Footer">
+        <time :datetime="date">{{ $t('{date} 更新', { date }) }}</time>
+        <slot name="footer" />
+      </v-footer>
+    </div>
   </v-card>
 </template>
 
@@ -160,7 +165,8 @@ export default Vue.extend({
     return {
       openGraphEmbed: false,
       displayShare: false,
-      showOverlay: false
+      showOverlay: false,
+      overlayContent: ''
     }
   },
   computed: {
@@ -198,10 +204,24 @@ export default Vue.extend({
     isCopyAvailable() {
       return !!navigator.clipboard
     },
+    copyLink() {
+      const self = this
+      navigator.clipboard.writeText(this.permalink(true, false)).then(() => {
+        self.closeShareMenu()
+        self.overlayContent = this.$t('共有リンクをコピーしました') as string
+        self.showOverlay = true
+        setTimeout(() => {
+          self.showOverlay = false
+        }, 2000)
+      })
+    },
     copyEmbedCode() {
       const self = this
       navigator.clipboard.writeText(this.graphEmbedValue).then(() => {
         self.closeShareMenu()
+        self.overlayContent = this.$t(
+          '埋め込みリンクをコピーしました'
+        ) as string
         self.showOverlay = true
         setTimeout(() => {
           self.showOverlay = false
@@ -235,7 +255,7 @@ export default Vue.extend({
         '&url=' +
         this.permalink(true) +
         '&' +
-        'hashtags=JUST道IT'
+        'hashtags=JUST道IT,StopCovid19JP,COVID19Japan'
       window.open(url)
     },
     facebook() {

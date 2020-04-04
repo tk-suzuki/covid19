@@ -38,5 +38,13 @@
   {
     "name": "chevron-down",
     "codepoint": "F140"
+  },
+  {
+    "name": "content-copy",
+    "codepoint": "F18F"
+  },
+  {
+    "name": "share-variant",
+    "codepoint": "F497"
   }
 ]
