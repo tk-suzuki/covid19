@@ -1,5 +1,9 @@
 <template>
-  <div v-if="$route.query.embed === 'true' || $route.query.ogp === 'true'">
+  <div
+    v-show="
+      this.$route.query.embed === 'true' || this.$route.query.ogp === 'true'
+    "
+  >
     <current-patients-card
       v-if="this.$route.params.card === 'current-patients'"
     />
@@ -125,7 +129,10 @@ export default {
     return data
   },
   created() {
-    if (this.$route.query.embed !== 'true') {
+    if (
+      this.$route.query.embed !== 'true' &&
+      this.$route.query.embed !== 'true'
+    ) {
       this.$router.push({
         path: this.localePath('/'),
         hash: this.$route.params.card
