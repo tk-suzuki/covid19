@@ -128,7 +128,8 @@ export default {
     }
     return data
   },
-  created() {
+  mounted() {
+    alert(this.$route.params.card)
     if (
       this.$route.query.embed !== 'true' &&
       this.$route.query.ogp !== 'true'
