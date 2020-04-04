@@ -40,6 +40,13 @@ export default {
     CurrentPatientsCard
   },
   data() {
+    const data = {
+      title: '',
+      updatedAt: ''
+    }
+    return data
+  },
+  created() {
     let title, updatedAt
     switch (this.$route.params.card) {
       case 'contacts':
@@ -122,11 +129,8 @@ export default {
           })
         break
     }
-    const data = {
-      title,
-      updatedAt
-    }
-    return data
+    this.title = title
+    this.updatedAt = updatedAt
   },
   mounted() {
     if (
