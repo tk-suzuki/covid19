@@ -47,90 +47,87 @@ export default {
     return data
   },
   created() {
-    let title, updatedAt
     switch (this.$route.params.card) {
       case 'contacts':
-        title = this.$t('新型コロナコールセンター相談件数(札幌市保健所値)')
+        this.title = this.$t('新型コロナコールセンター相談件数(札幌市保健所値)')
         this.$axios
           .$get('/contacts.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'current-patients':
-        title = this.$t('現在患者数')
+        this.title = this.$t('現在患者数')
         this.$axios
           .$get('/current_patients.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'discharges-summary':
-        title = this.$t('治療終了者数')
+        this.title = this.$t('治療終了者数')
         this.$axios
           .$get('/discharges_summary.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'inspections':
-        title = this.$t('検査数')
+        this.title = this.$t('検査数')
         this.$axios
           .$get('/inspections.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'patients':
-        title = this.$t('陽性患者の属性')
+        this.title = this.$t('陽性患者の属性')
         this.$axios
           .$get('/patients.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'patients-summary':
-        title = this.$t('陽性患者数')
+        this.title = this.$t('陽性患者数')
         this.$axios
           .$get('/patients_summary.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
       case 'querents':
-        title = this.$t(
+        this.title = this.$t(
           '帰国者・接触者電話相談センター相談件数(札幌市保健所値)'
         )
         this.$axios
           .$get('/querents.json')
           .then(response => {
-            updatedAt = response.last_update
+            this.updatedAt = response.last_update
           })
           .catch(_ => {
-            updatedAt = ''
+            this.updatedAt = ''
           })
         break
     }
-    this.title = title
-    this.updatedAt = updatedAt
   },
   mounted() {
     if (
