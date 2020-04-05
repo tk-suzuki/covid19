@@ -208,7 +208,7 @@ export default Vue.extend({
       const self = this
       navigator.clipboard.writeText(this.permalink(true, false)).then(() => {
         self.closeShareMenu()
-        self.overlayContent = this.$t('共有リンクをコピーしました') as string
+        self.overlayContent = this.$t('シェアリンクをコピーしました') as string
         self.showOverlay = true
         setTimeout(() => {
           self.showOverlay = false
