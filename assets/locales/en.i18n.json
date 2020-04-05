@@ -351,7 +351,7 @@
   "QRコード": "QR Code",
   "※最新の情報はWebページをご覧ください": "For the latest updates please see the website",
   "表示期間の最小範囲は１４日間です": "The minimum display period is 14 days.",
-  "表示期間": "Display Period",
+  "表示期間": "Display period",
   "他地域 新型コロナウイルス感染症対策サイト一覧": "List of other area COVID-19 information sites",
   "{title}のグラフをシェア": "Share the graph of {title}",
   "閉じる": "Close",
@@ -359,8 +359,8 @@
   "LINEで{title}のグラフをシェア": "Share the graph of {title} with LINE",
   "Twitterで{title}のグラフをシェア": "Share the graph of {title} with Twitter",
   "facebookで{title}のグラフをシェア": "Share the graph of {title} with Facebook",
-  "埋め込み用コード": "Embed Code",
-  "シェアリンクをコピー": "Share Link",
+  "埋め込み用コード": "Embed code",
+  "シェアリンクをコピー": "Copy the share link",
   "埋め込み用コードをコピーしました": "Copied the embed code",
   "シェアリンクをコピーしました": "Copied the share link"
 }
