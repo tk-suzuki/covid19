@@ -1,8 +1,8 @@
 name: OGP Builder
 
 on:
-  schedule:
-    - cron:  '0 0-17,19-23 * * *'
+  push:
+    branches: master
 
 jobs:
   build:
