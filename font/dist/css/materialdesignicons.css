@@ -54,6 +54,18 @@
   content: "\F59F";
 }
 
+.mdi-chevron-down::before {
+  content: "\F140";
+}
+
+.mdi-content-copy::before {
+  content: "\F18F";
+}
+
+.mdi-share-variant::before {
+  content: "\F497";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;

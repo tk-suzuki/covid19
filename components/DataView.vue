@@ -17,49 +17,269 @@
       <div class="DataView-Footer">
         <div class="Footer-Left">
           <div>
-            <v-footer
-              v-if="!loaded"
-              class="DataView-Footer"
-            />
+            <v-footer v-if="!loaded" class="DataView-Footer" />
             <v-footer v-else class="DataView-Footer">
-              <a class="DataView-Footer" target="_blank" rel="noopener" :href="sourceLink">{{ $t('出典: {sourceFrom}', {sourceFrom: sourceFrom}) }} <v-icon size="15">mdi-open-in-new</v-icon></a>
+              <a
+                class="DataView-Footer"
+                target="_blank"
+                rel="noopener"
+                :href="sourceLink"
+                >{{ $t('出典: {sourceFrom}', { sourceFrom: sourceFrom }) }}
+                <v-icon size="15">mdi-open-in-new</v-icon></a
+              >
             </v-footer>
           </div>
           <div v-if="!loaded">
-            <a class="Permalink">
-            </a>
+            <a class="Permalink" />
           </div>
-
           <div v-else>
             <a class="Permalink">
-              {{ $t('{date} 更新', {date: date}) }}
+              {{ $t('{date} 更新', { date: date }) }}
             </a>
+          </div>
+        </div>
+        <div v-if="this.$route.query.embed !== 'true'" class="Footer-Right">
+          <button class="DataView-Share-Opener" @click="toggleShareMenu">
+            <v-icon>
+              mdi-share-variant
+            </v-icon>
+          </button>
+          <div
+            v-if="displayShare"
+            class="DataView-Share-Buttons py-2"
+            @click="stopClosingShareMenu"
+          >
+            <div class="Close-Button">
+              <v-icon :aria-label="$t('閉じる')" @click="closeShareMenu">
+                mdi-close
+              </v-icon>
+            </div>
+
+            <h4>{{ $t('埋め込み用コード') }}</h4>
+
+            <div class="EmbedCode">
+              <v-icon
+                v-if="isCopyAvailable()"
+                class="EmbedCode-Copy"
+                :aria-label="$t('クリップボードにコピー')"
+                @click="copyEmbedCode"
+              >
+                mdi-content-copy
+              </v-icon>
+              {{ graphEmbedValue }}
+            </div>
+
+            <div class="Buttons">
+              <button
+                :aria-label="$t('シェアリンクをコピー', { title })"
+                @click="copyLink"
+              >
+                <picture>
+                  <img src="/link.png" alt="link" class="icon-resize link" />
+                </picture>
+              </button>
+
+              <button
+                :aria-label="$t('LINEで{title}のグラフをシェア', { title })"
+                @click="line"
+              >
+                <picture>
+                  <img src="/line.png" alt="LINE" class="icon-resize line" />
+                </picture>
+              </button>
+
+              <button
+                :aria-label="$t('Twitterで{title}のグラフをシェア', { title })"
+                @click="twitter"
+              >
+                <picture>
+                  <img
+                    src="/twitter.png"
+                    alt="Twitter"
+                    class="icon-resize twitter"
+                  />
+                </picture>
+              </button>
+
+              <button
+                :aria-label="$t('facebookで{title}のグラフをシェア', { title })"
+                @click="facebook"
+              >
+                <picture>
+                  <img
+                    src="/facebook.png"
+                    alt="facebook"
+                    class="icon-resize facebook"
+                  />
+                </picture>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div v-if="showOverlay" class="overlay">
+      <div class="overlay-text">
+        {{ overlayContent }}
+      </div>
+      <v-footer class="DataView-Footer">
+        <time :datetime="date">{{ $t('{date} 更新', { date }) }}</time>
+        <slot name="footer" />
+      </v-footer>
+    </div>
   </v-card>
 </template>
 
-<i18n src="./DataView.i18n.json"></i18n>
-
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
 
-@Component
-export default class DataView extends Vue {
-  @Prop() private title!: string
-  @Prop() private date!: string
-  @Prop() private info!: any// infoは以下の形式のみを許容します {lText:string, sText:string unit:string}
-  @Prop() private sourceFrom!: string
-  @Prop() private sourceLink!: string
-  @Prop() private loaded!: boolean
-}
+export default Vue.extend({
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    titleId: {
+      type: String,
+      default: ''
+    },
+    date: {
+      type: String,
+      default: ''
+    },
+    info: {},
+    loaded: {
+      type: Boolean,
+      default: false
+    },
+    sourceFrom: {
+      type: String,
+      default: ''
+    },
+    sourceLink: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      openGraphEmbed: false,
+      displayShare: false,
+      showOverlay: false,
+      overlayContent: ''
+    }
+  },
+  computed: {
+    formattedDate(): string {
+      return ''
+    },
+    graphEmbedValue(): string {
+      const graphEmbedValue =
+        '<iframe width="560" height="315" src="' +
+        this.permalink(true, true) +
+        '" frameborder="0"></iframe>'
+      return graphEmbedValue
+    }
+  },
+  watch: {
+    displayShare(isShow: boolean) {
+      if (isShow) {
+        document.documentElement.addEventListener('click', this.toggleShareMenu)
+      } else {
+        document.documentElement.removeEventListener(
+          'click',
+          this.toggleShareMenu
+        )
+      }
+    }
+  },
+  methods: {
+    toggleShareMenu(e: Event) {
+      e.stopPropagation()
+      this.displayShare = !this.displayShare
+    },
+    closeShareMenu() {
+      this.displayShare = false
+    },
+    isCopyAvailable() {
+      return !!navigator.clipboard
+    },
+    copyLink() {
+      const self = this
+      navigator.clipboard.writeText(this.permalink(true, false)).then(() => {
+        self.closeShareMenu()
+        self.overlayContent = this.$t('シェアリンクをコピーしました') as string
+        self.showOverlay = true
+        setTimeout(() => {
+          self.showOverlay = false
+        }, 2000)
+      })
+    },
+    copyEmbedCode() {
+      const self = this
+      navigator.clipboard.writeText(this.graphEmbedValue).then(() => {
+        self.closeShareMenu()
+        self.overlayContent = this.$t(
+          '埋め込み用コードをコピーしました'
+        ) as string
+        self.showOverlay = true
+        setTimeout(() => {
+          self.showOverlay = false
+        }, 2000)
+      })
+    },
+    stopClosingShareMenu(e: Event) {
+      e.stopPropagation()
+    },
+    permalink(host: boolean = false, embed: boolean = false) {
+      const timestamp = new Date().getTime()
+      let permalink = '/cards/' + this.titleId
+      if (embed) {
+        permalink = permalink + '?embed=true'
+      } else {
+        permalink = permalink + '?t=' + timestamp
+      }
+      permalink = this.localePath(permalink)
+      if (host) {
+        permalink = location.protocol + '//' + location.host + permalink
+      }
+      return permalink
+    },
+    twitter() {
+      const url =
+        'https://twitter.com/intent/tweet?text=' +
+        this.title +
+        ' / ' +
+        this.$t('北海道') +
+        ' ' +
+        this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+          mobileBreak: ''
+        }) +
+        '&url=' +
+        this.permalink(true) +
+        '&' +
+        'hashtags=JUST道IT,StopCovid19JP,COVID19Japan'
+      window.open(url)
+    },
+    facebook() {
+      const url =
+        'https://www.facebook.com/sharer.php?u=' + this.permalink(true)
+      window.open(url)
+    },
+    line() {
+      const url =
+        'https://social-plugins.line.me/lineit/share?url=' +
+        this.permalink(true)
+      window.open(url)
+    }
+  }
+})
 </script>
 
 <style lang="scss">
 .DataView {
   @include card-container();
+
   height: 100%;
   &-Header {
     display: flex;
@@ -79,7 +299,7 @@ export default class DataView extends Vue {
   &-DataInfo {
     &-summary {
       color: $gray-2;
-      font-family: Hiragino Sans;
+      font-family: Hiragino Sans, sans-serif;
       font-style: normal;
       font-size: 30px;
       line-height: 30px;
@@ -97,8 +317,6 @@ export default class DataView extends Vue {
       display: inline-block;
     }
   }
-}
-.DataView {
   &-Inner {
     display: flex;
     flex-flow: column;
@@ -130,6 +348,7 @@ export default class DataView extends Vue {
   }
   &-Footer {
     @include font-size(12);
+
     padding: 0 !important;
     display: flex;
     justify-content: space-between;
@@ -173,7 +392,7 @@ export default class DataView extends Vue {
         font-size: 1rem;
         z-index: 1;
         > * {
-          padding: 4px 0px;
+          padding: 4px 0;
         }
         > .Close-Button {
           display: flex;
@@ -215,6 +434,9 @@ export default class DataView extends Vue {
             }
             &.line {
               color: #1cb127;
+            }
+            &.b-link {
+              color: #000;
             }
           }
         }

@@ -1,7 +1,13 @@
 <template>
   <div :class="wrapperClass">
     <div class="PrinterButton">
-      <v-btn outlined color="#00a040" href="/print/flow" target="_blank">
+      <v-btn
+        outlined
+        color="#00a040"
+        href="/print/flow"
+        target="_blank"
+        rel="noopener"
+      >
         <div class="PrinterButton-PrinterIcon">
           <PrinterIcon />
         </div>
@@ -40,33 +46,33 @@
 </i18n>
 
 <script>
-  import PrinterIcon from '@/static/printer.svg'
-  export default {
-    components: {
-      PrinterIcon
-    },
-    props: {
-      wrapperClass: {
-        type: String,
-        required: false,
-        default: ''
-      }
+import PrinterIcon from '@/static/printer.svg'
+export default {
+  components: {
+    PrinterIcon
+  },
+  props: {
+    wrapperClass: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
+}
 </script>
 
 <style lang="scss">
-  .PrinterButton {
-    &-Text {
-      @include lessThan($small) {
-        display: none;
-      }
-    }
-    &-PrinterIcon {
-      margin-top: 3px;
-      @include largerThan($small) {
-        padding-right: 7px;
-      }
+.PrinterButton {
+  &-Text {
+    @include lessThan($small) {
+      display: none;
     }
   }
+  &-PrinterIcon {
+    margin-top: 3px;
+    @include largerThan($small) {
+      padding-right: 7px;
+    }
+  }
+}
 </style>

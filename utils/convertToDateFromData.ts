@@ -1,5 +1,5 @@
 export default (data: any) => {
-  if(data){
+  if (data) {
     const dateint = Date.parse(data)
     const date = new Date(dateint)
     const month = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -20,9 +20,7 @@ export default (data: any) => {
       ':' +
       sec
     return datestr
-  }
-  else {
-    return ""
+  } else {
+    return ''
   }
 }
-

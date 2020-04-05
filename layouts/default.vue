@@ -1,10 +1,13 @@
 <template>
   <v-app class="app">
-    <div v-if="loading" class="loader">
-      <img src="/logo.svg" :alt="$t('北海道')" />
-      <scale-loader color="#1268d8" />
-    </div>
-    <div v-else class="appContainer">
+    <dev-environment-ribbon v-if="displayRibbon" />
+    <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
+      <div class="loader">
+        <img :alt="$t('北海道')" src="/logo.svg" />
+        <scale-loader color="#1268d8" />
+      </div>
+    </v-overlay>
+    <div v-if="hasNavigation" class="appContainer">
       <div class="naviContainer">
         <SideNavigation
           :is-navi-open="isNaviOpen"
@@ -19,30 +22,50 @@
         </v-container>
       </div>
     </div>
+    <div v-else class="embed">
+      <v-container>
+        <nuxt />
+      </v-container>
+    </div>
   </v-app>
 </template>
-
-<i18n src="./default.i18n.json"></i18n>
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
+import DevEnvironmentRibbon from '@/components/DevEnvironmentRibbon'
+
 export default {
   components: {
     ScaleLoader,
-    SideNavigation
-  },
-  head() {
-    return {
-      link: [
-        { rel: 'canonical', href: `https://stopcovid19.hokkaido.dev${this.$route.path}` },
-      ],
-    };
+    SideNavigation,
+    DevEnvironmentRibbon
   },
   data() {
+    let hasNavigation = true
+    let loading = true
+    let getOGP = false
+    if (this.$route.query.embed === 'true') {
+      hasNavigation = false
+      loading = false
+    } else if (this.$route.query.ogp === 'true') {
+      getOGP = true
+      hasNavigation = false
+      loading = false
+    }
     return {
-      isNaviOpen: false,
-      loading: true
+      hasNavigation,
+      loading,
+      getOGP,
+      isNaviOpen: false
+    }
+  },
+  computed: {
+    displayRibbon() {
+      if (this.getOGP) {
+        return false
+      }
+      return process.env.NODE_ENV !== 'production'
     }
   },
   mounted() {
@@ -57,9 +80,112 @@ export default {
     }
   },
   head() {
-    const { htmlAttrs } = this.$nuxtI18nSeo()
+    const { htmlAttrs, meta } = this.$nuxtI18nSeo()
+    const ogLocale =
+      meta && meta.length > 0
+        ? meta[0]
+        : {
+            hid: 'og:locale',
+            name: 'og:locale',
+            content: this.$i18n.locale
+          }
     return {
-      htmlAttrs
+      htmlAttrs,
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        }
+      ],
+      meta: [
+        {
+          hid: 'author',
+          name: 'author',
+          content: this.$t('JUST道IT')
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            this.$t(
+              '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
+            ) +
+            '' +
+            this.$t(
+              '複製・改変が許されたオープンソースライセンスで公開されている、{tokyoCovid19Site}の{tokyoCovid19SiteGitHub}を利用しています。',
+              {
+                tokyoCovid19:
+                  this.$t('東京都公式新型コロナウイルス対策サイト') +
+                  ' ( https://stopcovid19.metro.tokyo.lg.jp/ )',
+                tokyoCovid19SiteGitHub: this.$t('仕組み')
+              }
+            )
+        },
+        {
+          hid: 'og:site_name',
+          property: 'og:site_name',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://stopcovid19.hokkaido.dev${this.$route.path}`
+        },
+        ogLocale,
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:
+            this.$t(
+              '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
+            ) +
+            ' ' +
+            this.$t(
+              '複製・改変が許されたオープンソースライセンスで公開されている、{tokyoCovid19Site}の{tokyoCovid19SiteGitHub}を利用しています。',
+              {
+                tokyoCovid19:
+                  this.$t('東京都公式新型コロナウイルス対策サイト') +
+                  ' ( https://stopcovid19.metro.tokyo.lg.jp/ )',
+                tokyoCovid19SiteGitHub: this.$t('仕組み')
+              }
+            )
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
+        },
+        {
+          hid: 'apple-mobile-web-app-title',
+          name: 'apple-mobile-web-app-title',
+          content:
+            this.$t('北海道') +
+            ' ' +
+            this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+              mobileBreak: ''
+            })
+        }
+      ]
     }
   }
 }
@@ -119,6 +245,15 @@ export default {
   img {
     display: block;
     margin: 0 auto 20px;
+  }
+}
+
+.embed {
+  .container {
+    padding: 0 !important;
+  }
+  .DataCard {
+    padding: 0 !important;
   }
 }
 </style>

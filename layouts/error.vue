@@ -6,7 +6,11 @@
     <div class="Error-BodyContainer">
       <p class="Error-Body">
         {{ $t('アクセスしようとしたページが見つかりませんでした。') }}<br />
-        {{ $t('ページが移動または削除されたか、URLの入力間違いの可能性があります。') }}
+        {{
+          $t(
+            'ページが移動または削除されたか、URLの入力間違いの可能性があります。'
+          )
+        }}
       </p>
       <div class="Error-ButtonContainer">
         <NuxtLink to="/" class="Error-Button">
@@ -16,8 +20,6 @@
     </div>
   </div>
 </template>
-
-<i18n src="./error.i18n.json"></i18n>
 
 <script>
 export default {
@@ -45,6 +47,7 @@ export default {
 .Error {
   &-Heading {
     @include font-size(30);
+
     color: $gray-2;
     font-weight: normal;
     margin-top: 28px;
@@ -55,6 +58,7 @@ export default {
   &-BodyContainer {
     margin-top: 12px;
     @include card-container();
+
     padding: 20px;
   }
   &-Body {
@@ -66,6 +70,7 @@ export default {
   }
   &-Button {
     @include button-text('md');
+
     text-decoration: none;
     max-width: 300px;
     width: 100%;

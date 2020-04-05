@@ -24,7 +24,6 @@
         </h1>
       </nuxt-link>
     </div>
-    <v-divider class="SideNavigation-HeadingDivider" />
     <div class="sp-none" :class="{ open: isNaviOpen }">
       <v-icon
         class="SideNavigation-ListContainerIcon sp-inline-block"
@@ -33,6 +32,11 @@
       >
         mdi-close
       </v-icon>
+      <div class="SideNavigation-LanguageMenu">
+        <LanguageSelector />
+      </div>
+      <v-divider class="SideNavigation-HeadingDivider" />
+
       <v-list :flat="true">
         <v-container
           v-for="(item, i) in items"
@@ -45,9 +49,7 @@
           <v-divider v-show="item.divider" class="SideNavigation-Divider" />
         </v-container>
       </v-list>
-      <div class="SideNavigation-LanguageMenu">
-        <LanguageSelector />
-      </div>
+
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <!-- <a href="https://line.me/R/ti/p/%40822sysfc" target="_blank" rel="noopener">
@@ -58,12 +60,7 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              src="/twitter.png"
-              width="90px"
-              height="90px"
-              alt="Twitter"
-            />
+            <img src="/twitter.png" width="90px" height="90px" alt="Twitter" />
           </a>
           <a
             href="https://www.facebook.com/Justdouit19/"
@@ -82,21 +79,24 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              src="/github.png"
-              width="90px"
-              height="90px"
-              alt="GitHub"
-            />
+            <img src="/github.png" width="90px" height="90px" alt="GitHub" />
           </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <a :href="localePath('/about/#data')" target="_blank" rel="noopener">
-            <span class="no-image-title">{{ $t('北海道（政府）') }}</span><br />
+          <nuxt-link :to="{ path: localePath('/about/'), hash: '#data' }">
+            <span class="no-image-title">{{ $t('北海道（政府）') }}</span
+            ><br />
             <span class="no-image-title">{{ $t('札幌市') }}</span>
-          </a><br />
-          <a class="license" href="//creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener">
+          </nuxt-link>
+
+          <br />
+          <a
+            class="license"
+            href="//creativecommons.org/licenses/by/4.0/deed.ja"
+            target="_blank"
+            rel="noopener"
+          >
             <i18n path="Under {ccByImageTitle}{ccByImage}" tag="span">
               <template #ccByImageTitle>
                 <span class="image-title">{{ $t('CC BY 4.0') }}</span>
@@ -110,10 +110,10 @@
                   :alt="$t('CC BY 4.0')"
                 />
               </template>
-            </i18n>
-          </a><br />
+            </i18n> </a
+          ><br />
           {{ $t('Operations by:') }}<br />
-          <a :href="localePath('/about/')" target="_blank" rel="noopener">
+          <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
@@ -122,7 +122,9 @@
               height="46.6px"
               :alt="$t('JUST道IT')"
             />
-          </a><br />
+          </nuxt-link>
+
+          <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
@@ -139,9 +141,6 @@
     </div>
   </div>
 </template>
-
-<i18n src="./SideNavigation.i18n.json"></i18n>
-<i18n src="./SponsorLinks.i18n.json"></i18n>
 
 <script>
 import ListItem from '@/components/ListItem'
@@ -160,6 +159,12 @@ export default {
   },
   computed: {
     items() {
+      let covidlink =
+        'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ'
+      if (this.$i18n.locale !== 'ja') {
+        covidlink =
+          'http://www.pref.hokkaido.lg.jp/ss/tsk/promo/coronavirus.htm'
+      }
       return [
         {
           icon: 'mdi-chart-timeline-variant',
@@ -169,8 +174,7 @@ export default {
         {
           icon: 'covid',
           title: this.$t('感染予防と相談窓口'),
-          link:
-            'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ',
+          link: covidlink,
           divider: true
         },
         {
@@ -185,14 +189,13 @@ export default {
         },
         {
           icon: 'mdi-domain',
-          title: this.$t('企業の皆様・はたらく皆様へ'),
+          title: this.$t('企業の皆様・はたらく皆様へ.link'),
           link: this.localePath('/worker'),
           divider: true
         },
         {
           title: this.$t('北海道感染症危機管理対策本部会議'),
-          link:
-            'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
+          link: 'http://www.pref.hokkaido.lg.jp/ss/tkk/koronataisakukaigi.htm'
         },
         // 【東京都主催等】中止または延期するイベント・説明会等
         // 道にまとまった情報がないので一旦コメントアウト
@@ -221,9 +224,14 @@ export default {
         },
         {
           title: this.$t('東京都 新型コロナウイルス感染症対策サイト'),
-          link: 'https://stopcovid19.metro.tokyo.lg.jp/',
-          divider: true
+          link: 'https://stopcovid19.metro.tokyo.lg.jp/'
         },
+        {
+          title: this.$t('他地域 新型コロナウイルス感染症対策サイト一覧'),
+          link:
+            'https://github.com/tokyo-metropolitan-gov/covid19/blob/development/FORKED_SITES.md',
+          divider: true
+        }
       ]
     },
     isClass() {
@@ -246,7 +254,7 @@ export default {
   position: relative;
   height: 100%;
   background: $white;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
   &-HeadingContainer {
     padding: 1.25em 0 1.25em 1.25em;
     align-items: center;
@@ -263,11 +271,12 @@ export default {
       display: flex;
       align-items: center;
     }
+
     text-decoration: none;
   }
   &-ListContainerIcon {
     display: none;
-    margin: 24px 16px 0;
+    margin: 24px 16px 24px;
   }
   &-ListItemContainer {
     padding: 2px 20px;
@@ -301,7 +310,7 @@ export default {
     }
   }
   &-HeadingDivider {
-    margin: 0px 20px 4px;
+    margin: 12px 20px 4px;
     @include lessThan($small) {
       display: none;
     }
@@ -317,18 +326,9 @@ export default {
     padding: 20px;
     background-color: $white;
   }
-  &-SocialLinkContainer {
-    display: flex;
-    & img {
-      width: 30px;
-      &:first-of-type {
-        margin-right: 10px;
-      }
-    }
-  }
   &-SponsorLinkContainer {
     overflow: visible;
-    padding-top: .8rem;
+    padding-top: 0.8rem;
     white-space: normal;
     font-size: 0.82rem;
     color: $gray-1;
@@ -337,10 +337,10 @@ export default {
       text-decoration: none;
     }
     & a:hover {
-      opacity: .6;
+      opacity: 0.6;
     }
     & img {
-      padding-bottom: .9rem;
+      padding-bottom: 0.9rem;
     }
     & img.justdouit-logo {
       margin: 0 0 0 -3px;
@@ -370,7 +370,7 @@ export default {
     }
     & a.license {
       display: inline-block;
-      margin: -.7rem 0 .2rem 0;
+      margin: -0.7rem 0 0.2rem 0;
     }
   }
   &-Copyright {
@@ -380,6 +380,15 @@ export default {
     line-height: 1.2;
     color: $gray-1;
     font-weight: bold;
+  }
+  &-SocialLinkContainer {
+    display: flex;
+    & img {
+      width: 30px;
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
   }
 }
 .open {
