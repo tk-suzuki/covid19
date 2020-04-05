@@ -5,6 +5,7 @@
     :loaded="loaded"
     :source-from="sourceFrom"
     :source-link="sourceLink"
+    :title-id="titleId"
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
@@ -134,6 +135,11 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    titleId: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data() {
