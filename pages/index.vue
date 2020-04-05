@@ -17,7 +17,9 @@
       <patients-summary-card id="patients-summary" />
       <patients-card id="patients" />
       <inspections-card id="inspections" />
+      <!--
       <contacts-card id="contacts" />
+      -->
       <querents-card id="querents" />
     </v-row>
     <v-dialog v-model="failed" flat>
@@ -38,7 +40,7 @@ import convertToDateFromData from '@/utils/convertToDateFromData.ts'
 import DischargesCard from '@/components/cards/DischargesCard.vue'
 import PatientsSummaryCard from '@/components/cards/PatientsSummaryCard.vue'
 import PatientsCard from '@/components/cards/PatientsCard.vue'
-import ContactsCard from '@/components/cards/ContactsCard.vue'
+// import ContactsCard from '@/components/cards/ContactsCard.vue'
 import QuerentsCard from '@/components/cards/QuerentsCard.vue'
 import CurrentPatientsCard from '@/components/cards/CurrentPatientsCard.vue'
 import InspectionsCard from '@/components/cards/InspectionsCard.vue'
@@ -48,7 +50,7 @@ export default {
     InspectionsCard,
     CurrentPatientsCard,
     QuerentsCard,
-    ContactsCard,
+    // ContactsCard,
     PatientsCard,
     PatientsSummaryCard,
     DischargesCard,
