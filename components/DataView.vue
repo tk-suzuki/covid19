@@ -232,9 +232,12 @@ export default Vue.extend({
       e.stopPropagation()
     },
     permalink(host: boolean = false, embed: boolean = false) {
+      const timestamp = new Date().getTime()
       let permalink = '/cards/' + this.titleId
       if (embed) {
         permalink = permalink + '?embed=true'
+      } else {
+        permalink = permalink + '?t=' + timestamp
       }
       permalink = this.localePath(permalink)
       if (host) {
