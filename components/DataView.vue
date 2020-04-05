@@ -220,7 +220,7 @@ export default Vue.extend({
       navigator.clipboard.writeText(this.graphEmbedValue).then(() => {
         self.closeShareMenu()
         self.overlayContent = this.$t(
-          '埋め込みリンクをコピーしました'
+          '埋め込み用コードをコピーしました'
         ) as string
         self.showOverlay = true
         setTimeout(() => {
