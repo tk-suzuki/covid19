@@ -17,8 +17,10 @@ module.exports = {
     }],
     'prettier/prettier': [
       'error', {
-        'semi': false,
-        'singleQuote': true
+        semi: false,
+        singleQuote: true,
+        endOfLine:'auto',
+        trailingComma: "none"
       }
     ],
     'tsdoc/syntax': 'error'
