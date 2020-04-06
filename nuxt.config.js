@@ -63,10 +63,6 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
-    {
-      src: '@/plugins/vue-apexchart.js',
-      ssr: false
-    },
     '@/plugins/datetime-formatter.js'
   ],
   /*
@@ -185,15 +181,13 @@ module.exports = {
    /*
   ** Build configuration
   */
-   //build: {
-   //  vendor : ['vue-apexchart'],
-
-     /*
-     ** You can extend webpack config here
-     */
-//    extend (config, ctx) {
-  //  }
-  //},
+  // build: {
+  //   /*
+  //   ** You can extend webpack config here
+  //   */
+  //   extend (config, ctx) {
+  //   }
+  // },
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
     "theme_color": "#1268d8",
