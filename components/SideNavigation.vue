@@ -24,7 +24,6 @@
         </h1>
       </nuxt-link>
     </div>
-    <v-divider class="SideNavigation-HeadingDivider" />
     <div class="sp-none" :class="{ open: isNaviOpen }">
       <v-icon
         class="SideNavigation-ListContainerIcon sp-inline-block"
@@ -33,6 +32,11 @@
       >
         mdi-close
       </v-icon>
+      <div class="SideNavigation-LanguageMenu">
+        <LanguageSelector />
+      </div>
+      <v-divider class="SideNavigation-HeadingDivider" />
+
       <v-list :flat="true">
         <v-container
           v-for="(item, i) in items"
@@ -45,9 +49,7 @@
           <v-divider v-show="item.divider" class="SideNavigation-Divider" />
         </v-container>
       </v-list>
-      <div class="SideNavigation-LanguageMenu">
-        <LanguageSelector />
-      </div>
+
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
           <!-- <a href="https://line.me/R/ti/p/%40822sysfc" target="_blank" rel="noopener">
@@ -82,11 +84,13 @@
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
           {{ $t('Data by:') }}<br />
-          <a :href="localePath('/about/#data')" target="_blank" rel="noopener">
+          <nuxt-link :to="{ path: localePath('/about/'), hash: '#data' }">
             <span class="no-image-title">{{ $t('北海道（政府）') }}</span
             ><br />
-            <span class="no-image-title">{{ $t('札幌市') }}</span> </a
-          ><br />
+            <span class="no-image-title">{{ $t('札幌市') }}</span>
+          </nuxt-link>
+
+          <br />
           <a
             class="license"
             href="//creativecommons.org/licenses/by/4.0/deed.ja"
@@ -109,7 +113,7 @@
             </i18n> </a
           ><br />
           {{ $t('Operations by:') }}<br />
-          <a :href="localePath('/about/')" target="_blank" rel="noopener">
+          <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
             <img
               class="justdoit-logo"
@@ -117,8 +121,10 @@
               width="132px"
               height="46.6px"
               :alt="$t('JUST道IT')"
-            /> </a
-          ><br />
+            />
+          </nuxt-link>
+
+          <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
@@ -153,6 +159,12 @@ export default {
   },
   computed: {
     items() {
+      let covidlink =
+        'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ'
+      if (this.$i18n.locale !== 'ja') {
+        covidlink =
+          'http://www.pref.hokkaido.lg.jp/ss/tsk/promo/coronavirus.htm'
+      }
       return [
         {
           icon: 'mdi-chart-timeline-variant',
@@ -162,8 +174,7 @@ export default {
         {
           icon: 'covid',
           title: this.$t('感染予防と相談窓口'),
-          link:
-            'http://www.pref.hokkaido.lg.jp/hf/kth/kak/singatakoronahaien.htm#道民へ',
+          link: covidlink,
           divider: true
         },
         {
@@ -213,7 +224,12 @@ export default {
         },
         {
           title: this.$t('東京都 新型コロナウイルス感染症対策サイト'),
-          link: 'https://stopcovid19.metro.tokyo.lg.jp/',
+          link: 'https://stopcovid19.metro.tokyo.lg.jp/'
+        },
+        {
+          title: this.$t('他地域 新型コロナウイルス感染症対策サイト一覧'),
+          link:
+            'https://github.com/tokyo-metropolitan-gov/covid19/blob/development/FORKED_SITES.md',
           divider: true
         }
       ]
@@ -260,7 +276,7 @@ export default {
   }
   &-ListContainerIcon {
     display: none;
-    margin: 24px 16px 0;
+    margin: 24px 16px 24px;
   }
   &-ListItemContainer {
     padding: 2px 20px;
@@ -294,7 +310,7 @@ export default {
     }
   }
   &-HeadingDivider {
-    margin: 0 20px 4px;
+    margin: 12px 20px 4px;
     @include lessThan($small) {
       display: none;
     }

@@ -5,19 +5,22 @@
     :loaded="loaded"
     :source-from="sourceFrom"
     :source-link="sourceLink"
+    :title-id="titleId"
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
-      <date-selector v-model="dateSelect" />
-    </template>
-    <template v-else v-slot:button>
-      <date-selector v-model="dateSelect" />
     </template>
     <v-overlay absolute :value="!loaded" justify-center align-center>
       <scale-loader color="#1268d8" />
     </v-overlay>
     <v-layout column :class="{ loading: !loaded }">
       <bar :chart-data="displayData" :options="displayOption" :height="240" />
+      <date-select-slider
+        :chart-data="chartData"
+        :value="[0, sliderMax]"
+        :slider-max="sliderMax"
+        @sliderInput="sliderUpdate"
+      />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
         <ul class="supplementTexts">
           <li class="supplementText">
@@ -72,14 +75,14 @@ import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import DataView from '@/components/DataView.vue'
 import DataSelector from '@/components/DataSelector.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import DateSelector from '@/components/DateSelector'
+import DateSelectSlider from '@/components/DateSelectSlider.vue'
 
 export default {
   components: {
     DataView,
     DataSelector,
-    DateSelector,
     DataViewBasicInfoPanel,
+    DateSelectSlider,
     ScaleLoader
   },
   props: {
@@ -113,11 +116,6 @@ export default {
       required: false,
       default: ''
     },
-    defaultDateKind: {
-      type: String,
-      required: false,
-      default: 'all'
-    },
     defaultDataKind: {
       type: String,
       required: false,
@@ -137,15 +135,26 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    titleId: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data() {
     return {
       dataKind: this.defaultDataKind,
-      dateSelect: this.defaultDateKind
+      graphRange: [0, 1]
     }
   },
   computed: {
+    sliderMax() {
+      if (!this.chartData || this.chartData.length === 0) {
+        return 1
+      }
+      return this.chartData.length - 1
+    },
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
       const lastDayBefore = this.chartData.slice(-2)[0].cumulative
@@ -179,7 +188,7 @@ export default {
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
         sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
-          date: this.chartData.slice(-1)[0].label,
+          date: this.$moment(this.chartData.slice(-1)[0].label).format('MM/DD'),
           change: this.displayCumulativeRatio,
           unit: this.unit
         }),
@@ -187,7 +196,6 @@ export default {
       }
     },
     displayData() {
-      console.log('displayData')
       if (!this.chartData || this.chartData.length === 0) {
         return {}
       }
@@ -226,65 +234,11 @@ export default {
     },
     displayOption() {
       const unit = this.unit
-      if (this.dateSelect === '2weeks') {
-        return {
-          tooltips: {
-            displayColors: false,
-            callbacks: {
-              label(tooltipItem) {
-                const labelText = `${parseInt(
-                  tooltipItem.value
-                ).toLocaleString()} ${unit}`
-                return labelText
-              }
-            }
-          },
-          responsive: true,
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [
-              {
-                type: 'time',
-                offset: true,
-                time: {
-                  displayFormats: {
-                    day: 'M/D'
-                  },
-                  max: this.chartData[this.chartData.length - 1].label,
-                  min: this.chartData[this.chartData.length - 15].label
-                },
-                stacked: true,
-                gridLines: {
-                  display: false
-                },
-                ticks: {
-                  fontSize: 10,
-                  maxTicksLimit: 20,
-                  fontColor: '#808080'
-                }
-              }
-            ],
-            yAxes: [
-              {
-                location: 'bottom',
-                stacked: true,
-                gridLines: {
-                  display: true,
-                  color: '#E5E5E5'
-                },
-                ticks: {
-                  suggestedMin: 0,
-                  maxTicksLimit: 8,
-                  fontColor: '#808080'
-                }
-              }
-            ]
-          }
-        }
+      if (!this.chartData || this.chartData.length === 0) {
+        return {}
       }
       return {
+        animation: false,
         tooltips: {
           displayColors: false,
           callbacks: {
@@ -303,18 +257,24 @@ export default {
         scales: {
           xAxes: [
             {
-              offset: true,
               type: 'time',
+              offset: true,
               time: {
+                tooltipFormat: 'MM/DD',
+                unit: 'day',
+                unitStepSize: 1,
                 displayFormats: {
                   day: 'M/D'
-                }
+                },
+                round: 'day'
               },
               stacked: true,
               gridLines: {
                 display: false
               },
               ticks: {
+                max: this.chartData[this.graphRange[1]].label,
+                min: this.chartData[this.graphRange[0]].label,
                 fontSize: 10,
                 maxTicksLimit: 20,
                 fontColor: '#808080'
@@ -341,6 +301,9 @@ export default {
     }
   },
   methods: {
+    sliderUpdate(sliderValue) {
+      this.graphRange = sliderValue
+    },
     formatDayBeforeRatio(dayBeforeRatio) {
       switch (Math.sign(dayBeforeRatio)) {
         case 1:

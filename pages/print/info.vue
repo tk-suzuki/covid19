@@ -80,7 +80,9 @@ export default {
   layout: 'print',
   head() {
     return {
-      title: this.$t('新型コロナウイルス感染症まとめサイト')
+      title: this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
+        mobileBreak: ''
+      })
     }
   }
 }
