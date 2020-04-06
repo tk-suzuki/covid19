@@ -185,15 +185,15 @@ module.exports = {
    /*
   ** Build configuration
   */
-   build: {
-     vendor : ['vue-apexchart'],
+   //build: {
+   //  vendor : ['vue-apexchart'],
 
      /*
      ** You can extend webpack config here
      */
-    extend (config, ctx) {
-    }
-  },
+//    extend (config, ctx) {
+  //  }
+  //},
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
     "theme_color": "#1268d8",
