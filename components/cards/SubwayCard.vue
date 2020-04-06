@@ -1,11 +1,11 @@
 <template>
   <v-col cols="12" md="6" class="DataCard">
-    <subway-chart :title="$t('testCard')" :loaded="true" />
+    <subway-chart :title="$t('testCard')" loaded="true" date="2020/04/06" />
   </v-col>
 </template>
 
 <script>
-import SubwayChart from '../SubwayChart'
+import SubwayChart from '@/components/SubwayChart.vue'
 export default {
   name: 'SubwayCard',
   components: { SubwayChart },
