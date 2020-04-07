@@ -170,9 +170,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    formattedDate(): string {
-      return ''
-    },
     graphEmbedValue(): string {
       const graphEmbedValue =
         '<iframe width="560" height="315" src="' +
@@ -237,7 +234,7 @@ export default Vue.extend({
       if (embed) {
         permalink = permalink + '?embed=true'
       } else {
-        permalink = permalink + '?t=' + timestamp
+        permalink = permalink + encodeURIComponent('?t=' + timestamp)
       }
       permalink = this.localePath(permalink)
       if (host) {
