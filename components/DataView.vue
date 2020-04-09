@@ -234,7 +234,7 @@ export default Vue.extend({
       if (embed) {
         permalink = permalink + '?embed=true'
       } else {
-        permalink = permalink + encodeURIComponent('?t=' + timestamp)
+        permalink = permalink + '?t=' + timestamp
       }
       permalink = this.localePath(permalink)
       if (host) {
