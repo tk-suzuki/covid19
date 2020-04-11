@@ -10,8 +10,7 @@
       </v-icon>
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
-          <logo-animation style="height: 50px" :alt="$t('北海道')" />
-          <!-- <img src="/logo.svg" :alt="$t('北海道')" /> -->
+          <Logo height="50px" :alt="$t('北海道')" />
         </div>
         <h1 class="SideNavigation-Heading">
           <span class="SideNavigation-HeadingTitle">
@@ -146,11 +145,11 @@
 <script>
 import ListItem from '@/components/ListItem'
 import LanguageSelector from '@/components/LanguageSelector.vue'
-import LogoAnimation from '@/components/Logo-Animation.vue'
+import Logo from '@/components/Logo.vue'
 
 export default {
   components: {
-    LogoAnimation,
+    Logo,
     ListItem,
     LanguageSelector
   },

@@ -200,7 +200,7 @@
 
 <script>
 export default {
-  name: 'LogoAnimation'
+  name: 'Logo'
 }
 </script>
 
@@ -210,103 +210,5 @@ export default {
 }
 .st1 {
   fill: #1c8df0;
-}
-#c {
-  transform: translateX(0%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#o-1 {
-  transform: translateX(-5.5%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#v {
-  transform: translateX(-11%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#i-1 {
-  transform: translateX(-16.5%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#d-1 {
-  transform: translateX(-22%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#hifn {
-  transform: translateX(-27.5%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#one {
-  transform: translateX(-33%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#nine {
-  transform: translateX(-38.5%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#h {
-  transform: translateX(0%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#o-2 {
-  transform: translateX(-4%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#k-1 {
-  transform: translateX(-8%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#k-2 {
-  transform: translateX(-12%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#a {
-  transform: translateX(-16%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#i-2 {
-  transform: translateX(-20%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#d-2 {
-  transform: translateX(-24%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#o-3 {
-  transform: translateX(-28%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#i-3 {
-  transform: translateX(0%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#ma {
-  transform: translateX(-6%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#ha {
-  transform: translateX(-12%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#hana {
-  transform: translateX(-18%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#re {
-  transform: translateX(-24%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#te {
-  transform: translateX(-30%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-#logo {
-  transform: translateX(0%);
-  animation: move 1.5s ease-in 0.2s forwards;
-}
-
-@keyframes move {
-  100% {
-    transform: translateX(0%);
-  }
 }
 </style>
