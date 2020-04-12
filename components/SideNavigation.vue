@@ -307,7 +307,7 @@ export default {
     text-decoration: none;
     @include lessThan($small) {
       margin-top: 0;
-      margin-left: 57px;
+      display: none;
     }
   }
   &-HeadingTitle {
