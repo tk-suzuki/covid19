@@ -11,7 +11,11 @@
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
           <LogoAnimation
-            class="SideNavigation-LogoContent"
+            class="SideNavigation-LogoAnimationContent"
+            :alt="$t('北海道')"
+          />
+          <LogoAnimationSp
+            class="SideNavigation-LogoAnimationSpContent"
             :alt="$t('北海道')"
           />
         </div>
@@ -149,9 +153,11 @@
 import ListItem from '@/components/ListItem'
 import LanguageSelector from '@/components/LanguageSelector.vue'
 import LogoAnimation from '@/components/Logo-Animation'
+import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
 
 export default {
   components: {
+    LogoAnimationSp,
     LogoAnimation,
     ListItem,
     LanguageSelector
@@ -293,10 +299,16 @@ export default {
       margin-top: 0;
     }
   }
-  &-LogoContent {
+  &-LogoAnimationContent {
     height: 50px;
     @include lessThan($small) {
-      height: 45px;
+      display: none;
+    }
+  }
+  &-LogoAnimationSpContent {
+    height: 45px;
+    @include largerThan($small) {
+      display: none;
     }
   }
   &-Heading {
@@ -307,7 +319,7 @@ export default {
     text-decoration: none;
     @include lessThan($small) {
       margin-top: 0;
-      display: none;
+      margin-left: 15px;
     }
   }
   &-HeadingTitle {
