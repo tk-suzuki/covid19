@@ -18,11 +18,6 @@ module.exports = {
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://stopcovid19.hokkaido.dev/ogp.png'
-      },
-      {
         hid: 'fb:app_id',
         property: 'fb:app_id',
         content: '503748220262414'
@@ -42,11 +37,6 @@ module.exports = {
         property: 'twitter:player',
         content: '@just_douit'
       },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://stopcovid19.hokkaido.dev/ogp.png'
-      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -130,7 +120,7 @@ module.exports = {
             code: 'zh-tw',
             name: '繁體中文',
             iso: 'zh-TW',
-            file: 'zh-tw.i18n.json'
+            file: 'zh_TW.i18n.json'
           },
           {
             code: 'ko',
@@ -151,7 +141,7 @@ module.exports = {
             file: 'vi.i18n.json'
           },
           {
-            code: 'ja-Hira',
+            code: 'ja-basic',
             name: 'やさしい にほんご',
             iso: 'ja-JP',
             file: 'ja-Hira.i18n.json'
@@ -167,7 +157,8 @@ module.exports = {
         langDir: './assets/locales/'
       }
     ],
-    'nuxt-svg-loader'
+    'nuxt-svg-loader',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Axios module configuration
@@ -207,8 +198,68 @@ module.exports = {
     "start_url": "/",
     "splash_pages": null
   },
+
+  sitemap: {
+    hostname: 'https://stopcovid19.hokkaido.dev',
+    exclude: [
+      '/google0ad9aca222118e04.html',
+      '/api/*'
+    ],
+    routes() {
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']
+      const pages = [
+        '/cards/contacts',
+        '/cards/current-patients',
+        '/cards/discharges-summary',
+        '/cards/inspections',
+        '/cards/patients',
+        '/cards/patients-summary',
+        '/cards/querents'
+      ]
+
+      const routes = []
+      locales.forEach(locale => {
+        pages.forEach(page => {
+          if (locale === 'ja') {
+            routes.push(page)
+            return
+          }
+          const route = `/${locale}${page}`
+          routes.push(route)
+        })
+      })
+      return routes
+    }
+
+  },
+
   generate: {
-    fallback: true
+    fallback: true,
+    routes() {
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']
+      const pages = [
+        '/cards/contacts',
+        '/cards/current-patients',
+        '/cards/discharges-summary',
+        '/cards/inspections',
+        '/cards/patients',
+        '/cards/patients-summary',
+        '/cards/querents'
+      ]
+
+      const routes = []
+      locales.forEach(locale => {
+        pages.forEach(page => {
+          if (locale === 'ja') {
+            routes.push(page)
+            return
+          }
+          const route = `/${locale}${page}`
+          routes.push(route)
+        })
+      })
+      return routes
+    }
   },
   // /*
   // ** hot read configuration for docker

@@ -2,7 +2,7 @@
   <v-range-slider
     v-model="sliderValue"
     :value="sliderValue"
-    label="表示期間"
+    :label="$t('表示期間')"
     :rules="rules"
     :max="sliderMax"
     :min="0"
@@ -37,7 +37,9 @@ export default {
     return {
       sliderValue: this.value,
       rules: [
-        v => Math.abs(v[0] - v[1]) > 14 || '表示期間の最小範囲は１４日間です'
+        v =>
+          Math.abs(v[0] - v[1]) > 14 ||
+          this.$t('表示期間の最小範囲は１４日間です')
       ]
     }
   },

@@ -10,7 +10,14 @@
       </v-icon>
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
-          <img src="/logo.svg" :alt="$t('北海道')" />
+          <LogoAnimation
+            class="SideNavigation-LogoAnimationContent"
+            :alt="$t('北海道')"
+          />
+          <LogoAnimationSp
+            class="SideNavigation-LogoAnimationSpContent"
+            :alt="$t('北海道')"
+          />
         </div>
         <h1 class="SideNavigation-Heading">
           <span class="SideNavigation-HeadingTitle">
@@ -145,9 +152,13 @@
 <script>
 import ListItem from '@/components/ListItem'
 import LanguageSelector from '@/components/LanguageSelector.vue'
+import LogoAnimation from '@/components/Logo-Animation'
+import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
 
 export default {
   components: {
+    LogoAnimationSp,
+    LogoAnimation,
     ListItem,
     LanguageSelector
   },
@@ -282,10 +293,22 @@ export default {
     padding: 2px 20px;
   }
   &-Logo {
-    margin: 20px 16px 0 0;
+    margin: 15px 16px 0 0;
     width: 110px;
     @include lessThan($small) {
       margin-top: 0;
+    }
+  }
+  &-LogoAnimationContent {
+    height: 50px;
+    @include lessThan($small) {
+      display: none;
+    }
+  }
+  &-LogoAnimationSpContent {
+    height: 45px;
+    @include largerThan($small) {
+      display: none;
     }
   }
   &-Heading {
@@ -296,6 +319,7 @@ export default {
     text-decoration: none;
     @include lessThan($small) {
       margin-top: 0;
+      margin-left: 15px;
     }
   }
   &-HeadingTitle {
