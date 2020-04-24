@@ -297,7 +297,10 @@
     </TextCard>
 
     <TextCard title="">
-      <img src="/ogp.png" />
+      <picture>
+        <source srcset="/ogp.webp" class="img" type="image/webp" />
+        <img src="/ogp.png" alt="OGPImage" class="img" />
+      </picture>
       <i18n path="Illustration by {LITTLEKIT} under {ccBy}">
         <template #LITTLEKIT>
           <a href="https://twitter.com/LITTLEKIT">{{ $t('LITTLEKIT') }}</a>

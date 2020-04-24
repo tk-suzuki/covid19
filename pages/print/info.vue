@@ -1,6 +1,13 @@
 <template>
   <div>
-    <img src="/ogp.png" alt="{{ $t('北海道アイキャッチ画像')" />
+    <picture>
+      <source
+        srcset="/ogp.webp"
+        alt="{{ $t('北海道アイキャッチ画像')"
+        type="image/webp"
+      />
+      <img src="/ogp.png" alt="{{ $t('北海道アイキャッチ画像')" />
+    </picture>
     <br />
     <br />
     <h1 class="sitename">
@@ -34,42 +41,66 @@
         {{ $t('Data by:') }}<br />
         <span class="no-image-title">{{ $t('北海道・札幌市') }}</span>
         <br />
-        <i18n path="Under" tag="p" for="CC BY 4.0">
-          <template #ccByImageTitle>
-            <span class="image-title">{{ $t('CC BY 4.0') }}</span>
-          </template>
-          <template #ccByImage>
-            <img
-              class="cc-by-logo"
-              src="/cc-by-mini.svg"
-              width="85.3px"
-              height="16px"
-              alt="$t('CC BY 4.0')"
-            />
-          </template>
-        </i18n>
+        <p style="margin-bottom: 0 !important;">{{ $t('Under') }}</p>
+        <picture>
+          <source
+            class="cc-by-logo"
+            srcset="/cc-by-mini.webp"
+            width="85.3px"
+            height="16px"
+            alt="$t('CC BY 4.0')"
+            type="image/webp"
+          />
+          <img
+            class="cc-by-logo"
+            src="/cc-by-mini.png"
+            width="85.3px"
+            height="16px"
+            alt="$t('CC BY 4.0')"
+          />
+        </picture>
       </li>
       <li class="supplementHeader2">
         {{ $t('Operations by:') }}<br />
         <span class="image-title">{{ $t('JUST道IT') }}</span>
-        <img
-          class="justdoit-logo"
-          src="/justdouit.png"
-          width="132px"
-          height="46.6px"
-          alt="$t('JUST道IT')"
-        />
+        <picture>
+          <source
+            srcset="/justdouit.webp"
+            class="justdoit-logo"
+            width="132px"
+            height="46.6px"
+            alt="$t('JUST道IT')"
+            type="image/webp"
+          />
+          <img
+            class="justdoit-logo"
+            src="/justdouit.png"
+            width="132px"
+            height="46.6px"
+            alt="$t('JUST道IT')"
+          />
+        </picture>
       </li>
       <li class="supplementHeader3">
         {{ $t('Powered by:') }}<br />
         <span class="image-title">{{ $t('さくらインターネット') }}</span>
-        <img
-          class="sakura-internet-logo"
-          src="/sakura.svg"
-          width="176px"
-          height="62px"
-          alt="$t('さくらインターネット')"
-        />
+        <picture>
+          <source
+            class="sakura-internet-logo"
+            srcset="/sakura.webp"
+            width="176px"
+            height="62px"
+            alt="$t('さくらインターネット')"
+            type="image/webp"
+          />
+          <img
+            class="sakura-internet-logo"
+            src="/sakura.png"
+            width="176px"
+            height="62px"
+            alt="$t('さくらインターネット')"
+          />
+        </picture>
       </li>
     </ul>
   </div>

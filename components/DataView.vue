@@ -75,6 +75,12 @@
                 @click="copyLink"
               >
                 <picture>
+                  <source
+                    srcset="/link.webp"
+                    alt="link"
+                    class="icon-resize link"
+                    type="image/webp"
+                  />
                   <img src="/link.png" alt="link" class="icon-resize link" />
                 </picture>
               </button>
@@ -84,6 +90,12 @@
                 @click="line"
               >
                 <picture>
+                  <source
+                    srcset="/line.webp"
+                    alt="LINE"
+                    class="icon-resize line"
+                    type="image/webp"
+                  />
                   <img src="/line.png" alt="LINE" class="icon-resize line" />
                 </picture>
               </button>
@@ -93,6 +105,12 @@
                 @click="twitter"
               >
                 <picture>
+                  <source
+                    srcset="/twitter.webp"
+                    alt="Twitter"
+                    class="icon-resize twitter"
+                    type="image/webp"
+                  />
                   <img
                     src="/twitter.png"
                     alt="Twitter"
@@ -106,6 +124,12 @@
                 @click="facebook"
               >
                 <picture>
+                  <source
+                    srcset="/facebook.webp"
+                    alt="facebook"
+                    class="icon-resize facebook"
+                    type="image/webp"
+                  />
                   <img
                     src="/facebook.png"
                     alt="facebook"
