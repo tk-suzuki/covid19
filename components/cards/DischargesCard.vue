@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import TimeBarChart from '@/components/TimeBarChart.vue'
 import formatDischargesSummaryGraph from '@/utils/formatDischargesSummaryGraph'
 import convertToDateFromData from '@/utils/convertToDateFromData'
+const TimeBarChart = () => import('@/components/TimeBarChart.vue')
 
 export default {
   name: 'DischargesCard',

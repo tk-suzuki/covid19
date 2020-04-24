@@ -191,7 +191,7 @@
 
 <script>
 import CovidIcon from '@/static/covid.svg'
-import DesktopFlowSvg from '@/components/DesktopFlowSvg.vue'
+const DesktopFlowSvg = () => import('@/components/DesktopFlowSvg.vue')
 export default {
   components: { CovidIcon, DesktopFlowSvg },
   head() {

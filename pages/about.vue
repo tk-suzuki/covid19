@@ -315,7 +315,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
-import TextCard from '@/components/TextCard.vue'
+const TextCard = () => import('@/components/TextCard.vue')
 
 export default Vue.extend({
   components: {
