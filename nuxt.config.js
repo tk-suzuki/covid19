@@ -63,8 +63,7 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
-    '@/plugins/datetime-formatter.js',
-    '@/plugins/dayjs.js'
+    '@/plugins/datetime-formatter.js'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -89,6 +88,7 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    ['@nuxtjs/moment', ['ja']],
     [
       'nuxt-i18n',
       {
@@ -179,14 +179,16 @@ module.exports = {
   googleAnalytics: {
     id: 'UA-159982743-1'
   },
-  build: {
-    extend(config, _) {
-      // default externals option is undefined
-      config.externals = [{ moment: 'moment' }]
-    }
-    // https://ja.nuxtjs.org/api/configuration-build/#hardsource
-    // hardSource: process.env.NODE_ENV === 'development'
-  },
+   /*
+  ** Build configuration
+  */
+  // build: {
+  //   /*
+  //   ** You can extend webpack config here
+  //   */
+  //   extend (config, ctx) {
+  //   }
+  // },
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
     "theme_color": "#1268d8",

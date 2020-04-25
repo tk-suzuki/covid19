@@ -188,7 +188,7 @@ export default {
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
         sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
-          date: this.$dayjs(this.chartData.slice(-1)[0].label).format('MM/DD'),
+          date: this.$moment(this.chartData.slice(-1)[0].label).format('MM/DD'),
           change: this.displayCumulativeRatio,
           unit: this.unit
         }),

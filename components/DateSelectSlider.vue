@@ -60,7 +60,7 @@ export default {
       if (!this.chartData || this.chartData.length === 0) {
         return 1
       }
-      return this.$dayjs(this.chartData[id].label).format('M/D')
+      return this.$moment(this.chartData[id].label).format('M/D')
     }
   }
 }
