@@ -67,7 +67,7 @@
             target="_blank"
             rel="noopener"
           >
-            <VPicture
+            <PictureLoader
               filename="twitter"
               width="30px"
               height="30px"
@@ -79,7 +79,7 @@
             target="_blank"
             rel="noopener"
           >
-            <VPicture
+            <PictureLoader
               filename="facebook"
               width="30px"
               height="30px"
@@ -91,7 +91,7 @@
             target="_blank"
             rel="noopener"
           >
-            <VPicture
+            <PictureLoader
               filename="github"
               width="30px"
               height="30px"
@@ -119,7 +119,7 @@
                 <span class="image-title">{{ $t('CC BY 4.0') }}</span>
               </template>
               <template #ccByImage>
-                <VPicture
+                <PictureLoader
                   classname="cc-by-logo"
                   filename="cc-by-mini"
                   width="85.3px"
@@ -134,7 +134,7 @@
           <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
 
-            <VPicture
+            <PictureLoader
               classname="justdoit-logo"
               filename="justdouit"
               width="132px"
@@ -148,7 +148,7 @@
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
-            <VPicture
+            <PictureLoader
               classname="sakura-internet-logo"
               filename="sakura"
               width="176px"
@@ -168,11 +168,11 @@ import LanguageSelector from '@/components/LanguageSelector.vue'
 import LogoAnimation from '@/components/Logo-Animation'
 import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
 
-const VPicture = () => import('@/components/VPicture.vue')
+const PictureLoader = () => import('~/components/PictureLoader.vue')
 
 export default {
   components: {
-    VPicture,
+    PictureLoader,
     LogoAnimationSp,
     LogoAnimation,
     ListItem,

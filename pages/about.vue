@@ -297,7 +297,7 @@
     </TextCard>
 
     <TextCard title="">
-      <VPicture
+      <PictureLoader
         filename="ogp"
         classname="img"
         :alt="$t('北海道アイキャッチ画像')"
@@ -320,11 +320,11 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import TextCard from '@/components/TextCard.vue'
-const VPicture = () => import('@/components/VPicture.vue')
+const PictureLoader = () => import('~/components/PictureLoader.vue')
 
 export default Vue.extend({
   components: {
-    VPicture,
+    PictureLoader,
     TextCard
   },
   head(): MetaInfo {

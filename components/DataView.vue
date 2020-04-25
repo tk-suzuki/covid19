@@ -74,7 +74,7 @@
                 :aria-label="$t('シェアリンクをコピー', { title })"
                 @click="copyLink"
               >
-                <VPicture
+                <PictureLoader
                   filename="link"
                   alt="link"
                   classname="icon-resize link"
@@ -85,7 +85,7 @@
                 :aria-label="$t('LINEで{title}のグラフをシェア', { title })"
                 @click="line"
               >
-                <VPicture
+                <PictureLoader
                   filename="line"
                   alt="LINE"
                   classname="icon-resize line"
@@ -96,7 +96,7 @@
                 :aria-label="$t('Twitterで{title}のグラフをシェア', { title })"
                 @click="twitter"
               >
-                <VPicture
+                <PictureLoader
                   filename="twitter"
                   alt="Twitter"
                   classname="icon-resize twitter"
@@ -107,7 +107,7 @@
                 :aria-label="$t('facebookで{title}のグラフをシェア', { title })"
                 @click="facebook"
               >
-                <VPicture
+                <PictureLoader
                   filename="facebook"
                   alt="facebook"
                   classname="icon-resize facebook"
@@ -133,10 +133,10 @@
 <script lang="ts">
 import Vue from 'vue'
 
-const VPicture = () => import('@/components/VPicture.vue')
+const PictureLoader = () => import('~/components/PictureLoader.vue')
 
 export default Vue.extend({
-  components: { VPicture },
+  components: { PictureLoader },
   props: {
     title: {
       type: String,

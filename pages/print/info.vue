@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VPicture filename="ogp" :alt="$t('北海道アイキャッチ画像')" />
+    <PictureLoader filename="ogp" :alt="$t('北海道アイキャッチ画像')" />
     <br />
     <br />
     <h1 class="sitename">
@@ -39,7 +39,7 @@
             <span class="image-title">{{ $t('CC BY 4.0') }}</span>
           </template>
           <template #ccByImage>
-            <VPicture
+            <PictureLoader
               classname="cc-by-logo"
               src="cc-by-mini"
               width="85.3px"
@@ -52,7 +52,7 @@
       <li class="supplementHeader2">
         {{ $t('Operations by:') }}<br />
         <span class="image-title">{{ $t('JUST道IT') }}</span>
-        <VPicture
+        <PictureLoader
           filename="justdouit"
           classname="justdoit-logo"
           width="132px"
@@ -63,7 +63,7 @@
       <li class="supplementHeader3">
         {{ $t('Powered by:') }}<br />
         <span class="image-title">{{ $t('さくらインターネット') }}</span>
-        <VPicture
+        <PictureLoader
           classname="sakura-internet-logo"
           filename="sakura"
           width="176px"
@@ -76,9 +76,9 @@
 </template>
 
 <script>
-const VPicture = () => import('@/components/VPicture')
+const PictureLoader = () => import('@/components/PictureLoader')
 export default {
-  components: { VPicture },
+  components: { PictureLoader },
   layout: 'print',
   head() {
     return {

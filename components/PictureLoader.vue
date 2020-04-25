@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'VPicture',
+  name: 'PictureLoader',
   props: {
     filename: {
       type: String,
