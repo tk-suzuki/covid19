@@ -74,68 +74,44 @@
                 :aria-label="$t('シェアリンクをコピー', { title })"
                 @click="copyLink"
               >
-                <picture>
-                  <source
-                    srcset="/link.webp"
-                    alt="link"
-                    class="icon-resize link"
-                    type="image/webp"
-                  />
-                  <img src="/link.png" alt="link" class="icon-resize link" />
-                </picture>
+                <VPicture
+                  filename="link"
+                  alt="link"
+                  classname="icon-resize link"
+                />
               </button>
 
               <button
                 :aria-label="$t('LINEで{title}のグラフをシェア', { title })"
                 @click="line"
               >
-                <picture>
-                  <source
-                    srcset="/line.webp"
-                    alt="LINE"
-                    class="icon-resize line"
-                    type="image/webp"
-                  />
-                  <img src="/line.png" alt="LINE" class="icon-resize line" />
-                </picture>
+                <VPicture
+                  filename="line"
+                  alt="LINE"
+                  classname="icon-resize line"
+                />
               </button>
 
               <button
                 :aria-label="$t('Twitterで{title}のグラフをシェア', { title })"
                 @click="twitter"
               >
-                <picture>
-                  <source
-                    srcset="/twitter.webp"
-                    alt="Twitter"
-                    class="icon-resize twitter"
-                    type="image/webp"
-                  />
-                  <img
-                    src="/twitter.png"
-                    alt="Twitter"
-                    class="icon-resize twitter"
-                  />
-                </picture>
+                <VPicture
+                  filename="twitter"
+                  alt="Twitter"
+                  classname="icon-resize twitter"
+                />
               </button>
 
               <button
                 :aria-label="$t('facebookで{title}のグラフをシェア', { title })"
                 @click="facebook"
               >
-                <picture>
-                  <source
-                    srcset="/facebook.webp"
-                    alt="facebook"
-                    class="icon-resize facebook"
-                    type="image/webp"
-                  />
-                  <img
-                    src="/facebook.png"
-                    alt="facebook"
-                    class="icon-resize facebook"
-                  />
-                </picture>
+                <VPicture
+                  filename="facebook"
+                  alt="facebook"
+                  classname="icon-resize facebook"
+                />
               </button>
             </div>
           </div>
@@ -157,7 +133,10 @@
 <script lang="ts">
 import Vue from 'vue'
 
+const VPicture = () => import('@/components/VPicture.vue')
+
 export default Vue.extend({
+  components: { VPicture },
   props: {
     title: {
       type: String,

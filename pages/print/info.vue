@@ -40,7 +40,7 @@
           </template>
           <template #ccByImage>
             <VPicture
-              class="cc-by-logo"
+              classname="cc-by-logo"
               src="cc-by-mini"
               width="85.3px"
               height="16px"
@@ -54,7 +54,7 @@
         <span class="image-title">{{ $t('JUST道IT') }}</span>
         <VPicture
           filename="justdouit"
-          class="justdoit-logo"
+          classname="justdoit-logo"
           width="132px"
           height="46.6px"
           :alt="$t('JUST道IT')"
@@ -64,7 +64,7 @@
         {{ $t('Powered by:') }}<br />
         <span class="image-title">{{ $t('さくらインターネット') }}</span>
         <VPicture
-          class="sakura-internet-logo"
+          classname="sakura-internet-logo"
           filename="sakura"
           width="176px"
           height="62px"

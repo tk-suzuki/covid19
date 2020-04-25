@@ -5,12 +5,14 @@
       :width="width"
       :height="height"
       :alt="alt"
+      :class="classname"
       type="image/webp"
     />
     <img
       :src="'/' + filename + '.png'"
       :width="width"
       :height="height"
+      :class="classname"
       :alt="alt"
     />
   </picture>
@@ -35,6 +37,10 @@ export default {
     height: {
       type: String,
       default: '100%'
+    },
+    classname: {
+      type: String,
+      default: ''
     }
   }
 }

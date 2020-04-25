@@ -299,7 +299,7 @@
     <TextCard title="">
       <VPicture
         filename="ogp"
-        class="img"
+        classname="img"
         :alt="$t('北海道アイキャッチ画像')"
       />
       <i18n path="Illustration by {LITTLEKIT} under {ccBy}">

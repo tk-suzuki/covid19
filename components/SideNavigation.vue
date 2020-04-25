@@ -120,7 +120,7 @@
               </template>
               <template #ccByImage>
                 <VPicture
-                  class="cc-by-logo"
+                  classname="cc-by-logo"
                   filename="cc-by-mini"
                   width="85.3px"
                   height="16px"
@@ -135,7 +135,7 @@
             <span class="image-title">{{ $t('JUST道IT') }}</span>
 
             <VPicture
-              class="justdoit-logo"
+              classname="justdoit-logo"
               filename="justdouit"
               width="132px"
               height="46.6px"
@@ -144,11 +144,12 @@
           </nuxt-link>
 
           <br />
+          <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
             <VPicture
-              class="sakura-internet-logo"
+              classname="sakura-internet-logo"
               filename="sakura"
               width="176px"
               height="62px"
@@ -166,7 +167,8 @@ import ListItem from '@/components/ListItem'
 import LanguageSelector from '@/components/LanguageSelector.vue'
 import LogoAnimation from '@/components/Logo-Animation'
 import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
-import VPicture from '~/components/VPicture'
+
+const VPicture = () => import('@/components/VPicture.vue')
 
 export default {
   components: {
