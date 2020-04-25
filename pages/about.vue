@@ -297,10 +297,11 @@
     </TextCard>
 
     <TextCard title="">
-      <picture>
-        <source srcset="/ogp.webp" class="img" type="image/webp" />
-        <img src="/ogp.png" alt="OGPImage" class="img" />
-      </picture>
+      <VPicture
+        filename="ogp"
+        class="img"
+        :alt="$t('北海道アイキャッチ画像')"
+      />
       <i18n path="Illustration by {LITTLEKIT} under {ccBy}">
         <template #LITTLEKIT>
           <a href="https://twitter.com/LITTLEKIT">{{ $t('LITTLEKIT') }}</a>
@@ -319,9 +320,11 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import TextCard from '@/components/TextCard.vue'
+const VPicture = () => import('@/components/VPicture.vue')
 
 export default Vue.extend({
   components: {
+    VPicture,
     TextCard
   },
   head(): MetaInfo {

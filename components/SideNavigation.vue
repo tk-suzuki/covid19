@@ -67,58 +67,36 @@
             target="_blank"
             rel="noopener"
           >
-            <picture>
-              <source
-                srcset="/twitter.webp"
-                width="90px"
-                height="90px"
-                alt="Twitter"
-                type="image/webp"
-              />
-              <img
-                src="/twitter.png"
-                width="90px"
-                height="90px"
-                alt="Twitter"
-              />
-            </picture>
+            <VPicture
+              filename="twitter"
+              width="30px"
+              height="30px"
+              alt="Twitter"
+            />
           </a>
           <a
             href="https://www.facebook.com/Justdouit19/"
             target="_blank"
             rel="noopener"
           >
-            <picture>
-              <source
-                srcset="/facebook.webp"
-                width="90px"
-                height="90px"
-                alt="Facebook"
-                type="image/webp"
-              />
-              <img
-                src="/facebook.png"
-                width="90px"
-                height="90px"
-                alt="Facebook"
-              />
-            </picture>
+            <VPicture
+              filename="facebook"
+              width="30px"
+              height="30px"
+              alt="Facebook"
+            />
           </a>
           <a
             href="https://github.com/codeforsapporo/covid19"
             target="_blank"
             rel="noopener"
           >
-            <picture>
-              <source
-                srcset="/github.webp"
-                width="90px"
-                height="90px"
-                alt="GitHub"
-                type="image/webp"
-              />
-              <img src="/github.png" width="90px" height="90px" alt="GitHub" />
-            </picture>
+            <VPicture
+              filename="github"
+              width="30px"
+              height="30px"
+              alt="Github"
+            />
           </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
@@ -136,69 +114,46 @@
             target="_blank"
             rel="noopener"
           >
-            <p style="margin-bottom: 0 !important;">{{ $t('Under') }}</p>
-            <picture>
-              <source
-                class="cc-by-logo"
-                srcset="/cc-by-mini.webp"
-                width="85.3px"
-                height="16px"
-                alt="$t('CC BY 4.0')"
-                type="image/webp"
-              />
-              <img
-                class="cc-by-logo"
-                src="/cc-by-mini.png"
-                width="85.3px"
-                height="16px"
-                alt="$t('CC BY 4.0')"
-              />
-            </picture>
-          </a>
+            <i18n path="Under {ccByImageTitle}{ccByImage}" tag="span">
+              <template #ccByImageTitle>
+                <span class="image-title">{{ $t('CC BY 4.0') }}</span>
+              </template>
+              <template #ccByImage>
+                <VPicture
+                  class="cc-by-logo"
+                  filename="cc-by-mini"
+                  width="85.3px"
+                  height="16px"
+                  :alt="$t('CC BY 4.0')"
+                />
+              </template>
+            </i18n> </a
+          ><br />
           <br />
           {{ $t('Operations by:') }}<br />
           <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
-            <picture>
-              <source
-                class="justdoit-logo"
-                srcset="/justdouit.webp"
-                width="132px"
-                height="46.6px"
-                :alt="$t('JUST道IT')"
-                type="image/webp"
-              />
-              <img
-                class="justdoit-logo"
-                src="/justdouit.png"
-                width="132px"
-                height="46.6px"
-                :alt="$t('JUST道IT')"
-              />
-            </picture>
+
+            <VPicture
+              class="justdoit-logo"
+              filename="justdouit"
+              width="132px"
+              height="46.6px"
+              :alt="$t('JUST道IT')"
+            />
           </nuxt-link>
 
           <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
-            <picture>
-              <source
-                class="sakura-internet-logo"
-                srcset="/sakura.webp"
-                width="176px"
-                height="62px"
-                :alt="$t('さくらインターネット')"
-                type="image/webp"
-              />
-              <img
-                class="sakura-internet-logo"
-                src="/sakura.png"
-                width="176px"
-                height="62px"
-                :alt="$t('さくらインターネット')"
-              />
-            </picture>
+            <VPicture
+              class="sakura-internet-logo"
+              filename="sakura"
+              width="176px"
+              height="62px"
+              :alt="$t('さくらインターネット')"
+            />
           </a>
         </div>
       </div>
@@ -211,9 +166,11 @@ import ListItem from '@/components/ListItem'
 import LanguageSelector from '@/components/LanguageSelector.vue'
 import LogoAnimation from '@/components/Logo-Animation'
 import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
+import VPicture from '~/components/VPicture'
 
 export default {
   components: {
+    VPicture,
     LogoAnimationSp,
     LogoAnimation,
     ListItem,
@@ -420,14 +377,14 @@ export default {
     & a:hover {
       opacity: 0.6;
     }
-    & img {
+    & picture {
       padding-bottom: 0.9rem;
     }
-    & img.justdouit-logo {
+    & picture.justdouit-logo {
       margin: 0 0 0 -3px;
       width: 132px;
     }
-    & img.sakura-internet-logo {
+    & picture.sakura-internet-logo {
       margin: -6px 0 0 -14px;
       width: 176px;
     }
@@ -464,11 +421,9 @@ export default {
   }
   &-SocialLinkContainer {
     display: flex;
-    & img {
+    & picture {
       width: 30px;
-      &:first-of-type {
-        margin-right: 10px;
-      }
+      margin-right: 10px;
     }
   }
 }
