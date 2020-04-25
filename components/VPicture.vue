@@ -6,6 +6,7 @@
       :height="height"
       :alt="alt"
       :class="classname"
+      decoding="async"
       type="image/webp"
     />
     <img
@@ -14,6 +15,7 @@
       :height="height"
       :class="classname"
       :alt="alt"
+      decoding="async"
     />
   </picture>
 </template>
