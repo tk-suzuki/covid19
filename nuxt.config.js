@@ -181,13 +181,14 @@ module.exports = {
    /*
   ** Build configuration
   */
-  // build: {
-  //   /*
-  //   ** You can extend webpack config here
-  //   */
-  //   extend (config, ctx) {
-  //   }
-  // },
+  build: {
+     /*
+     ** You can extend webpack config here
+     */
+     extend (config, ctx) {
+       config.externals = [{ moment: 'moment' }]
+     }
+  },
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
     "theme_color": "#1268d8",
