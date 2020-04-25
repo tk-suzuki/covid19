@@ -7,6 +7,7 @@
       :alt="alt"
       :class="classname"
       decoding="async"
+      loading="lazy"
       type="image/webp"
     />
     <img
@@ -15,6 +16,7 @@
       :height="height"
       :class="classname"
       :alt="alt"
+      loading="lazy"
       decoding="async"
     />
   </picture>
