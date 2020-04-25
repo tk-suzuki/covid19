@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 Vue.filter('datetimeFormatter', function(value) {
-  const date = moment(value)
+  const date = dayjs(value)
   return date.format('YYYY/MM/DD(ddd) HH:MM')
 })
