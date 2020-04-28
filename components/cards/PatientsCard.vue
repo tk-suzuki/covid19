@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import DataTable from '@/components/DataTable.vue'
 import formatTable from '@/utils/formatTable'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import formatPatientsSummaryGraph from '@/utils/formatPatientsSummaryGraph'
+const DataTable = () => import('@/components/DataTable.vue')
 
 export default {
   name: 'PatientsCard',

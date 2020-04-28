@@ -20,9 +20,10 @@
 </template>
 
 <script>
-import DataView from '@/components/DataView.vue'
-import DataSelector from '@/components/DataSelector.vue'
-import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+const DataView = () => import('@/components/DataView.vue')
+const DataSelector = () => import('@/components/DataSelector.vue')
+const DataViewBasicInfoPanel = () =>
+  import('@/components/DataViewBasicInfoPanel.vue')
 
 function cumulative(array) {
   const cumulativeArray = []
