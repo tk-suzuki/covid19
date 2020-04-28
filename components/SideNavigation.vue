@@ -164,9 +164,9 @@
 
 <script>
 import ListItem from '@/components/ListItem'
-import LanguageSelector from '@/components/LanguageSelector.vue'
 import LogoAnimation from '@/components/Logo-Animation'
 import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
+const LanguageSelector = () => import('@/components/LanguageSelector.vue')
 
 const PictureLoader = () => import('~/components/PictureLoader.vue')
 

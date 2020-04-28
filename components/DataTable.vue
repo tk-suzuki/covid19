@@ -78,8 +78,9 @@
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import DataView from '@/components/DataView.vue'
-import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+const DataView = () => import('@/components/DataView.vue')
+const DataViewBasicInfoPanel = () =>
+  import('@/components/DataViewBasicInfoPanel.vue')
 
 export default {
   components: { DataView, DataViewBasicInfoPanel, ScaleLoader },
