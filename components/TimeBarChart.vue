@@ -154,6 +154,7 @@ export default {
       if (!this.chartData || this.chartData.length === 0) {
         return 1
       }
+      this.sliderUpdate([0, this.chartData.length - 1])
       return this.chartData.length - 1
     },
     displayCumulativeRatio() {
