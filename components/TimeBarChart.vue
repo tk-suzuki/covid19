@@ -145,8 +145,7 @@ export default {
   },
   data() {
     return {
-      dataKind: this.defaultDataKind,
-      graphRange: [0, 1]
+      dataKind: this.defaultDataKind
     }
   },
   computed: {
@@ -155,6 +154,9 @@ export default {
         return 1
       }
       return this.chartData.length - 1
+    },
+    graphRange() {
+      return [0, this.sliderMax]
     },
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
