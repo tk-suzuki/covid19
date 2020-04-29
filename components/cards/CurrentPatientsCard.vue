@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import TimeBarChart from '@/components/TimeBarChart.vue'
 import formatCurrentPatientsGraph from '@/utils/formatCurrentPatientsGraph'
 import convertToDateFromData from '@/utils/convertToDateFromData'
+const TimeBarChart = () => import('@/components/TimeBarChart.vue')
 export default {
   name: 'CurrentPatientsCard',
   components: {

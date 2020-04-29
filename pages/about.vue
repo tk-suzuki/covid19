@@ -297,7 +297,11 @@
     </TextCard>
 
     <TextCard title="">
-      <img src="/ogp.png" />
+      <PictureLoader
+        filename="ogp"
+        classname="img"
+        :alt="$t('北海道アイキャッチ画像')"
+      />
       <i18n path="Illustration by {LITTLEKIT} under {ccBy}">
         <template #LITTLEKIT>
           <a href="https://twitter.com/LITTLEKIT">{{ $t('LITTLEKIT') }}</a>
@@ -315,10 +319,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
-import TextCard from '@/components/TextCard.vue'
+const PictureLoader = () => import('~/components/PictureLoader.vue')
+const TextCard = () => import('@/components/TextCard.vue')
 
 export default Vue.extend({
   components: {
+    PictureLoader,
     TextCard
   },
   head(): MetaInfo {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="/ogp.png" alt="{{ $t('北海道アイキャッチ画像')" />
+    <PictureLoader filename="ogp" :alt="$t('北海道アイキャッチ画像')" />
     <br />
     <br />
     <h1 class="sitename">
@@ -39,12 +39,12 @@
             <span class="image-title">{{ $t('CC BY 4.0') }}</span>
           </template>
           <template #ccByImage>
-            <img
-              class="cc-by-logo"
-              src="/cc-by-mini.svg"
+            <PictureLoader
+              classname="cc-by-logo"
+              src="cc-by-mini"
               width="85.3px"
               height="16px"
-              alt="$t('CC BY 4.0')"
+              :alt="$t('CC BY 4.0')"
             />
           </template>
         </i18n>
@@ -52,23 +52,23 @@
       <li class="supplementHeader2">
         {{ $t('Operations by:') }}<br />
         <span class="image-title">{{ $t('JUST道IT') }}</span>
-        <img
-          class="justdoit-logo"
-          src="/justdouit.png"
+        <PictureLoader
+          filename="justdouit"
+          classname="justdoit-logo"
           width="132px"
           height="46.6px"
-          alt="$t('JUST道IT')"
+          :alt="$t('JUST道IT')"
         />
       </li>
       <li class="supplementHeader3">
         {{ $t('Powered by:') }}<br />
         <span class="image-title">{{ $t('さくらインターネット') }}</span>
-        <img
-          class="sakura-internet-logo"
-          src="/sakura.svg"
+        <PictureLoader
+          classname="sakura-internet-logo"
+          filename="sakura"
           width="176px"
           height="62px"
-          alt="$t('さくらインターネット')"
+          :alt="$t('さくらインターネット')"
         />
       </li>
     </ul>
@@ -76,7 +76,9 @@
 </template>
 
 <script>
+const PictureLoader = () => import('@/components/PictureLoader')
 export default {
+  components: { PictureLoader },
   layout: 'print',
   head() {
     return {

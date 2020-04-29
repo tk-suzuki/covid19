@@ -72,10 +72,11 @@
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import DataView from '@/components/DataView.vue'
-import DataSelector from '@/components/DataSelector.vue'
-import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import DateSelectSlider from '@/components/DateSelectSlider.vue'
+const DataView = () => import('@/components/DataView.vue')
+const DataSelector = () => import('@/components/DataSelector.vue')
+const DataViewBasicInfoPanel = () =>
+  import('@/components/DataViewBasicInfoPanel.vue')
+const DateSelectSlider = () => import('@/components/DateSelectSlider.vue')
 
 export default {
   components: {
@@ -188,7 +189,7 @@ export default {
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
         sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
-          date: this.$moment(this.chartData.slice(-1)[0].label).format('MM/DD'),
+          date: this.$dayjs(this.chartData.slice(-1)[0].label).format('MM/DD'),
           change: this.displayCumulativeRatio,
           unit: this.unit
         }),

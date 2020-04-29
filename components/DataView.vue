@@ -74,44 +74,44 @@
                 :aria-label="$t('シェアリンクをコピー', { title })"
                 @click="copyLink"
               >
-                <picture>
-                  <img src="/link.png" alt="link" class="icon-resize link" />
-                </picture>
+                <PictureLoader
+                  filename="link"
+                  alt="link"
+                  classname="icon-resize link"
+                />
               </button>
 
               <button
                 :aria-label="$t('LINEで{title}のグラフをシェア', { title })"
                 @click="line"
               >
-                <picture>
-                  <img src="/line.png" alt="LINE" class="icon-resize line" />
-                </picture>
+                <PictureLoader
+                  filename="line"
+                  alt="LINE"
+                  classname="icon-resize line"
+                />
               </button>
 
               <button
                 :aria-label="$t('Twitterで{title}のグラフをシェア', { title })"
                 @click="twitter"
               >
-                <picture>
-                  <img
-                    src="/twitter.png"
-                    alt="Twitter"
-                    class="icon-resize twitter"
-                  />
-                </picture>
+                <PictureLoader
+                  filename="twitter"
+                  alt="Twitter"
+                  classname="icon-resize twitter"
+                />
               </button>
 
               <button
                 :aria-label="$t('facebookで{title}のグラフをシェア', { title })"
                 @click="facebook"
               >
-                <picture>
-                  <img
-                    src="/facebook.png"
-                    alt="facebook"
-                    class="icon-resize facebook"
-                  />
-                </picture>
+                <PictureLoader
+                  filename="facebook"
+                  alt="facebook"
+                  classname="icon-resize facebook"
+                />
               </button>
             </div>
           </div>
@@ -133,7 +133,10 @@
 <script lang="ts">
 import Vue from 'vue'
 
+const PictureLoader = () => import('~/components/PictureLoader.vue')
+
 export default Vue.extend({
+  components: { PictureLoader },
   props: {
     title: {
       type: String,

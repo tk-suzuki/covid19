@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader.vue'
-import WhatsNew from '@/components/WhatsNew.vue'
 import convertToDateFromData from '@/utils/convertToDateFromData.ts'
 import DischargesCard from '@/components/cards/DischargesCard.vue'
 import PatientsSummaryCard from '@/components/cards/PatientsSummaryCard.vue'
@@ -42,6 +40,8 @@ import ContactsCard from '@/components/cards/ContactsCard.vue'
 import QuerentsCard from '@/components/cards/QuerentsCard.vue'
 import CurrentPatientsCard from '@/components/cards/CurrentPatientsCard.vue'
 import InspectionsCard from '@/components/cards/InspectionsCard.vue'
+const PageHeader = () => import('@/components/PageHeader.vue')
+const WhatsNew = () => import('@/components/WhatsNew.vue')
 
 export default {
   components: {

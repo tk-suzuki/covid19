@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import TimeBarChart from '@/components/TimeBarChart.vue'
 import formatInspectionsGraph from '@/utils/formatInspectionsGraph'
 import convertToDateFromData from '@/utils/convertToDateFromData'
+const TimeBarChart = () => import('@/components/TimeBarChart.vue')
 export default {
   name: 'InspectionsCard',
   components: {
