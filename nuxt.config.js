@@ -203,7 +203,8 @@ module.exports = {
     hostname: 'https://stopcovid19.hokkaido.dev',
     exclude: [
       '/google0ad9aca222118e04.html',
-      '/api/*'
+      '/api/*',
+      '/print/*'
     ],
     routes() {
       const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']

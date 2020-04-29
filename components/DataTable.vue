@@ -15,14 +15,14 @@
     </v-overlay>
     <v-layout :class="{ loading: !loaded }" column>
       <v-data-table
-        :headers="chartData ? chartData.headers : []"
-        :items="chartData ? chartData.datasets : []"
-        :items-per-page="-1"
-        :hide-default-footer="true"
-        :height="300"
+        id="virtual-scroll-table"
+        v-scroll:#virtual-scroll-table="onScroll"
+        :headers="chartData.headers"
+        :items="chartData.datasets"
+        disable-pagination
+        hide-default-footer
         :sort-by="sortBy"
         :sort-desc="sortDesc"
-        :fixed-header="true"
         :mobile-breakpoint="0"
         class="cardTable"
       />
@@ -38,19 +38,36 @@
 </template>
 
 <style lang="scss">
+#virtual-scroll-table {
+  position: relative;
+}
 .cardTable {
   &.v-data-table {
-    th {
-      padding: 8px 10px;
-      height: auto;
-      border-bottom: 1px solid $gray-4;
-      white-space: nowrap;
-      color: $gray-2;
-      font-size: 12px;
+    width: 100%;
+    thead {
+      display: block;
+      width: 100%;
+      tr {
+        width: 100%;
+        th {
+          padding: 8px 10px;
+          height: auto;
+          border-bottom: 1px solid $gray-4;
+          white-space: nowrap;
+          color: $gray-2;
+          font-size: 12px;
+        }
+      }
     }
+
     tbody {
+      display: block;
+      overflow-y: scroll;
+      height: 300px;
+      width: 100%;
       tr {
         color: $gray-1;
+        width: 100%;
         td {
           padding: 8px 10px;
           height: auto;
@@ -131,6 +148,47 @@ export default {
       type: String,
       required: false,
       default: ''
+    }
+  },
+  data() {
+    return {
+      start: 0,
+      timeout: null,
+      rowHeight: 24,
+      perPage: 25
+    }
+  },
+  computed: {
+    dessertsLimited() {
+      return this.chartData.datasets.slice(
+        this.start,
+        this.perPage + this.start
+      )
+    },
+    startHeight() {
+      return this.start * this.rowHeight - 32
+    },
+    endHeight() {
+      return this.rowHeight * (this.chartData.datasets.length - this.start)
+    }
+  },
+  methods: {
+    onScroll(e) {
+      this.timeout && clearTimeout(this.timeout)
+
+      this.timeout = setTimeout(() => {
+        const { scrollTop } = e.target
+        const rows = Math.ceil(scrollTop / this.rowHeight)
+
+        this.start =
+          rows + this.perPage > this.chartData.datasets.length
+            ? this.chartData.datasets.length - this.perPage
+            : rows
+
+        this.$nextTick(() => {
+          e.target.scrollTop = scrollTop
+        })
+      }, 20)
     }
   }
 }
