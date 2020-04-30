@@ -6,7 +6,7 @@
       :date="convertToDateFromData(patients.last_update)"
       :info="sumInfoOfPatients"
       :loaded="patients.loaded"
-      :sort-by="'日付'"
+      :sort-by="'公表日'"
       :sort-desc="true"
       :source-from="$t('北海道 オープンデータポータル')"
       :title="$t('陽性患者の属性')"
