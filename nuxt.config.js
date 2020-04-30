@@ -210,7 +210,7 @@ module.exports = {
         handler: 'cacheFirst'
       },
       {
-        urlPattern: 'https://deploy-preview-424--code-for-sappor-covid19-deploy-preview-free.netlify.app/.*',
+        urlPattern: 'https://deploy-preview-425--code-for-sappor-covid19-deploy-preview-free.netlify.app/.*',
         handler: 'networkFirst', //staleWhileRevalidateにしたい
         strategyOptions: {
           cacheName: 'Stopcovid19-Hokkaido-Cache',
