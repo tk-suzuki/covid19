@@ -210,8 +210,18 @@ module.exports = {
         handler: 'cacheFirst'
       },
       {
-        urlPattern: 'https://deploy-preview-425--code-for-sappor-covid19-deploy-preview-free.netlify.app/.*',
-        handler: 'networkFirst', //staleWhileRevalidateにしたい
+        urlPattern: 'https://stopcovid19-dev.hokkaido.dev/.*',
+        handler: 'staleWhileRevalidate', //staleWhileRevalidateにしたい
+        strategyOptions: {
+          cacheName: 'Stopcovid19-Hokkaido-dev-Cache',
+          cacheExpiration: {
+            maxAgeSeconds: 24 * 60 * 60 * 30
+          }
+        }
+      },
+      {
+        urlPattern: 'https://stopcovid19.hokkaido.dev/.*',
+        handler: 'staleWhileRevalidate', //staleWhileRevalidateにしたい
         strategyOptions: {
           cacheName: 'Stopcovid19-Hokkaido-Cache',
           cacheExpiration: {
