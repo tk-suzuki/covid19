@@ -81,6 +81,13 @@
         }
       }
     }
+    .v-select {
+      margin-left: 10px;
+    }
+  }
+  .v-data-footer__pagination {
+    margin-left: 0;
+    margin-right: 5px;
   }
 }
 
@@ -144,12 +151,6 @@ export default {
       type: String,
       required: false,
       default: ''
-    }
-  },
-  data() {
-    return {
-      page: 1,
-      pageCount: 0
     }
   }
 }
