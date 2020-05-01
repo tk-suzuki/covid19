@@ -41,7 +41,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'}
     ]
   },
   /*
@@ -199,11 +199,45 @@ module.exports = {
     "splash_pages": null
   },
 
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: '^https://fonts.(?:googleapis|gstatic).com/(.*)',
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: 'https://cdn.materialdesignicons.com/.*',
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: 'https://stopcovid19-dev.hokkaido.dev/.*',
+        handler: 'networkFirst', //staleWhileRevalidateにしたい
+        strategyOptions: {
+          cacheName: 'Stopcovid19-Hokkaido-dev-Cache',
+          cacheExpiration: {
+            maxAgeSeconds: 24 * 60 * 60
+          }
+        }
+      },
+      {
+        urlPattern: 'https://stopcovid19.hokkaido.dev/.*',
+        handler: 'networkFirst', //staleWhileRevalidateにしたい
+        strategyOptions: {
+          cacheName: 'Stopcovid19-Hokkaido-Cache',
+          cacheExpiration: {
+            maxAgeSeconds: 24 * 60 * 60
+          }
+        }
+      }
+    ]
+  },
+
   sitemap: {
     hostname: 'https://stopcovid19.hokkaido.dev',
     exclude: [
       '/google0ad9aca222118e04.html',
-      '/api/*'
+      '/api/*',
+      '/print/*'
     ],
     routes() {
       const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']
