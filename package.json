@@ -40,6 +40,7 @@
     "express": "^4.16.4",
     "nuxt": "^2.12.2",
     "nuxt-i18n": "6.8.1",
+    "nuxt-webfontloader": "^1.1.0",
     "vue-chartjs": "^3.5.0",
     "vue-property-decorator": "^8.4.1",
     "vue-spinner": "^1.0.3"
