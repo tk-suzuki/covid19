@@ -1,0 +1,62 @@
+[
+  {
+    "name": "account-multiple",
+    "codepoint": "F00E"
+  },
+  {
+    "name": "chart-timeline-variant",
+    "codepoint": "FEB0"
+  },
+  {
+    "name": "domain",
+    "codepoint": "F1D7"
+  },
+  {
+    "name": "information",
+    "codepoint": "F2FC"
+  },
+  {
+    "name": "open-in-new",
+    "codepoint": "F3CC"
+  },
+  {
+    "name": "menu",
+    "codepoint": "F35C"
+  },
+  {
+    "name": "close",
+    "codepoint": "F156"
+  },
+  {
+    "name": "menu-down",
+    "codepoint": "F35D"
+  },
+  {
+    "name": "web",
+    "codepoint": "F59F"
+  },
+  {
+    "name": "chevron-down",
+    "codepoint": "F140"
+  },
+  {
+    "name": "content-copy",
+    "codepoint": "F18F"
+  },
+  {
+    "name": "share-variant",
+    "codepoint": "F497"
+  },
+  {
+    "name": "chevron-left",
+    "codepoint": "F141"
+  },
+  {
+    "name": "chevron-right",
+    "codepoint": "F142"
+  },
+  {
+    "name": "arrow-up",
+    "codepoint": "F05D"
+  }
+]
