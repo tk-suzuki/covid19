@@ -25,7 +25,7 @@
                 rel="noopener"
                 :href="sourceLink"
                 >{{ $t('出典: {sourceFrom}', { sourceFrom: sourceFrom }) }}
-                <v-icon size="15">mdi-open-in-new</v-icon></a
+                <v-icon size="15">{{ mdiOpenInNewSVG }}</v-icon></a
               >
             </v-footer>
           </div>
@@ -41,7 +41,7 @@
         <div v-if="this.$route.query.embed !== 'true'" class="Footer-Right">
           <button class="DataView-Share-Opener" @click="toggleShareMenu">
             <v-icon>
-              mdi-share-variant
+              {{ mdiShareVariantSVG }}
             </v-icon>
           </button>
           <div
@@ -51,7 +51,7 @@
           >
             <div class="Close-Button">
               <v-icon :aria-label="$t('閉じる')" @click="closeShareMenu">
-                mdi-close
+                {{ mdiCloseSVG }}
               </v-icon>
             </div>
 
@@ -64,7 +64,7 @@
                 :aria-label="$t('クリップボードにコピー')"
                 @click="copyEmbedCode"
               >
-                mdi-content-copy
+                {{ mdiContentCopySVG }}
               </v-icon>
               {{ graphEmbedValue }}
             </div>
@@ -132,6 +132,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {
+  mdiOpenInNew,
+  mdiShareVariant,
+  mdiClose,
+  mdiContentCopy
+} from '@mdi/js'
 
 const PictureLoader = () => import('~/components/PictureLoader.vue')
 
@@ -169,7 +175,11 @@ export default Vue.extend({
       openGraphEmbed: false,
       displayShare: false,
       showOverlay: false,
-      overlayContent: ''
+      overlayContent: '',
+      mdiOpenInNewSVG: mdiOpenInNew,
+      mdiShareVariantSVG: mdiShareVariant,
+      mdiCloseSVG: mdiClose,
+      mdiContentCopySVG: mdiContentCopy
     }
   },
   computed: {
