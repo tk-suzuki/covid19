@@ -51,7 +51,8 @@ module.exports = {
    ** Global CSS
    */
   css: [
-    '~assets/global.scss'
+    '~assets/global.scss',
+    '~~/font/dist/css/materialdesignicons.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -175,7 +176,9 @@ module.exports = {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss']
+    customVariables: ['~/assets/variables.scss'],
+    theme: {},
+    defaultAssets: false
   },
   googleAnalytics: {
     id: 'UA-159982743-1'
@@ -210,10 +213,6 @@ module.exports = {
       },
       {
         urlPattern: 'https://cdn.materialdesignicons.com/.*',
-        handler: 'cacheFirst'
-      },
-      {
-        urlPattern: 'https://cdn.jsdelivr.net/.*',
         handler: 'cacheFirst'
       },
       {

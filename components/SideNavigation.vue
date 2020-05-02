@@ -6,7 +6,7 @@
         :aria-label="$t('サイドメニュー項目を開く')"
         @click="openNavi"
       >
-        {{ mdiMenuSVG }}
+        mdi-menu
       </v-icon>
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
@@ -37,7 +37,7 @@
         :aria-label="$t('サイドメニュー項目を閉じる')"
         @click="closeNavi"
       >
-        {{ mdiCloseSVG }}
+        mdi-close
       </v-icon>
       <div class="SideNavigation-LanguageMenu">
         <LanguageSelector />
@@ -163,11 +163,11 @@
 </template>
 
 <script>
-import { mdiMenu, mdiClose } from '@mdi/js'
 import ListItem from '@/components/ListItem'
 import LogoAnimation from '@/components/Logo-Animation'
 import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
 const LanguageSelector = () => import('@/components/LanguageSelector.vue')
+
 const PictureLoader = () => import('~/components/PictureLoader.vue')
 
 export default {
@@ -182,12 +182,6 @@ export default {
     isNaviOpen: {
       type: Boolean,
       required: true
-    }
-  },
-  data() {
-    return {
-      mdiCloseSVG: mdiClose,
-      mdiMenuSVG: mdiMenu
     }
   },
   computed: {
