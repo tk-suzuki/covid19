@@ -196,6 +196,7 @@ module.exports = {
   },
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
+    "shortname": "StopCOVID-19 Hokkaido",
     "theme_color": "#1268d8",
     "background_color": "#ffffff",
     "display": "standalone",
