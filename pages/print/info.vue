@@ -23,9 +23,9 @@
           '開発・運営は、エンジニアやデザイナーなどによって結成された「JUST 道 IT」が行っています。'
         )
       }}<br />
-      <v-icon class="icon" size="18">{{ mdiTwitterSVG }}</v-icon> :
+      <v-icon class="icon" size="18">mdi-twitter</v-icon> :
       https://twitter.com/Just_douit<br />
-      <v-icon class="icon" size="18">{{ mdiFacebookSVG }}</v-icon> :
+      <v-icon class="icon" size="18">mdi-facebook</v-icon> :
       https://www.facebook.com/Justdouit19<br />
     </span>
     <br />
@@ -76,17 +76,10 @@
 </template>
 
 <script>
-import { mdiTwitter, mdiFacebook } from '@mdi/js'
 const PictureLoader = () => import('@/components/PictureLoader')
 export default {
   components: { PictureLoader },
   layout: 'print',
-  data() {
-    return {
-      mdiTwitterSVG: mdiTwitter,
-      mdiFacebookSVG: mdiFacebook
-    }
-  },
   head() {
     return {
       title: this.$t('新型コロナウイルス{mobileBreak}まとめサイト', {
