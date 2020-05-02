@@ -168,7 +168,7 @@ module.exports = {
   },
   webfontloader: {
     google: {
-      families: ['Roboto']
+      families: ['Roboto&display=swap']
     }
   },
   /*
