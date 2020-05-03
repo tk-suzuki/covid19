@@ -216,10 +216,6 @@ module.exports = {
         handler: 'cacheFirst'
       },
       {
-        urlPattern: 'https://cdn.jsdelivr.net/.*',
-        handler: 'cacheFirst'
-      },
-      {
         urlPattern: 'https://stopcovid19-dev.hokkaido.dev/.*',
         handler: 'networkFirst', //staleWhileRevalidateにしたい
         strategyOptions: {
