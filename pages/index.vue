@@ -122,7 +122,7 @@ export default {
               "diseaseSpreadStatistics" : [{
                 "@type": "Dataset",
                 "name" : "北海道 新型コロナウイルス感染症の陽性患者属性",
-                "description" : "北海道が公式に発表している新型コロナウイルス感染症に関する陽性患者属性のデータ。",
+                "description" : "北海道が公式に発表している新型コロナウイルス感染症に関する陽性患者属性のデータ。Shift-JISでエンコードされています。",
                 "sameAs": "https://www.harp.lg.jp/opendata/dataset/1369.html",
                 "license": "https://creativecommons.org/licenses/by/2.1/jp/",
                 "distribution" : {
