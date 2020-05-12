@@ -156,20 +156,15 @@ export default {
         return 1
       }
       if (this.titleId === 'inspections') {
-        if (this.dataKind === 'transition') {
-          this.sliderUpdate([1, this.chartData.length - 1])
-          return this.chartData.length - 1
-        }
+        this.sliderUpdate([1, this.chartData.length - 1])
+        return this.chartData.length - 1
       }
       this.sliderUpdate([0, this.chartData.length - 1])
       return this.chartData.length - 1
     },
     sliderMin() {
       if (this.titleId === 'inspections') {
-        if (this.dataKind === 'transition') {
-          this.sliderUpdate([1, this.chartData.length - 1])
-          return 1
-        }
+        return 1
       }
       return 0
     },
@@ -245,6 +240,24 @@ export default {
               label: this.dataKind,
               data: this.chartData.map(d => {
                 return d.transition
+              }),
+              backgroundColor: '#1c8df0',
+              borderWidth: 0
+            }
+          ]
+        }
+      }
+      if (this.titleId === 'inspections') {
+        const chartDataForInspections = this.chartData.slice(1)
+        return {
+          labels: chartDataForInspections.map(d => {
+            return d.label
+          }),
+          datasets: [
+            {
+              label: this.dataKind,
+              data: chartDataForInspections.map(d => {
+                return d.cumulative
               }),
               backgroundColor: '#1c8df0',
               borderWidth: 0
