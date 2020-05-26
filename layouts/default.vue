@@ -1,11 +1,13 @@
 <template>
   <v-app class="app">
     <dev-environment-ribbon v-if="displayRibbon" />
-    <div v-if="loading" class="loader">
-      <img src="/logo.svg" :alt="$t('北海道')" />
-      <scale-loader color="#1268d8" />
-    </div>
-    <div v-else class="appContainer">
+    <v-overlay v-if="loading" color="#F8F9FA" opacity="1" z-index="9999">
+      <div class="loader">
+        <logo-animation height="50px" :alt="$t('北海道')" />
+        <scale-loader color="#1268d8" />
+      </div>
+    </v-overlay>
+    <div v-if="hasNavigation" class="appContainer">
       <div class="naviContainer">
         <SideNavigation
           :is-navi-open="isNaviOpen"
@@ -20,6 +22,11 @@
         </v-container>
       </div>
     </div>
+    <div v-else class="embed">
+      <v-container>
+        <nuxt />
+      </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -27,9 +34,11 @@
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import SideNavigation from '@/components/SideNavigation'
 import DevEnvironmentRibbon from '@/components/DevEnvironmentRibbon'
+import LogoAnimation from '@/components/Logo-Animation'
 
 export default {
   components: {
+    LogoAnimation,
     ScaleLoader,
     SideNavigation,
     DevEnvironmentRibbon
@@ -37,21 +46,27 @@ export default {
   data() {
     let hasNavigation = true
     let loading = true
+    let getOGP = false
     if (this.$route.query.embed === 'true') {
       hasNavigation = false
       loading = false
     } else if (this.$route.query.ogp === 'true') {
+      getOGP = true
       hasNavigation = false
       loading = false
     }
     return {
       hasNavigation,
       loading,
+      getOGP,
       isNaviOpen: false
     }
   },
   computed: {
     displayRibbon() {
+      if (this.getOGP) {
+        return false
+      }
       return process.env.NODE_ENV !== 'production'
     }
   },
@@ -141,7 +156,7 @@ export default {
             this.$t(
               '当サイトは、道内の新型コロナウイルス感染症（COVID-19）に関する最新情報を提供するために作成されました。開発は、ICTエンジニアやデザイナーなどによって結成された「JUST道IT」が行っています。'
             ) +
-            '' +
+            ' ' +
             this.$t(
               '複製・改変が許されたオープンソースライセンスで公開されている、{tokyoCovid19Site}の{tokyoCovid19SiteGitHub}を利用しています。',
               {
@@ -151,6 +166,16 @@ export default {
                 tokyoCovid19SiteGitHub: this.$t('仕組み')
               }
             )
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://stopcovid19.hokkaido.dev/ogp.png'
         },
         {
           hid: 'apple-mobile-web-app-title',
@@ -222,6 +247,15 @@ export default {
   img {
     display: block;
     margin: 0 auto 20px;
+  }
+}
+
+.embed {
+  .container {
+    padding: 0 !important;
+  }
+  .DataCard {
+    padding: 0 !important;
   }
 }
 </style>

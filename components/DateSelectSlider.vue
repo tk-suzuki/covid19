@@ -5,7 +5,7 @@
     :label="$t('表示期間')"
     :rules="rules"
     :max="sliderMax"
-    :min="0"
+    :min="sliderMin"
     thumb-label="always"
     style="padding-top: 35px;"
   >
@@ -31,6 +31,11 @@ export default {
       type: Number,
       required: true,
       default: 1
+    },
+    sliderMin: {
+      type: Number,
+      required: true,
+      default: 0
     }
   },
   data() {
@@ -45,7 +50,7 @@ export default {
   },
   watch: {
     sliderMax() {
-      this.sliderValue = [0, this.sliderMax]
+      this.sliderValue = [this.sliderMin, this.sliderMax]
     },
     sliderValue(newValue, oldValue) {
       if (Math.abs(newValue[0] - newValue[1]) <= 14) {
@@ -60,7 +65,7 @@ export default {
       if (!this.chartData || this.chartData.length === 0) {
         return 1
       }
-      return this.$moment(this.chartData[id].label).format('M/D')
+      return this.$dayjs(this.chartData[id].label).format('M/D')
     }
   }
 }

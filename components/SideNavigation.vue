@@ -10,7 +10,14 @@
       </v-icon>
       <nuxt-link :to="localePath('/')" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
-          <img src="/logo.svg" :alt="$t('北海道')" />
+          <LogoAnimation
+            class="SideNavigation-LogoAnimationContent"
+            :alt="$t('北海道')"
+          />
+          <LogoAnimationSp
+            class="SideNavigation-LogoAnimationSpContent"
+            :alt="$t('北海道')"
+          />
         </div>
         <h1 class="SideNavigation-Heading">
           <span class="SideNavigation-HeadingTitle">
@@ -60,17 +67,22 @@
             target="_blank"
             rel="noopener"
           >
-            <img src="/twitter.png" width="90px" height="90px" alt="Twitter" />
+            <PictureLoader
+              filename="twitter"
+              width="30px"
+              height="30px"
+              alt="Twitter"
+            />
           </a>
           <a
             href="https://www.facebook.com/Justdouit19/"
             target="_blank"
             rel="noopener"
           >
-            <img
-              src="/facebook.png"
-              width="90px"
-              height="90px"
+            <PictureLoader
+              filename="facebook"
+              width="30px"
+              height="30px"
               alt="Facebook"
             />
           </a>
@@ -79,7 +91,12 @@
             target="_blank"
             rel="noopener"
           >
-            <img src="/github.png" width="90px" height="90px" alt="GitHub" />
+            <PictureLoader
+              filename="github"
+              width="30px"
+              height="30px"
+              alt="Github"
+            />
           </a>
         </div>
         <div class="SideNavigation-SponsorLinkContainer">
@@ -102,9 +119,9 @@
                 <span class="image-title">{{ $t('CC BY 4.0') }}</span>
               </template>
               <template #ccByImage>
-                <img
-                  class="cc-by-logo"
-                  src="/cc-by-mini.svg"
+                <PictureLoader
+                  classname="cc-by-logo"
+                  filename="cc-by-mini"
                   width="85.3px"
                   height="16px"
                   :alt="$t('CC BY 4.0')"
@@ -112,12 +129,14 @@
               </template>
             </i18n> </a
           ><br />
+          <br />
           {{ $t('Operations by:') }}<br />
           <nuxt-link :to="{ path: localePath('/about/') }">
             <span class="image-title">{{ $t('JUST道IT') }}</span>
-            <img
-              class="justdoit-logo"
-              src="/justdouit.png"
+
+            <PictureLoader
+              classname="justdoit-logo"
+              filename="justdouit"
               width="132px"
               height="46.6px"
               :alt="$t('JUST道IT')"
@@ -125,12 +144,13 @@
           </nuxt-link>
 
           <br />
+          <br />
           {{ $t('Powered by:') }}<br />
           <a href="https://www.sakura.ad.jp/" target="_blank" rel="noopener">
             <span class="image-title">{{ $t('さくらインターネット') }}</span>
-            <img
-              class="sakura-internet-logo"
-              src="/sakura.svg"
+            <PictureLoader
+              classname="sakura-internet-logo"
+              filename="sakura"
               width="176px"
               height="62px"
               :alt="$t('さくらインターネット')"
@@ -144,10 +164,17 @@
 
 <script>
 import ListItem from '@/components/ListItem'
-import LanguageSelector from '@/components/LanguageSelector.vue'
+import LogoAnimation from '@/components/Logo-Animation'
+import LogoAnimationSp from '@/components/Logo-Animation-sp.vue'
+const LanguageSelector = () => import('@/components/LanguageSelector.vue')
+
+const PictureLoader = () => import('~/components/PictureLoader.vue')
 
 export default {
   components: {
+    PictureLoader,
+    LogoAnimationSp,
+    LogoAnimation,
     ListItem,
     LanguageSelector
   },
@@ -282,10 +309,22 @@ export default {
     padding: 2px 20px;
   }
   &-Logo {
-    margin: 20px 16px 0 0;
+    margin: 15px 16px 0 0;
     width: 110px;
     @include lessThan($small) {
       margin-top: 0;
+    }
+  }
+  &-LogoAnimationContent {
+    height: 50px;
+    @include lessThan($small) {
+      display: none;
+    }
+  }
+  &-LogoAnimationSpContent {
+    height: 45px;
+    @include largerThan($small) {
+      display: none;
     }
   }
   &-Heading {
@@ -296,6 +335,7 @@ export default {
     text-decoration: none;
     @include lessThan($small) {
       margin-top: 0;
+      margin-left: 15px;
     }
   }
   &-HeadingTitle {
@@ -339,14 +379,14 @@ export default {
     & a:hover {
       opacity: 0.6;
     }
-    & img {
+    & picture {
       padding-bottom: 0.9rem;
     }
-    & img.justdouit-logo {
+    & picture.justdouit-logo {
       margin: 0 0 0 -3px;
       width: 132px;
     }
-    & img.sakura-internet-logo {
+    & picture.sakura-internet-logo {
       margin: -6px 0 0 -14px;
       width: 176px;
     }
@@ -383,11 +423,9 @@ export default {
   }
   &-SocialLinkContainer {
     display: flex;
-    & img {
+    & picture {
       width: 30px;
-      &:first-of-type {
-        margin-right: 10px;
-      }
+      margin-right: 10px;
     }
   }
 }

@@ -5,6 +5,7 @@
     :loaded="loaded"
     :source-from="sourceFrom"
     :source-link="sourceLink"
+    :title-id="titleId"
   >
     <template v-if="showButton === true" v-slot:button>
       <data-selector v-model="dataKind" />
@@ -18,6 +19,7 @@
         :chart-data="chartData"
         :value="[0, sliderMax]"
         :slider-max="sliderMax"
+        :slider-min="sliderMin"
         @sliderInput="sliderUpdate"
       />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
@@ -71,10 +73,11 @@
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import DataView from '@/components/DataView.vue'
-import DataSelector from '@/components/DataSelector.vue'
-import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
-import DateSelectSlider from '@/components/DateSelectSlider.vue'
+const DataView = () => import('@/components/DataView.vue')
+const DataSelector = () => import('@/components/DataSelector.vue')
+const DataViewBasicInfoPanel = () =>
+  import('@/components/DataViewBasicInfoPanel.vue')
+const DateSelectSlider = () => import('@/components/DateSelectSlider.vue')
 
 export default {
   components: {
@@ -134,6 +137,11 @@ export default {
       type: Boolean,
       required: true,
       default: false
+    },
+    titleId: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data() {
@@ -147,7 +155,18 @@ export default {
       if (!this.chartData || this.chartData.length === 0) {
         return 1
       }
+      if (this.titleId === 'inspections') {
+        this.sliderUpdate([1, this.chartData.length - 1])
+        return this.chartData.length - 1
+      }
+      this.sliderUpdate([0, this.chartData.length - 1])
       return this.chartData.length - 1
+    },
+    sliderMin() {
+      if (this.titleId === 'inspections') {
+        return 1
+      }
+      return 0
     },
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
@@ -182,7 +201,7 @@ export default {
           this.chartData.length - 1
         ].cumulative.toLocaleString(),
         sText: this.$t('{date} 累計値（前日比：{change} {unit}）', {
-          date: this.$moment(this.chartData.slice(-1)[0].label).format('MM/DD'),
+          date: this.$dayjs(this.chartData.slice(-1)[0].label).format('MM/DD'),
           change: this.displayCumulativeRatio,
           unit: this.unit
         }),
@@ -194,6 +213,24 @@ export default {
         return {}
       }
       if (this.dataKind === 'transition') {
+        if (this.titleId === 'inspections') {
+          const chartDataForInspections = this.chartData.slice(1)
+          return {
+            labels: chartDataForInspections.map(d => {
+              return d.label
+            }),
+            datasets: [
+              {
+                label: this.dataKind,
+                data: chartDataForInspections.map(d => {
+                  return d.transition
+                }),
+                backgroundColor: '#1c8df0',
+                borderWidth: 0
+              }
+            ]
+          }
+        }
         return {
           labels: this.chartData.map(d => {
             return d.label
@@ -203,6 +240,24 @@ export default {
               label: this.dataKind,
               data: this.chartData.map(d => {
                 return d.transition
+              }),
+              backgroundColor: '#1c8df0',
+              borderWidth: 0
+            }
+          ]
+        }
+      }
+      if (this.titleId === 'inspections') {
+        const chartDataForInspections = this.chartData.slice(1)
+        return {
+          labels: chartDataForInspections.map(d => {
+            return d.label
+          }),
+          datasets: [
+            {
+              label: this.dataKind,
+              data: chartDataForInspections.map(d => {
+                return d.cumulative
               }),
               backgroundColor: '#1c8df0',
               borderWidth: 0

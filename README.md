@@ -1,4 +1,7 @@
 # 新型コロナウイルス感染症対策サイト北海道版
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![](https://github.com/codeforsapporo/covid19/workflows/production%20deploy/badge.svg)
 
@@ -107,4 +110,3 @@ and then the development site (https://stopcovid19-dev.hokkaido.dev and http://1
 ### 東京都版との整合性についての方針
 
 forkした後の更新が激しいので（東京都版、北海道版共に）、機械的なmergeはせず必要なものがあれば都度cherry-pickする方針とします。
-
