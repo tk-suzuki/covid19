@@ -5,11 +5,11 @@
       :date="convertToDateFromData(inspections.last_update)"
       :default-data-kind="'cumulative'"
       :loaded="inspections.loaded"
-      :show-button="false"
+      :show-button="true"
       :source-from="$t('北海道 オープンデータポータル')"
       :supplement="
         $t(
-          '3月3日以前のデータが公開されていないため、グラフは3月3日以降となります。'
+          '3月3日以前のデータが公開されていないため、グラフは3月4日以降となります。'
         )
       "
       :title="$t('検査数')"
