@@ -232,10 +232,6 @@ export default {
         //     'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event02.html'
         // },
         {
-          title: this.$t('特別定額給付金について'),
-          link: this.$t('https://kyufukin.soumu.go.jp/ja-JP/index.html')
-        },
-        {
           title: this.$t('知事からのメッセージ'),
           link:
             'http://www.pref.hokkaido.lg.jp/ss/tkk/hodo/pressconference/r1.htm'
