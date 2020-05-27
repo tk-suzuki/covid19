@@ -19,7 +19,6 @@
         :chart-data="chartData"
         :value="[0, sliderMax]"
         :slider-max="sliderMax"
-        :slider-min="sliderMin"
         @sliderInput="sliderUpdate"
       />
       <v-footer v-if="supplement !== ''" class="TimeBarChart-Footer">
@@ -155,18 +154,8 @@ export default {
       if (!this.chartData || this.chartData.length === 0) {
         return 1
       }
-      if (this.titleId === 'inspections') {
-        this.sliderUpdate([1, this.chartData.length - 1])
-        return this.chartData.length - 1
-      }
       this.sliderUpdate([0, this.chartData.length - 1])
       return this.chartData.length - 1
-    },
-    sliderMin() {
-      if (this.titleId === 'inspections') {
-        return 1
-      }
-      return 0
     },
     displayCumulativeRatio() {
       const lastDay = this.chartData.slice(-1)[0].cumulative
@@ -213,24 +202,6 @@ export default {
         return {}
       }
       if (this.dataKind === 'transition') {
-        if (this.titleId === 'inspections') {
-          const chartDataForInspections = this.chartData.slice(1)
-          return {
-            labels: chartDataForInspections.map(d => {
-              return d.label
-            }),
-            datasets: [
-              {
-                label: this.dataKind,
-                data: chartDataForInspections.map(d => {
-                  return d.transition
-                }),
-                backgroundColor: '#1c8df0',
-                borderWidth: 0
-              }
-            ]
-          }
-        }
         return {
           labels: this.chartData.map(d => {
             return d.label
@@ -240,24 +211,6 @@ export default {
               label: this.dataKind,
               data: this.chartData.map(d => {
                 return d.transition
-              }),
-              backgroundColor: '#1c8df0',
-              borderWidth: 0
-            }
-          ]
-        }
-      }
-      if (this.titleId === 'inspections') {
-        const chartDataForInspections = this.chartData.slice(1)
-        return {
-          labels: chartDataForInspections.map(d => {
-            return d.label
-          }),
-          datasets: [
-            {
-              label: this.dataKind,
-              data: chartDataForInspections.map(d => {
-                return d.cumulative
               }),
               backgroundColor: '#1c8df0',
               borderWidth: 0

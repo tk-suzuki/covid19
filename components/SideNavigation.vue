@@ -237,10 +237,6 @@ export default {
             'http://www.pref.hokkaido.lg.jp/ss/tkk/hodo/pressconference/r1.htm'
         },
         {
-          title: this.$t('全国医療機関の医療提供体制の状況'),
-          link: 'https://cio.go.jp/hosp_monitoring_c19'
-        },
-        {
           title: this.$t('当サイトについて'),
           link: this.localePath('/about')
         },
