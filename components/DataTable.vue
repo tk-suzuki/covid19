@@ -5,6 +5,7 @@
     :date="date"
     :source-from="sourceFrom"
     :source-link="sourceLink"
+    :title-id="titleId"
   >
     <template v-slot:button>
       <span />
@@ -14,17 +15,30 @@
     </v-overlay>
     <v-layout :class="{ loading: !loaded }" column>
       <v-data-table
-        :headers="chartData ? chartData.headers : []"
-        :items="chartData ? chartData.datasets : []"
-        :items-per-page="-1"
-        :hide-default-footer="true"
-        :height="300"
+        :headers="chartData.headers"
+        :items="chartData.datasets"
+        fixed-header
+        disable-filtering
+        height="375"
         :sort-by="sortBy"
         :sort-desc="sortDesc"
-        :fixed-header="true"
         :mobile-breakpoint="0"
         class="cardTable"
-      />
+        :footer-props="{
+          'items-per-page-options': [10, 20, 50, 100, -1],
+          'items-per-page-text': $t('1ページ当たり')
+        }"
+      >
+        <template slot="footer.page-text" slot-scope="props">
+          {{
+            $t('{itemsLength} 項目中 {pageStart} - {pageStop} ', {
+              itemsLength: props.itemsLength,
+              pageStart: props.pageStart,
+              pageStop: props.pageStop
+            })
+          }}
+        </template>
+      </v-data-table>
     </v-layout>
     <template v-slot:infoPanel>
       <data-view-basic-info-panel
@@ -67,6 +81,13 @@
         }
       }
     }
+    .v-select {
+      margin-left: 10px;
+    }
+  }
+  .v-data-footer__pagination {
+    margin-left: 0;
+    margin-right: 5px;
   }
 }
 
@@ -77,8 +98,9 @@
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import DataView from '@/components/DataView.vue'
-import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+const DataView = () => import('@/components/DataView.vue')
+const DataViewBasicInfoPanel = () =>
+  import('@/components/DataViewBasicInfoPanel.vue')
 
 export default {
   components: { DataView, DataViewBasicInfoPanel, ScaleLoader },
@@ -124,6 +146,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    titleId: {
+      type: String,
+      required: false,
+      default: ''
     }
   }
 }

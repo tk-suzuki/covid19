@@ -16,7 +16,7 @@
 </style>
 
 <script>
-import DataView from '@/components/DataView.vue'
+const DataView = () => import('@/components/DataView.vue')
 
 export default {
   components: { DataView },

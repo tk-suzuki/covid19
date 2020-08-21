@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import TextCard from '@/components/TextCard.vue'
+const TextCard = () => import('@/components/TextCard.vue')
 export default {
   components: {
     TextCard

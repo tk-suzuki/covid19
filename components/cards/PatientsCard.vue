@@ -6,7 +6,7 @@
       :date="convertToDateFromData(patients.last_update)"
       :info="sumInfoOfPatients"
       :loaded="patients.loaded"
-      :sort-by="'日付'"
+      :sort-by="'公表日'"
       :sort-desc="true"
       :source-from="$t('北海道 オープンデータポータル')"
       :title="$t('陽性患者の属性')"
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import DataTable from '@/components/DataTable.vue'
 import formatTable from '@/utils/formatTable'
 import convertToDateFromData from '@/utils/convertToDateFromData'
 import formatPatientsSummaryGraph from '@/utils/formatPatientsSummaryGraph'
+const DataTable = () => import('@/components/DataTable.vue')
 
 export default {
   name: 'PatientsCard',
@@ -89,7 +89,7 @@ export default {
               patientsGraph.length - 1
             ].cumulative.toLocaleString(),
             sText: this.$t('{date}の累計', {
-              date: this.$moment(
+              date: this.$dayjs(
                 patientsGraph[patientsGraph.length - 1].label
               ).format('MM/DD')
             }),

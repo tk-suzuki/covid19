@@ -40,8 +40,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto' }
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
     ]
   },
   /*
@@ -63,7 +62,7 @@ module.exports = {
       src: '@/plugins/vue-chart.js',
       ssr: true
     },
-    '@/plugins/datetime-formatter.js'
+    '@/plugins/dayjs.js'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -88,7 +87,7 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    ['@nuxtjs/moment', ['ja']],
+    'nuxt-webfontloader',
     [
       'nuxt-i18n',
       {
@@ -157,7 +156,8 @@ module.exports = {
         langDir: './assets/locales/'
       }
     ],
-    'nuxt-svg-loader'
+    'nuxt-svg-loader',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Axios module configuration
@@ -165,6 +165,11 @@ module.exports = {
    */
   axios: {
     baseURL: process.env.NODE_ENV === "production" ? "/api/" : "https://stopcovid19-dev.hokkaido.dev/api/"
+  },
+  webfontloader: {
+    google: {
+      families: ['Roboto&display=swap']
+    }
   },
   /*
    ** vuetify module configuration
@@ -181,21 +186,91 @@ module.exports = {
    /*
   ** Build configuration
   */
-  // build: {
-  //   /*
-  //   ** You can extend webpack config here
-  //   */
-  //   extend (config, ctx) {
-  //   }
-  // },
+  build: {
+     /*
+     ** You can extend webpack config here
+     */
+     extend (config, ctx) {
+       config.externals = [{ moment: 'moment' }]
+     }
+  },
   manifest: {
     "name": "北海道 新型コロナウイルスまとめサイト",
+    "short_name": "StopCOVID-19 Hokkaido",
     "theme_color": "#1268d8",
     "background_color": "#ffffff",
     "display": "standalone",
     "Scope": "/",
     "start_url": "/",
     "splash_pages": null
+  },
+
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: '^https://fonts.(?:googleapis|gstatic).com/(.*)',
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: 'https://cdn.materialdesignicons.com/.*',
+        handler: 'cacheFirst'
+      },
+      {
+        urlPattern: 'https://stopcovid19-dev.hokkaido.dev/.*',
+        handler: 'networkFirst', //staleWhileRevalidateにしたい
+        strategyOptions: {
+          cacheName: 'Stopcovid19-Hokkaido-dev-Cache',
+          cacheExpiration: {
+            maxAgeSeconds: 24 * 60 * 60
+          }
+        }
+      },
+      {
+        urlPattern: 'https://stopcovid19.hokkaido.dev/.*',
+        handler: 'networkFirst', //staleWhileRevalidateにしたい
+        strategyOptions: {
+          cacheName: 'Stopcovid19-Hokkaido-Cache',
+          cacheExpiration: {
+            maxAgeSeconds: 24 * 60 * 60
+          }
+        }
+      }
+    ]
+  },
+
+  sitemap: {
+    hostname: 'https://stopcovid19.hokkaido.dev',
+    exclude: [
+      '/google0ad9aca222118e04.html',
+      '/api/*',
+      '/print/*'
+    ],
+    routes() {
+      const locales = ['ja', 'en', 'zh-cn', 'zh-tw', 'th', 'vi', 'ko', 'ja-basic']
+      const pages = [
+        '/cards/contacts',
+        '/cards/current-patients',
+        '/cards/discharges-summary',
+        '/cards/inspections',
+        '/cards/patients',
+        '/cards/patients-summary',
+        '/cards/querents'
+      ]
+
+      const routes = []
+      locales.forEach(locale => {
+        pages.forEach(page => {
+          if (locale === 'ja') {
+            routes.push(page)
+            return
+          }
+          const route = `/${locale}${page}`
+          routes.push(route)
+        })
+      })
+      return routes
+    }
+
   },
 
   generate: {

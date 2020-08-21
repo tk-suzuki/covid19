@@ -66,6 +66,18 @@
   content: "\F497";
 }
 
+.mdi-chevron-left::before {
+  content: "\F141";
+}
+
+.mdi-chevron-right::before {
+  content: "\F142";
+}
+
+.mdi-arrow-up::before {
+  content: "\F05D";
+}
+
 .mdi-blank::before {
   content: "\F68C";
   visibility: hidden;
